@@ -3,7 +3,7 @@
 ## Setup
 ### Run XAMPP in Ubuntu
 
-sudo /etc/init.d/apache2 stop   
+sudo /etc/init.d/apache2 stop
 sudo /opt/lampp/lampp start
 
 ### Copy Project

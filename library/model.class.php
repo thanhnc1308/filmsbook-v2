@@ -13,14 +13,4 @@ class Model extends SQLQuery {
     function __destruct() {
         
     }
-    
-    /**
-     * func get field name of primary key
-     * @return string
-     * @author ThanhNC 16.05.2020
-     */
-    function getIdField() {
-        return '';
-    }
-
 }

@@ -1,5 +1,8 @@
 <?php
 
+require_once (ROOT . DS . 'core' . DS . 'log.php');
+require_once (ROOT . DS . 'core' . DS . 'constant.php');
+
 class SQLQuery {
 
     protected $_connection;
@@ -27,23 +30,38 @@ class SQLQuery {
             return 0;
         }
     }
-    
-    /**
-     * func get connection to database with a connectionString
-     * @author ThanhNC 16.05.2020
-     */
-    function getConnection() {
-        return $this->_connection;
-    }
 
+    // #region CRUD
+
+    /**
+     * func select all rows in table
+     * @return type
+     */
     function selectAll() {
-        $query = 'select * from `' . $this->_table . '`';
+        $query = 'select * from ' . DEFAULT_SCHEMA . '.' . $this->_table . ' order by modified_date ';
+        $query = $this->escapeSecureSQL($query);
         return $this->query($query);
     }
 
+    /**
+     * func select by id
+     * @param type $id
+     * @return type
+     */
     function select($id) {
-        $query = 'select * from `' . $this->_table . '` where `id` = \'' . mysqli_real_escape_string($this->_connection, $id) . '\'';
+        $query = 'select * from ' . DEFAULT_SCHEMA . '.' . $this->_table . ' where id = ' . $this->escapeSecureSQL($id);
+        $query = $this->escapeSecureSQL($query);
         return $this->query($query, 1);
+    }
+
+    /**
+     * func select a view
+     * @param type $viewName
+     */
+    function selectByView($viewName) {
+        $query = 'select * from ' . DEFAULT_SCHEMA . '.' . $viewName . ' order by modified_date ';
+        $query = $this->escapeSecureSQL($query);
+        return $this->query($query);
     }
 
     /** Custom SQL Query * */
@@ -81,7 +99,23 @@ class SQLQuery {
         }
     }
 
+    // #endregion CRUD
+    // #region common
+
     /** Get number of rows * */
+
+    /**
+     * func get connection to database with a connectionString
+     * @author ThanhNC 16.05.2020
+     */
+    function getConnection() {
+        return $this->_connection;
+    }
+
+    /**
+     * func get number of rows
+     * @return type
+     */
     function getNumRows() {
         return mysqli_num_rows($this->_result);
     }
@@ -96,4 +130,35 @@ class SQLQuery {
         return mysqli_error($this->_connection);
     }
 
+    /**
+     * func escapes special characters in a string for use in an SQL statement
+     * to avoid SQL injection
+     * @param type $sql
+     * @author ThanhNC 16.05.2020
+     */
+    function escapeSecureSQL($sql) {
+        return mysqli_real_escape_string($this->_connection, $sql);
+    }
+
+    // #endregion common
+    // #region override
+
+    /**
+     * func get field name of primary key
+     * @return string
+     * @author ThanhNC 16.05.2020
+     */
+    function getIdField() {
+        return null;
+    }
+
+    /**
+     * func get vaue of primary key
+     * @author ThanhNC 16.05.2020
+     */
+    function getIdValue() {
+        return null;
+    }
+
+    // #endregion override
 }

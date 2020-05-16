@@ -1,4 +1,5 @@
 <?php
+include (ROOT . DS . 'core' . DS . 'log.php');
 
 class Controller {
 
@@ -17,13 +18,35 @@ class Controller {
         $this->_template = new Template($controller, $action);
     }
 
-    function set($name, $value) {
-        $this->_template->set($name, $value);
-    }
-
     function __destruct() {
         // render template while destroy the class
         $this->_template->render();
     }
-
+    
+    // #region common
+    /**
+     * func set custom variables for template
+     * @param type $name
+     * @param type $value
+     */
+    function set($name, $value) {
+        $this->_template->set($name, $value);
+    }
+    
+    /**
+     * func get class base
+     * @author ThanhNC 16.05.2020
+     */
+    function getBase() {
+        return $this;
+    }
+    // #endregion common
+    
+    // #region CRUD
+    
+    // #endregion CRUD
+    
+    // #region override
+    
+    // #endregion override
 }
