@@ -9,7 +9,7 @@ require_once(ROOT.DS.'config'.DS.'config.php');
 #$command = 'mysqldump --opt -h'.DB_HOST.' -u'.DB_USER.' -p'.DB_PASSWORD.' '.DB_NAME.' no-data add-drop-table > '.$backupFile;
 #system($command);
 
-$backupFile = ROOT.DS.'db'.DS.DB_NAME.date("-YmdHis").'.sql';
+$backupFile = ROOT .DS.'db'.DS.DB_NAME.date("-YmdHis").'.sql';
 $command = 'mysqldump --opt -h'.DB_HOST.' -u'.DB_USER.' -p'.DB_PASSWORD.' '.DB_NAME.' > '.$backupFile;
 system($command);
 

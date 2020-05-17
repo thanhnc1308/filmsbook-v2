@@ -1,4 +1,5 @@
 <?php
+
 include (ROOT . DS . 'core' . DS . 'log.php');
 
 class Controller {
@@ -22,8 +23,9 @@ class Controller {
         // render template while destroy the class
         $this->_template->render();
     }
-    
+
     // #region common
+
     /**
      * func set custom variables for template
      * @param type $name
@@ -32,7 +34,7 @@ class Controller {
     function set($name, $value) {
         $this->_template->set($name, $value);
     }
-    
+
     /**
      * func get class base
      * @author ThanhNC 16.05.2020
@@ -40,8 +42,8 @@ class Controller {
     function getBase() {
         return $this;
     }
+
     // #endregion common
-    
     // #region CRUD
     function view($id = null, $name = null) {
         $this->set('title', $name . ' - My Todo List App');
@@ -65,9 +67,8 @@ class Controller {
         $this->set('title', 'Success - My Todo List App');
         $this->set('todo', $this->Item->query('delete from items where id = \'' . mysqli_real_escape_string($this->Item->getConnection(), $id) . '\''));
     }
+
     // #endregion CRUD
-    
     // #region override
-    
     // #endregion override
 }

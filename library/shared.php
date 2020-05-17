@@ -163,3 +163,4 @@ $inflect = new Inflection();
 setReporting();
 unregisterGlobals();
 callHook();
+//callHook_v2();

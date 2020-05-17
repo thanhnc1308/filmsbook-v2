@@ -3,8 +3,8 @@
 ## Setup
 ### Run XAMPP in Ubuntu
 
-sudo /etc/init.d/apache2 stop
-sudo /opt/lampp/lampp start
+- sudo /etc/init.d/apache2 stop
+- sudo /opt/lampp/lampp start
 
 ### Copy Project
 - Copy folder filmbooks-v2 to htdocs of XAMPP
@@ -15,10 +15,15 @@ sudo /opt/lampp/lampp start
 
 ## Framework Structure
 
-url: yoursite.com/controllerName/actionName/queryString
+- url: yoursite.com/controllerName/actionName/queryString
 e.g. if our URL is todo.com/items/view/1/first-item, then
-Controller is items
-Model is item (corresponding mysql table)
-View is delete
-Action is delete
-Query String is an array (1,first-item)
+    + Controller is items
+    + Model is item (corresponding mysql table)
+    + View is delete
+    + Action is delete
+    + Query String is an array (1,first-item)
+
+
+## Switch from v1 to v2
+- shared.php: use callHoook_v2()
+- 
