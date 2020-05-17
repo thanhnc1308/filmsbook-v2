@@ -120,7 +120,7 @@ function callHook_v2() {
         array_shift($urlArray); // shift the base
         $controller = $urlArray[0];
         array_shift($urlArray);
-        if (isset($urlArray[0])) {
+        if (!empty($urlArray[0])) {
             $action = $urlArray[0];
             array_shift($urlArray);
         } else {
@@ -129,7 +129,6 @@ function callHook_v2() {
         $queryString = $urlArray;
     }
     $controllerName = ucfirst($controller) . 'Controller';
-
     $dispatch = new $controllerName($controller, $action);
 
     if ((int) method_exists($controllerName, $action)) {
