@@ -7,9 +7,10 @@ sudo /etc/init.d/apache2 stop
 sudo /opt/lampp/lampp start
 
 ### Copy Project
-- Copy folder filmbooks to htdocs of XAMPP
-- File/Open Project/filmbooks in Apache Netbeans
+- Copy folder filmbooks-v2 to htdocs of XAMPP
+- File/Open Project/filmbooks-v2 in Apache Netbeans
 - Change config database in config.php
+- Run script database in folder db if necessary
 - Go to http://localhost/filmsbook-v2/items/viewall in browser
 
 ## Framework Structure
