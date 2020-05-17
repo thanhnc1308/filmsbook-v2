@@ -29,7 +29,6 @@ function unregisterGlobals() {
 
 /** Secondary Call Function * */
 function performAction($controller, $action, $queryString = null, $render = 0) {
-
     $controllerName = ucfirst($controller) . 'Controller';
     $dispatch = new $controllerName($controller, $action);
     $dispatch->render = $render;
@@ -87,19 +86,38 @@ function callHook() {
     }
 }
 
+/**
+ * func check if it is the homepage then return the default controller
+ * @author John Doe <john.doe@example.com>
+ */
+function isDefaultController($uri) {
+    global $uri;
+    $urlArray = explode("/", $uri);
+    array_shift($urlArray); // shift the space
+    array_shift($urlArray); // shift the base
+    $controller = $urlArray[0];
+    if (empty($controller)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function callHook_v2() {
     global $url;
+    global $uri;
     global $default;
-
+    
     $queryString = array();
-
-    if (!isset($url)) {
+    if (isDefaultController($uri)) {
         $controller = $default['controller'];
         $action = $default['action'];
     } else {
-        $url = routeURL($url);
+        $uri = routeURL($uri);
         $urlArray = array();
-        $urlArray = explode("/", $url);
+        $urlArray = explode("/", $uri);
+        array_shift($urlArray); // shift the space
+        array_shift($urlArray); // shift the base
         $controller = $urlArray[0];
         array_shift($urlArray);
         if (isset($urlArray[0])) {
@@ -110,7 +128,6 @@ function callHook_v2() {
         }
         $queryString = $urlArray;
     }
-
     $controllerName = ucfirst($controller) . 'Controller';
 
     $dispatch = new $controllerName($controller, $action);
@@ -120,7 +137,7 @@ function callHook_v2() {
         call_user_func_array(array($dispatch, $action), $queryString);
         call_user_func_array(array($dispatch, "afterAction"), $queryString);
     } else {
-        /* Error Generation Code Here */
+        echo 'An error has occured in shared.php';
     }
 }
 
