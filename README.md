@@ -11,7 +11,9 @@
 - File/Open Project/filmbooks-v2 in Apache Netbeans
 - Change config database in config.php
 - Run script database in folder db if necessary
-- Go to http://localhost/filmsbook-v2/items/viewall in browser
+- Run command __sudo chmod 777 /opt/lampp/htdocs/filmsbook-v2/tmp/cache__ to give permission to write cache (not sure about the security but it works)
+- Go to http://localhost/filmsbook-v2/items/viewall in browser for v1
+- Go to http://localhost/filmsbook-v2/ in browser for v2
 
 ## Framework Structure
 
@@ -25,5 +27,4 @@ e.g. if our URL is todo.com/items/view/1/first-item, then
 
 
 ## Switch from v1 to v2
-- shared.php: use callHoook_v2()
-- 
+- shared.php: use callHook_v2()
