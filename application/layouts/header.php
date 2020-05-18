@@ -13,7 +13,7 @@
             />
         <link
             rel="shortcut icon"
-            href="https://lh3.googleusercontent.com/proxy/CQ4jAvpvoEzIs9YzhRH1ca1dsT6ZTb-VRrk3_1WIzxJBjcV-WV7Y1L_oPLGRoufyCsfLIVPJFeuO5bwVFedtGcS1ETpjx0t2ParBVtCzMFFWKGa9aRadMl_m"
+            href="./img/film.png"
             type="image/x-icon"
             />
         <link rel="stylesheet" href="./css/common.css" />
