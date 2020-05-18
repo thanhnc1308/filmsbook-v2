@@ -1,5 +1,5 @@
 <?php
 
-class Like extends VanillaModel {
+class Like extends BaseModel {
     
 }

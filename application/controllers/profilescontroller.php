@@ -1,6 +1,6 @@
 <?php
 
-class ProfilesController extends VanillaController {
+class ProfilesController extends BaseController {
 
     function beforeAction() {
         

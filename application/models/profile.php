@@ -1,5 +1,5 @@
 <?php
 
-class Profile extends VanillaModel {
+class Profile extends BaseModel {
 
 }

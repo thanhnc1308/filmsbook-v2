@@ -1,6 +1,6 @@
 <?php
 
-class Product extends VanillaModel {
+class Product extends BaseModel {
 
     var $hasOne = array('Category' => 'Category');
     var $hasManyAndBelongsToMany = array('Tag' => 'Tag');

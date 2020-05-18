@@ -1,6 +1,6 @@
 <?php
 
-class VanillaController {
+class BaseController {
 
     protected $_controller;
     protected $_action;

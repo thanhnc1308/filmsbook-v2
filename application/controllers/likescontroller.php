@@ -1,6 +1,6 @@
 <?php
 
-class LikesController extends VanillaController {
+class LikesController extends BaseController {
 
     function beforeAction() {
         

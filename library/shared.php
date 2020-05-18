@@ -107,7 +107,7 @@ function callHook_v2() {
     global $url;
     global $uri;
     global $default;
-    
+
     $queryString = array();
     if (isDefaultController($uri)) {
         $controller = $default['controller'];

@@ -1,6 +1,6 @@
 <?php
 
-class Admin extends VanillaModel {
+class Admin extends BaseModel {
 
     var $abstract = true;
 

@@ -1,6 +1,6 @@
 <?php
 
-class VanillaModel extends SQLQuery_v2 {
+class BaseModel extends SQLQuery_v2 {
 
     protected $_model;
 
