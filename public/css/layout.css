@@ -71,3 +71,19 @@ body {
     font-size: 14px;
 }
 /* end footer */
+
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    height: 100%;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    height: 100%;
+}
