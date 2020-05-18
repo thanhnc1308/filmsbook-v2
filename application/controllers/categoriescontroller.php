@@ -1,6 +1,6 @@
 <?php
 
-class CategoriesController extends VanillaController {
+class CategoriesController extends BaseController {
 
     function beforeAction() {
         
