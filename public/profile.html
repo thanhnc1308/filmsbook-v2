@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://lh3.googleusercontent.com/proxy/CQ4jAvpvoEzIs9YzhRH1ca1dsT6ZTb-VRrk3_1WIzxJBjcV-WV7Y1L_oPLGRoufyCsfLIVPJFeuO5bwVFedtGcS1ETpjx0t2ParBVtCzMFFWKGa9aRadMl_m"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/activity.css" />
+    <title>Films Review</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- navbar -->
+      <div
+        class="navbar d-flex horizontal-between bg-navbar pl-10 pr-10 pt-2 pb-2 fixed-top"
+      >
+        <a href="#" class="logo d-flex vertical-center no-underline">
+          <img
+            width="50"
+            height="50"
+            src="https://lh3.googleusercontent.com/proxy/CQ4jAvpvoEzIs9YzhRH1ca1dsT6ZTb-VRrk3_1WIzxJBjcV-WV7Y1L_oPLGRoufyCsfLIVPJFeuO5bwVFedtGcS1ETpjx0t2ParBVtCzMFFWKGa9aRadMl_m"
+            alt=""
+            srcset=""
+          />
+          <span class="text-light no-underline logo-text fw-bold"
+            >FilmsReview</span
+          >
+        </a>
+        <div class="navbar-list-item d-flex vertical-center">
+          <div onclick="onNavItemClick(this)" class="nav-item active">
+            <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Sign in</a>
+          </div>
+          <div onclick="onNavItemClick(this)" class="nav-item">
+            <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+              >Create an account</a
+            >
+          </div>
+          <div onclick="onNavItemClick(this)" class="nav-item">
+            <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+              >Username</a
+            >
+          </div>
+          <div onclick="onNavItemClick(this)" class="nav-item">
+            <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
+          </div>
+          <div onclick="onNavItemClick(this)" class="nav-item">
+            <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Lists</a>
+          </div>
+          <div class="search">
+            <input
+              type="text"
+              class="input-search rounded bg-dark border text-light pl-2"
+              placeholder="Search"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- end navbar -->
+
+      <!-- content -->
+      <div class="content bg-body pt-4">
+        <!-- tab bar-->
+        <div class="container tab-bar">
+          <div class="row vertical-center">
+            <div class="user mr-4 ml-4">
+              <i class="fa fa-user user-icon"></i>
+              <a href="#" class="fw-bold no-underline username">Username</a>
+            </div>
+            <a
+              href="./profile.html"
+              class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline active"
+            >
+              Watchlists
+            </a>
+            <a
+            href="./likes.html"
+              class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline"
+            >
+              Likes
+            </a>
+          </div>
+        </div>
+        <!-- end tab bar -->
+        <!-- tab content-->
+        <div class="container tab-content">
+          <div class="content-header d-flex pb-2 mt-2 vertical-center horizontal-between">
+            <div class="header-bar">
+              <div class="title">
+                YOU WANT TO SEE 1 FILM
+              </div>
+            </div>
+            <div class="filter d-flex">
+              <!-- <div class="filter-item mr-3">
+                Genre
+              </div> -->
+              <div class="sorter">Sort by
+                <select class="sort-item" id="sortFilm">
+                  <option value="whenAdded">When Added</option>
+                  <option value="filmName">Film Name</option>
+                  <option value="rating">Rating</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="content-body d-flex mt-4">
+            <div class="film-item mr-4">
+              <a href="/film-item">
+                <img
+                  class="rounded"
+                  width="125"
+                  height="187"
+                  src="https://a.ltrbxd.com/resized/film-poster/4/7/4/4/7/1/474471-extraction-0-230-0-345-crop.jpg?k=c76c8df131"
+                  alt=""
+                  srcset=""
+                />
+              </a>
+              <div class="overlay">
+                <a href="/watch"><i class="fa fa-eye pointer mr-2 icon-button watch-active"></i></a>
+                <a href="/like"><i class="fa fa-heart pointer icon-button like-active"></i></a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <!-- end tab content -->
+      </div>
+      <!-- end content -->
+
+      <!-- footer -->
+      <div
+        class="footer bg-footer d-flex vertical-center horizontal-between pl-10 pr-10"
+      >
+        <div class="footer-copyright text-light">
+          © 2020 Copyright:
+          <a class="text-light" href="https://filmsreview.com/">
+            filmsreview.com</a
+          >
+        </div>
+        <div class="social-network d-flex">
+          <div class="social-item mr-3">
+            <a href="https://facebook.com/"
+              ><i class="text-light fa fa-facebook"></i
+            ></a>
+          </div>
+          <div class="social-item mr-3 text-light pointer">
+            <a href="https://facebook.com/"
+              ><i class="text-light fa fa-twitter"></i
+            ></a>
+          </div>
+          <div class="social-item mr-3 text-light pointer">
+            <a href="https://facebook.com/"
+              ><i class="text-light fa fa-google-plus"></i
+            ></a>
+          </div>
+          <div class="social-item mr-3 text-light pointer">
+            <a href="https://facebook.com/"
+              ><i class="text-light fa fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- end footer -->
+    </div>
+
+    <script src="./js/base.js"></script>
+    <script src="./js/activity.js"></script>
+  </body>
+</html>

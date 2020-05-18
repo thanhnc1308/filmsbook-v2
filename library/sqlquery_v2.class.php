@@ -220,7 +220,7 @@ class SQLQuery_v2 {
 //                                array_push($tableChild, mysql_field_table($resultChild, $j));
 //                                array_push($fieldChild, mysql_field_name($resultChild, $j));
 //                            }
-                            
+
                             for ($j = 0; $j < $numOfFieldsChild; ++$j) {
                                 $colChildObj = mysqli_fetch_field_direct($resultChild, $j);
                                 array_push($tableChild, $colChildObj->table);
@@ -307,12 +307,14 @@ class SQLQuery_v2 {
             $this->_describe = array();
             $query = 'DESCRIBE ' . $this->_table;
             $this->_result = mysqli_query($this->_connection, $query);
-            while ($row = mysqli_fetch_row($this->_result)) {
-                array_push($this->_describe, $row[0]);
+            if ($this->_result) {
+                while ($row = mysqli_fetch_row($this->_result)) {
+                    array_push($this->_describe, $row[0]);
+                }
+                echo 'result: ', $this->_result;
+                mysqli_free_result($this->_result);
+                $cache->set('describe' . $this->_table, $this->_describe);
             }
-
-            mysqli_free_result($this->_result);
-            $cache->set('describe' . $this->_table, $this->_describe);
         }
 
         foreach ($this->_describe as $field) {
@@ -336,7 +338,11 @@ class SQLQuery_v2 {
         }
     }
 
-    /** Saves an Object i.e. Updates/Inserts Query * */
+    /**
+     * if an id is set, then it will update the entry; 
+     * if it is not set, then it will create a new entry
+     * @return type
+     */
     function save() {
         $query = '';
         if (isset($this->id)) {

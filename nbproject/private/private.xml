@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/opt/lampp/htdocs/filmsbook-v2/README.md</file>
-            <file>file:/opt/lampp/htdocs/filmsbook-v2/library/sqlquery_v2.class.php</file>
-            <file>file:/opt/lampp/htdocs/filmsbook-v2/library/cache.class.php</file>
+            <file>file:/opt/lampp/htdocs/filmsbook-v2/application/controllers/productscontroller.php</file>
+            <file>file:/opt/lampp/htdocs/filmsbook-v2/application/controllers/itemscontroller.php</file>
             <file>file:/opt/lampp/htdocs/filmsbook-v2/library/shared.php</file>
-            <file>file:/opt/lampp/htdocs/filmsbook-v2/library/sqlquery.class.php</file>
-            <file>file:/opt/lampp/htdocs/filmsbook-v2/library/vanillacontroller.class.php</file>
-            <file>file:/opt/lampp/htdocs/filmsbook-v2/application/views/items/viewall.php</file>
+            <file>file:/opt/lampp/htdocs/filmsbook-v2/application/controllers/categoriescontroller.php</file>
         </group>
     </open-files>
 </project-private>

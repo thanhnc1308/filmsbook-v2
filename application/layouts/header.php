@@ -1,114 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>My E-Commerce Website</title>
-        <style>
-            html, body, div, span, applet, object, iframe,
-            h2, h2, h3, h4, h5, h6, p, blockquote, pre,
-            a, abbr, acronym, address, big, cite, code,
-            del, dfn, em, font, img, ins, kbd, q, s, samp,
-            small, strike, strong, sub, sup, tt, var,
-            dl, dt, dd, ol, ul, li,
-            fieldset, form, label, legend,
-            table, caption, tbody, tfoot, thead, tr, th, td {
-                margin: 0;
-                padding: 0;
-                border: 0;
-                outline: 0;
-                font-weight: inherit;
-                font-style: inherit;
-                font-size: 100%;
-                font-family: inherit;
-                vertical-align: baseline;
-            }
-            /* remember to define focus styles! */
-            :focus {
-                outline: 0;
-            }
-            body {
-                line-height: 1;
-                color: black;
-                background: white;
-
-            }
-            ol, ul {
-                list-style: none;
-            }
-
-            table {
-                border-collapse: separate;
-                border-spacing: 0;
-            }
-            caption, th, td {
-                text-align: left;
-                font-weight: normal;
-            }
-            blockquote:before, blockquote:after,
-            q:before, q:after {
-                content: "";
-            }
-            blockquote, q {
-                quotes: "" "";
-            }
-            html { overflow: -moz-scrollbars-vertical; }
-            html { overflow-x: auto; }
-
-
-
-            h1 {
-                color:#000000;
-                font-family: Cambria, serif;
-                font-size: 34px;
-                font-style: normal;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                line-height: 1.7em;
-                padding:0;
-                margin:0;
-                padding:10px;
-            }
-
-            h2 {
-                color:#000000;
-                font-family: Cambria, serif;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                line-height: 1.7em;
-                padding:0;
-                margin:0;
-                padding:10px;
-            }
-
-            .category {
-                font-family: Georgia, "Times New Roman", Times, serif;
-                margin:10px;
-                margin-left:0px;
-                margin-bottom:20px;
-            }
-
-            .tag {
-                font-family: Georgia, "Times New Roman", Times, serif;
-
-                padding:10px;
-            }
-
-            .category a {
-                font-size:14px;
-                padding:10px;
-                color:#333333;
-                text-decoration:none;
-            }
-
-            .category a:hover{ 
-                background-color:#FFFF33
-            }
-        </style>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap"
+            rel="stylesheet"
+            />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+        <link
+            rel="shortcut icon"
+            href="https://lh3.googleusercontent.com/proxy/CQ4jAvpvoEzIs9YzhRH1ca1dsT6ZTb-VRrk3_1WIzxJBjcV-WV7Y1L_oPLGRoufyCsfLIVPJFeuO5bwVFedtGcS1ETpjx0t2ParBVtCzMFFWKGa9aRadMl_m"
+            type="image/x-icon"
+            />
+        <link rel="stylesheet" href="./css/common.css" />
+        <link rel="stylesheet" href="./css/layout.css" />
+        <link rel="stylesheet" href="./css/films.css" />
+        <title>Films Review</title>
     </head>
-
     <body>
-        <div class="navigation"><h1>My E-Commerce Website</h1>
+        <div id="app">
+            <!-- navbar -->
+            <div
+                class="navbar d-flex horizontal-between bg-navbar pl-10 pr-10 pt-2 pb-2 fixed-top"
+                >
+                <a href="#" class="logo d-flex vertical-center no-underline">
+                    <img
+                        width="50"
+                        height="50"
+                        src="./img/film.png"
+                        alt=""
+                        srcset=""
+                        />
+                    <span class="text-light no-underline logo-text fw-bold"
+                          >FilmsReview</span
+                    >
+                </a>
+                <div class="navbar-list-item d-flex vertical-center">
+                    <div onclick="onNavItemClick(this)" class="nav-item active">
+                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Sign in</a>
+                    </div>
+                    <div onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+                           >Create an account</a
+                        >
+                    </div>
+                    <div onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+                           >Username</a
+                        >
+                    </div>
+                    <div onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
+                    </div>
+                    <div onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Lists</a>
+                    </div>
+                    <div class="search">
+                        <input
+                            type="text"
+                            class="input-search rounded bg-dark border text-light pl-2"
+                            placeholder="Search"
+                            />
+                    </div>
+                </div>
+            </div>
+            <!-- end navbar -->

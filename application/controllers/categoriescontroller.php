@@ -34,4 +34,19 @@ class CategoriesController extends VanillaController {
         
     }
 
+    /**
+     * If $this->Category->id = null; 
+     * then it will create a new record in the categories table.
+     */
+    function new() {
+        $this->Category->id = $_POST['id'];
+        $this->Category->name = $_POST['name'];
+        $this->Category->save();
+    }
+
+    function delete($categoryId) {
+        $this->Category->id = $categoryId;
+        $this->Category->delete();
+    }
+
 }
