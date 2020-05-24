@@ -311,7 +311,7 @@ class SQLQuery_v2 {
                 while ($row = mysqli_fetch_row($this->_result)) {
                     array_push($this->_describe, $row[0]);
                 }
-                echo 'result: ', $this->_result;
+                // echo 'result: ', $this->_result;
                 mysqli_free_result($this->_result);
                 $cache->set('describe' . $this->_table, $this->_describe);
             }

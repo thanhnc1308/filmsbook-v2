@@ -3,6 +3,6 @@
     Collect, curate, and share. Lists are the perfect way to group films.
   </div>
   <div class="container">
-    
+    <div class=""
   </div>
 </div>
