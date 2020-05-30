@@ -16,9 +16,10 @@
             href="./img/film.png"
             type="image/x-icon"
             />
-        <link rel="stylesheet" href="./css/common.css" />
-        <link rel="stylesheet" href="./css/layout.css" />
-        <link rel="stylesheet" href="./css/films.css" />
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <link rel="stylesheet" href="css/films.css" />
+        <link rel="stylesheet" href="css/collections.css" />
         <title>Films Review</title>
     </head>
     <body>

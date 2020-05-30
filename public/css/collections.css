@@ -1,0 +1,18 @@
+.create-button{
+  color: white;
+  background-color: #303840;
+  padding: 4px 5px;
+  border-radius: 3px;
+}
+
+.create-button:hover{
+  color: #def;
+  background-color: #303840;
+  cursor: pointer;
+}
+
+.collection-card{
+  width: 30%;
+  height: 200px;
+  background-color: red;
+}
