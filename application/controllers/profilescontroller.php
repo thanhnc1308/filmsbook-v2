@@ -13,6 +13,10 @@ class ProfilesController extends BaseController {
     function index() {
 
     }
+    
+    function create() {
+
+    }
 
     function afterAction() {
         
