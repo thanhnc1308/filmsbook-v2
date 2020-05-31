@@ -129,14 +129,20 @@ function callHook_v2() {
         $queryString = $urlArray;
     }
     try {
-        $controllerName = ucfirst($controller) . 'Controller';
-        $dispatch = new $controllerName($controller, $action);
 
-        if ((int) method_exists($controllerName, $action)) {
-            call_user_func_array(array($dispatch, "beforeAction"), $queryString);
-            call_user_func_array(array($dispatch, $action), $queryString);
-            call_user_func_array(array($dispatch, "afterAction"), $queryString);
-        } else {
+        $controllerName = ucfirst($controller) . 'Controller';
+        if (class_exists($controllerName)) {
+            
+            $dispatch = new $controllerName($controller, $action);
+
+            if ((int) method_exists($controllerName, $action)) {
+                call_user_func_array(array($dispatch, "beforeAction"), $queryString);
+                call_user_func_array(array($dispatch, $action), $queryString);
+                call_user_func_array(array($dispatch, "afterAction"), $queryString);
+            } else {
+                
+            }
+        }else{
             
         }
     } catch (Exception $ex) {
