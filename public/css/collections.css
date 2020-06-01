@@ -1,3 +1,11 @@
+.collection-body a{
+  text-decoration: none;
+}
+
+.collection-body ul{
+  list-style: none;
+}
+
 .create-button{
   color: white;
   background-color: #303840;
@@ -12,7 +20,47 @@
 }
 
 .collection-card{
-  width: 30%;
+  width: 290px;
+  margin-right: 40px;
+}
+
+.film-stack{
   height: 200px;
-  background-color: red;
+}
+
+.avatar{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.stack-item{
+  margin-right: -115px;
+  box-shadow: 2px 0 7px #000;
+  width: 150px;
+  height: 200px;
+  position: relative;
+  border-radius: 4px;
+  float: left;
+  background-color: blue;
+}
+
+.z-5{
+  z-index: 5;
+}
+
+.z-4{
+  z-index: 4;
+}
+
+.z-3{
+  z-index: 3;
+}
+
+.z-2{
+  z-index: 2;
+}
+
+.z-1{
+  z-index: 1;
 }
