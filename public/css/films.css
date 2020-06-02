@@ -86,3 +86,11 @@
 .like-active {
     color: orange;
 }
+
+.bg-login {
+    background-color: #f3f3f3;
+}
+
+.login-title {
+    color: #303c48;
+}
