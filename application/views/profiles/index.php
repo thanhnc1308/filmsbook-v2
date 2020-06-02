@@ -65,3 +65,7 @@
     <!-- end tab content -->
 </div>
 <!-- end content -->
+
+<?php
+$html->includeJs('profile');
+?>

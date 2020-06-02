@@ -33,8 +33,9 @@
 </div>
 <!-- end footer -->
 </div>
-
-<script src="./js/base.js"></script>
-<script src="./js/activity.js"></script>
+<?php
+$html->includeJs('base');
+$html->includeJs('activity');
+?>
 </body>
 </html>

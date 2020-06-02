@@ -9,7 +9,7 @@ class ProductsController extends BaseController {
     function view($id = null) {
         $this->Product->id = $id;
         $this->Product->showHasOne();
-        $this->Product->showHMABTM();
+        $this->Product->showHasManyAndBelongsToMany();
         $product = $this->Product->search();
         $this->set('product', $product);
     }

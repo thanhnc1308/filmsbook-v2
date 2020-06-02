@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -11,14 +10,12 @@
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-        <link
-            rel="shortcut icon"
-            href="./img/film.png"
-            type="image/x-icon"
-            />
-        <link rel="stylesheet" href="./css/common.css" />
-        <link rel="stylesheet" href="./css/layout.css" />
-        <link rel="stylesheet" href="./css/films.css" />
+        <?php
+            $html->includeIcon('film.png');
+            $html->includeCss('common');
+            $html->includeCss('layout');
+            $html->includeCss('films');
+        ?>
         <title>Films Review</title>
     </head>
     <body>
@@ -28,13 +25,9 @@
                 class="navbar d-flex horizontal-between bg-navbar pl-10 pr-10 pt-2 pb-2 fixed-top"
                 >
                 <a href="#" class="logo d-flex vertical-center no-underline">
-                    <img
-                        width="50"
-                        height="50"
-                        src="./img/film.png"
-                        alt=""
-                        srcset=""
-                        />
+                    <?php
+                        $html->includeImage('film.png', 50, 50);
+                    ?>
                     <span class="text-light no-underline logo-text fw-bold"
                           >FilmsReview</span
                     >
