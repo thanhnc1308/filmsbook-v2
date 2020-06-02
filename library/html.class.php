@@ -13,6 +13,16 @@ class HTML {
         echo $link;
     }
     
+    function link($text, $path, $prompt = null, $confirmMessage = "Are you sure?") {
+        $path = str_replace(' ', '-', $path);
+        if ($prompt) {
+            $data = '<a href="javascript:void(0);" onclick="javascript:jumpTo(\'' . BASE_PATH . '/' . $path . '\',\'' . $confirmMessage . '\')">' . $text . '</a>';
+        } else {
+            $data = '<a href="' . BASE_PATH . '/' . $path . '">' . $text . '</a>';
+        }
+        return $data;
+    }
+    
     function includeIcon($iconName) {
         $link = '<link rel="shortcut icon" rel="stylesheet" href="' . BASE_PATH . '/public/img/' . $iconName . '" type="image/x-icon" />';
         echo $link;
