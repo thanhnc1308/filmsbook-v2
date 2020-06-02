@@ -28,15 +28,7 @@ class FilmsController extends BaseController {
     }
     
     function index() {
-//        $this->Category->orderBy('name', 'ASC');
-//        $this->Category->showHasOne();
-//        $this->Category->showHasMany();
-//        $this->Category->where('parent_id', '0');
-//        $this->Film->orderBy('name', 'ASC');
-//        $this->Film->where('id', '1');
         $films = $this->Film->search();
-//        $this->set('categories', $categories);
-//        dd($films);
         $this->set('films', $films);
     }
     
@@ -45,7 +37,23 @@ class FilmsController extends BaseController {
     }
     
     function store() {
-        
+//        $film = new Film();
+////        $film->id = 2;
+//        $film->name = "Star wars";
+//        $film->description = "Hello World!";
+//        $film->save();
+//        echo '<pre>' , var_dump($film->id) , '</pre>';
+        if(isset($_POST['name']) && isset($_POST['description'])) {
+            $name = $_POST['name'];
+            $description = $_POST['name'];
+            
+            $film = new Film();
+            $film->name = $name;
+            $film->description = $description;
+            $film->save();
+            
+            $this->set('film', $film);
+        }
     }
     
     function afterAction() {
