@@ -34,23 +34,23 @@
                 </a>
                 <div class="navbar-list-item d-flex vertical-center">
                     <div onclick="onNavItemClick(this)" class="nav-item active">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Sign in</a>
+                        <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Log in</a>
                     </div>
                     <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+                        <a href="/filmsbook-v2/signup" class="nav-link text-uppercase mr-3 fw-bold"
                            >Create an account</a
                         >
                     </div>
                     <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+                        <a href="/filmsbook-v2/profiles" class="nav-link text-uppercase mr-3 fw-bold"
                            >Username</a
                         >
                     </div>
                     <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
+                        <a href="/filmsbook-v2/films" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
                     </div>
                     <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Lists</a>
+                        <a href="/filmsbook-v2/lists" class="nav-link text-uppercase mr-3 fw-bold">Lists</a>
                     </div>
                     <div class="search">
                         <input
