@@ -8,11 +8,11 @@ class SQLQuery_v2 {
     protected $_table;
     protected $_describe = array();
     protected $_orderBy;
-    protected $_order;
+    protected $_orderType;
     protected $_extraConditions;
-    protected $_hO;
-    protected $_hM;
-    protected $_hMABTM;
+    protected $_hasOne;
+    protected $_hasMany;
+    protected $_hasManyAndBelongsToMany;
     protected $_page;
     protected $_limit;
 
@@ -49,15 +49,15 @@ class SQLQuery_v2 {
     }
 
     function showHasOne() {
-        $this->_hO = 1;
+        $this->_hasOne = 1;
     }
 
     function showHasMany() {
-        $this->_hM = 1;
+        $this->_hasMany = 1;
     }
 
-    function showHMABTM() {
-        $this->_hMABTM = 1;
+    function showHasManyAndBelongsToMany() {
+        $this->_hasManyAndBelongsToMany = 1;
     }
 
     function setLimit($limit) {
@@ -68,9 +68,9 @@ class SQLQuery_v2 {
         $this->_page = $page;
     }
 
-    function orderBy($orderBy, $order = 'ASC') {
+    function orderBy($orderBy, $orderType = 'ASC') {
         $this->_orderBy = $orderBy;
-        $this->_order = $order;
+        $this->_orderType = $orderType;
     }
 
     function search() {
@@ -82,7 +82,7 @@ class SQLQuery_v2 {
         $conditionsChild = '';
         $fromChild = '';
 
-        if ($this->_hO == 1 && isset($this->hasOne)) {
+        if ($this->_hasOne == 1 && isset($this->hasOne)) {
 
             foreach ($this->hasOne as $alias => $model) {
                 $table = strtolower($inflect->pluralize($model));
@@ -103,7 +103,7 @@ class SQLQuery_v2 {
         $conditions = substr($conditions, 0, -4);
 
         if (isset($this->_orderBy)) {
-            $conditions .= ' ORDER BY `' . $this->_model . '`.`' . $this->_orderBy . '` ' . $this->_order;
+            $conditions .= ' ORDER BY `' . $this->_model . '`.`' . $this->_orderBy . '` ' . $this->_orderType;
         }
 
         if (isset($this->_page)) {
@@ -134,7 +134,7 @@ class SQLQuery_v2 {
                     $tempResults[$table[$i]][$field[$i]] = $row[$i];
                 }
 
-                if ($this->_hM == 1 && isset($this->hasMany)) {
+                if ($this->_hasMany == 1 && isset($this->hasMany)) {
                     foreach ($this->hasMany as $aliasChild => $modelChild) {
                         $queryChild = '';
                         $conditionsChild = '';
@@ -184,7 +184,7 @@ class SQLQuery_v2 {
                 }
 
 
-                if ($this->_hMABTM == 1 && isset($this->hasManyAndBelongsToMany)) {
+                if ($this->_hasManyAndBelongsToMany == 1 && isset($this->hasManyAndBelongsToMany)) {
                     foreach ($this->hasManyAndBelongsToMany as $aliasChild => $tableChild) {
                         $queryChild = '';
                         $conditionsChild = '';
@@ -311,7 +311,6 @@ class SQLQuery_v2 {
                 while ($row = mysqli_fetch_row($this->_result)) {
                     array_push($this->_describe, $row[0]);
                 }
-                // echo 'result: ', $this->_result;
                 mysqli_free_result($this->_result);
                 $cache->set('describe' . $this->_table, $this->_describe);
             }
@@ -339,13 +338,14 @@ class SQLQuery_v2 {
     }
 
     /**
-     * if an id is set, then it will update the entry; 
-     * if it is not set, then it will create a new entry
+     * if an id is set, then it will update the entity; 
+     * if it is not set, then it will create a new entity
      * @return type
      */
     function save() {
         $query = '';
-        if (isset($this->id)) {
+        if ($this->id) {
+            // update the entity
             $updates = '';
             foreach ($this->_describe as $field) {
                 if ($this->$field) {
@@ -357,6 +357,7 @@ class SQLQuery_v2 {
 
             $query = 'UPDATE ' . $this->_table . ' SET ' . $updates . ' WHERE `id`=\'' . $this->escapeSecureSQL($this->id) . '\'';
         } else {
+            // create new entity
             $fields = '';
             $values = '';
             foreach ($this->_describe as $field) {
@@ -384,13 +385,13 @@ class SQLQuery_v2 {
             $this->$field = null;
         }
 
-        $this->_orderby = null;
+        $this->_orderBy = null;
         $this->_extraConditions = null;
-        $this->_hO = null;
-        $this->_hM = null;
-        $this->_hMABTM = null;
+        $this->_hasOne = null;
+        $this->_hasMany = null;
+        $this->_hasManyAndBelongsToMany = null;
         $this->_page = null;
-        $this->_order = null;
+        $this->_orderType = null;
     }
 
     /** Pagination Count * */
