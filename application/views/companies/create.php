@@ -1,7 +1,7 @@
 <div>
-    <h1>Add new Genre</h1>
+    <h1>Add new Company</h1>
     <div>
-        <form method="post" action="/filmsbook-v2/genres/store">
+        <form method="post" action="/filmsbook-v2/companies/store">
             <div>
                 <label for="moviedb_id">MovieDB ID</label>
                 <input type="number" name="moviedb_id">
