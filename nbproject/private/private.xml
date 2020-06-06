@@ -3,19 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/library/model.class.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/models/film.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/controllers/itemscontroller.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/controllers/categoriescontroller.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/views/films/index.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/library/cache.class.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/library/shared.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/library/sqlquery_v2.class.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/views/categories/index.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/controllers/filmscontroller.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/controllers/productscontroller.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/library/basemodel.class.php</file>
-            <file>file:/C:/xampp/htdocs/filmsbook-v2/library/sqlquery.class.php</file>
+            <file>file:/C:/xampp/htdocs/filmsbook-v2/application/layouts/header.php</file>
         </group>
     </open-files>
 </project-private>
