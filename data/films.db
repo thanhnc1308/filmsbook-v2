@@ -1,0 +1,18 @@
+create table films (
+    id int primary key,
+    budget long,
+    original_language varchar(20),
+    overview varchar(500),
+    popularity float,
+    poster_path varchar(100),
+    release_date date,
+    revenue long,
+    title varchar(100),
+    vote_average float,
+    vote_count int
+);
+
+create table genres {
+    id int primary key,
+    name varchar(50),
+};
