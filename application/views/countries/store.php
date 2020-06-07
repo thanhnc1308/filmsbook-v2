@@ -6,6 +6,4 @@
  * and open the template in the editor.
  */
 
-class Film extends BaseModel {
-    
-}
+header("Location: http://localhost/filmsbook-v2/countries");

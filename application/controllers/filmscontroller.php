@@ -1,28 +1,37 @@
 <?php
-
-<<<<<<< HEAD
-class FilmsController extends BaseController {
-    public function index() {
-        echo "Hello, world!";
-=======
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class FilmsController extends BaseController {
     function beforeAction() {
         
     }
     
+    function view() {
+        
+    }
+    
     function index() {
-        $this->set('title', 'Index');
-        $this->set('film', 'Titanic');
+        $films = $this->Film->search();
+        $this->set('films', $films);
+    }
+    
+    function create() {
+        
+    }
+    
+    function store() {
+        if(isset($_POST['name']) && isset($_POST['description'])) {
+            $name = $_POST['name'];
+            $description = $_POST['name'];
+            
+            $film = new Film();
+            $film->name = $name;
+            $film->description = $description;
+            $film->save();
+            
+            $this->set('film', $film);
+        }
     }
     
     function afterAction() {
         
->>>>>>> 7751f6d9a8b7475fcaf202deb866723dbeaa60b8
     }
 }
