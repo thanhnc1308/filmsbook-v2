@@ -94,3 +94,9 @@
 .login-title {
     color: #303c48;
 }
+
+.content-login {
+    align-content: center;
+    display: inline-grid;
+    padding-bottom: 1.5rem;
+}
