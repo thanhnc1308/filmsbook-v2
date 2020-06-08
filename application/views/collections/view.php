@@ -32,7 +32,6 @@
         <img src="https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png" class="w-100 h-75 img-border">
         <p class="truncate-text">Long tiltellllllllllllllllllllllllllllllllllllllllll</p>
       </li>
-      
     </ul>
     
   </div>
