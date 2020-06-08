@@ -329,6 +329,10 @@
     margin-right: 3rem;
 }
 
+.p-0{
+    padding: 0;
+}
+
 .pt-0 {
     padding-top: 0;
 }

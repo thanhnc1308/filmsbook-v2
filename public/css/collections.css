@@ -70,3 +70,22 @@
   width: 100%;
   min-height: 200px;
 }
+
+.collection-film-item{
+  width: 30%;
+  height: 300px;
+}
+
+.img-border{
+  border: 2px solid transparent;
+}
+
+.img-border:hover {
+  border: 2px solid #2b95ff;
+}
+
+.truncate-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
