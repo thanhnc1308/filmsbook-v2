@@ -14,3 +14,13 @@ function setActiveClass(el, className) {
     // add class active to active item
     el.classList.add('active');
 }
+
+BASE_URL = '/filmbooks-v2';
+/**
+ * func generate router based on root url
+ * @param {String} routerName
+ * @author NCThanh
+ */
+function getRouter(routerName) {
+    return `${BASE_URL}/${routerName}`;
+}

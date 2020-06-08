@@ -45,7 +45,7 @@ class SQLQuery_v2 {
     }
 
     function like($field, $value) {
-        $this->_extraConditions .= '`' . $this->_model . '`.`' . $field . '` LIKE \'%' . $this->escapeSecureSQL($value) . '%\' AND ';
+        $this->_extraConditions .= '`' . $this->_model . '`.`' . $field . '` ILIKE \'%' . $this->escapeSecureSQL($value) . '%\' AND ';
     }
 
     function showHasOne() {

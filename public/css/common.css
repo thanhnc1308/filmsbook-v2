@@ -75,6 +75,10 @@
 /* end color */
 
 /* sizing */
+.w-fit {
+    width: fit-content;
+}
+
 .w-25 {
     width: 25%;
 }
