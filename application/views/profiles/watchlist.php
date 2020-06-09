@@ -8,13 +8,13 @@
                 <a href="#" class="fw-bold no-underline username"><?php echo $username ?></a>
             </div>
             <a
-                href="./profiles/watchlist"
+                href="./watchlist"
                 class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline active"
                 >
                 Watchlists
             </a>
             <a
-                href="./profiles/likes"
+                href="./likes"
                 class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline"
                 >
                 Likes

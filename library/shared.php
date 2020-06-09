@@ -1,4 +1,5 @@
 <?php
+require_once (ROOT . DS . 'core' . DS . 'constant.php');
 
 /** Check if environment is development and display errors * */
 function setReporting() {
