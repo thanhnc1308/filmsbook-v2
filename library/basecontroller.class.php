@@ -9,9 +9,6 @@ class BaseController {
     public $render;
 
     function __construct($controller, $action) {
-
-        global $inflect;
-
         $this->_controller = ucfirst($controller);
         $this->_action = $action;
 
@@ -27,6 +24,7 @@ class BaseController {
     }
 
     function getModelName($controller) {
+        global $inflect;
         return ucfirst($inflect->singularize($controller));
     }
 

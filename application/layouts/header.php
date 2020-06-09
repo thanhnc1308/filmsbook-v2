@@ -50,8 +50,8 @@
                     <div id='navFilms' onclick="onNavItemClick(this)" class="nav-item">
                         <a href="/filmsbook-v2/films" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
                     </div>
-                    <div id='navLists' onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="/filmsbook-v2/lists" class="nav-link text-uppercase mr-3 fw-bold">Lists</a>
+                    <div id='navCollections' onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="/filmsbook-v2/collections" class="nav-link text-uppercase mr-3 fw-bold">Collections</a>
                     </div>
                     <div class="search">
                         <input
