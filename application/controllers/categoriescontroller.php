@@ -38,7 +38,7 @@ class CategoriesController extends BaseController {
      * If $this->Category->id = null; 
      * then it will create a new record in the categories table.
      */
-    function new() {
+    function create() {
         $this->Category->id = $_POST['id'];
         $this->Category->name = $_POST['name'];
         $this->Category->save();

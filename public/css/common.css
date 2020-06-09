@@ -209,6 +209,10 @@
 .horizontal-between {
     justify-content: space-between;
 }
+
+.justify-content-start{
+    justify-content: start;
+}
 /* end display */
 
 /* position */
@@ -327,6 +331,10 @@
 
 .mr-5 {
     margin-right: 3rem;
+}
+
+.p-0{
+    padding: 0;
 }
 
 .pt-0 {
@@ -501,3 +509,15 @@
     text-decoration: none;
 }
 
+.font-size-large{
+    font-size: large;
+}
+
+.font-size-medium{
+    font-size: medium;
+}
+
+.my-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+}
