@@ -12,7 +12,15 @@ class HTML {
         $link = '<img width="' . $width . '" height="' . $height . '" src="' . BASE_PATH . '/public/img/' . $dir . '"/>';
         echo $link;
     }
-    
+
+    /**
+     * func build href from base url
+     * @author NCThanh
+     */
+    function getHref($url) {
+        return BASE_PATH . '/' . $url;
+    }
+
     function link($text, $path, $prompt = null, $confirmMessage = "Are you sure?") {
         $path = str_replace(' ', '-', $path);
         if ($prompt) {
@@ -22,7 +30,7 @@ class HTML {
         }
         return $data;
     }
-    
+
     function includeIcon($iconName) {
         $link = '<link rel="shortcut icon" rel="stylesheet" href="' . BASE_PATH . '/public/img/' . $iconName . '" type="image/x-icon" />';
         echo $link;
