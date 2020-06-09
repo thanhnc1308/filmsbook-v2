@@ -54,7 +54,8 @@ body {
 .content {
     margin-top: 66px;
     width: 100%;
-    height: calc(100vh - 150px);
+    height: calc(100vh - 174px);
+    padding-bottom: 1.5rem;
 }
 /* end content */
 
@@ -86,4 +87,12 @@ body {
     align-items: center;
     font-size: 50px;
     height: 100%;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
 }

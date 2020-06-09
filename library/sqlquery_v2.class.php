@@ -20,7 +20,7 @@ class SQLQuery_v2 {
     function connect($address, $account, $pwd, $dbName) {
         $this->_connection = @mysqli_connect($address, $account, $pwd);
         if ($this->_connection) {
-            if (mysqli_select_db($this->_connection, $dbName,)) {
+            if (mysqli_select_db($this->_connection, $dbName)) {
                 return 1;
             } else {
                 return 0;
@@ -45,7 +45,7 @@ class SQLQuery_v2 {
     }
 
     function like($field, $value) {
-        $this->_extraConditions .= '`' . $this->_model . '`.`' . $field . '` LIKE \'%' . $this->escapeSecureSQL($value) . '%\' AND ';
+        $this->_extraConditions .= '`' . $this->_model . '`.`' . $field . '` ILIKE \'%' . $this->escapeSecureSQL($value) . '%\' AND ';
     }
 
     function showHasOne() {

@@ -15,6 +15,7 @@
             $html->includeCss('common');
             $html->includeCss('layout');
             $html->includeCss('films');
+            $html->includeCss('collections');
         ?>
         <title>Films Review</title>
     </head>
@@ -33,24 +34,24 @@
                     >
                 </a>
                 <div class="navbar-list-item d-flex vertical-center">
-                    <div onclick="onNavItemClick(this)" class="nav-item active">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Sign in</a>
+                    <div id='navLogin' onclick="onNavItemClick(this)" class="nav-item active">
+                        <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Log in</a>
                     </div>
-                    <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+                    <div id='navSignup' onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="/filmsbook-v2/signup" class="nav-link text-uppercase mr-3 fw-bold"
                            >Create an account</a
                         >
                     </div>
-                    <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold"
+                    <div id='navProfiles' onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="/filmsbook-v2/profiles" class="nav-link text-uppercase mr-3 fw-bold"
                            >Username</a
                         >
                     </div>
-                    <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
+                    <div id='navFilms' onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="/filmsbook-v2/films" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
                     </div>
-                    <div onclick="onNavItemClick(this)" class="nav-item">
-                        <a href="#" class="nav-link text-uppercase mr-3 fw-bold">Lists</a>
+                    <div id='navCollections' onclick="onNavItemClick(this)" class="nav-item">
+                        <a href="/filmsbook-v2/collections" class="nav-link text-uppercase mr-3 fw-bold">Collections</a>
                     </div>
                     <div class="search">
                         <input

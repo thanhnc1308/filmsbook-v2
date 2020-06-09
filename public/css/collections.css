@@ -1,0 +1,92 @@
+.collection-body a{
+  text-decoration: none;
+}
+
+.collection-body ul{
+  list-style: none;
+}
+
+.create-button{
+  color: white;
+  background-color: #303840;
+  padding: 4px 5px;
+  border-radius: 3px;
+}
+
+.create-button:hover{
+  color: #def;
+  background-color: #303840;
+  cursor: pointer;
+}
+
+.collection-card{
+  width: 250px;
+  height: 400px;
+  margin-right: 70px;
+}
+
+.film-stack{
+  height: 200px;
+}
+
+.avatar{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.stack-item{
+  margin-right: -125px;
+  box-shadow: 2px 0 7px #000;
+  width: 150px;
+  height: 200px;
+  position: relative;
+  border-radius: 4px;
+  float: left;
+}
+
+.z-5{
+  z-index: 5;
+}
+
+.z-4{
+  z-index: 4;
+}
+
+.z-3{
+  z-index: 3;
+}
+
+.z-2{
+  z-index: 2;
+}
+
+.z-1{
+  z-index: 1;
+}
+
+.added-list{
+  border: 1px solid #345;
+  width: 100%;
+  min-height: 200px;
+}
+
+.collection-film-item{
+  width: 30%;
+  height: 500px;
+}
+
+.img-border{
+  border: 2px solid transparent;
+}
+
+.img-border:hover {
+  border: 2px solid #2b95ff;
+}
+
+.truncate-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}

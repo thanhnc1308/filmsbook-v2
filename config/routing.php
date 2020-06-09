@@ -9,8 +9,9 @@
  * This will enable us to create an administration centre with pretty URLs.
  */
 $routing = array(
+    '/profiles\z/' => 'profiles/watchlist'
 //    '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1_\2/\3'
 );
 
-$default['controller'] = 'profiles';
+$default['controller'] = 'login';
 $default['action'] = 'index';
