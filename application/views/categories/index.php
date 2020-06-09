@@ -1,4 +1,5 @@
 <div><h2>Please select a category</h2>
+<?php print_r($categories) ?>
     <?php foreach ($categories as $category): ?>
         <div class="category">
 

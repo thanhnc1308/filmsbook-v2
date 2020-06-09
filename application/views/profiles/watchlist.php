@@ -5,10 +5,10 @@
         <div class="row vertical-center">
             <div class="user mr-4 ml-4">
                 <i class="fa fa-user user-icon"></i>
-                <a href="#" class="fw-bold no-underline username">Username</a>
+                <a href="#" class="fw-bold no-underline username"><?php echo $username ?></a>
             </div>
             <a
-                href="./profiles"
+                href="./watchlist"
                 class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline active"
                 >
                 Watchlists
@@ -27,7 +27,7 @@
         <div class="content-header d-flex pb-2 mt-2 vertical-center horizontal-between">
             <div class="header-bar">
                 <div class="title">
-                    YOU WANT TO SEE 1 FILM
+                    YOU WANT TO SEE <?php echo $numberOfWatch ?> FILM
                 </div>
             </div>
             <div class="filter d-flex">
@@ -44,22 +44,25 @@
             </div>
         </div>
         <div class="content-body d-flex mt-4">
-            <div class="film-item mr-4">
-                <a href="/film-item">
-                    <img
-                        class="rounded"
-                        width="125"
-                        height="187"
-                        src="https://a.ltrbxd.com/resized/film-poster/4/7/4/4/7/1/474471-extraction-0-230-0-345-crop.jpg?k=c76c8df131"
-                        alt=""
-                        srcset=""
-                        />
-                </a>
-                <div class="overlay">
-                    <a href="/watch"><i class="fa fa-eye pointer mr-2 icon-button watch-active"></i></a>
-                    <a href="/like"><i class="fa fa-heart pointer icon-button like-active"></i></a>
-                </div>
-            </div>
+            <?php foreach ($watchlist as $watchItem): ?>
+                <div activity-id='<?php echo $watchItem['Activity']['activity_id'] ?>' class="film-item mr-4">
+                            <a href="<?php echo $html->getHref('films/view/' . $watchItem['Activity']['film_id']) ?>">
+                                <img
+                                    class="rounded"
+                                    title='<?php echo $watchItem['Film']['title'] ?>'
+                                    width="125"
+                                    height="187"
+                                    src="<?php echo $watchItem['Film']['avatar'] ?>"
+                                    alt=""
+                                    srcset=""
+                                    />
+                            </a>
+                            <div class="overlay">
+                                <a href="/watch"><i class="fa fa-eye pointer mr-2 icon-button watch-active"></i></a>
+                                <a href="/like"><i class="fa fa-heart pointer icon-button like-active"></i></a>
+                            </div>
+                        </div>
+            <?php endforeach ?>
         </div>
     </div>
     <!-- end tab content -->

@@ -1,3 +1,3 @@
 <?php
 
-define("DEFAULT_SCHEMA", "filmsbook");
+define("DEFAULT_SCHEMA", "project1");

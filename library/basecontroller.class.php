@@ -33,5 +33,4 @@ class BaseController {
             $this->_template->render($this->doNotRenderHeader);
         }
     }
-
 }

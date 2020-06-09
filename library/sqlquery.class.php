@@ -1,7 +1,6 @@
 <?php
 
 require_once (ROOT . DS . 'core' . DS . 'log.php');
-require_once (ROOT . DS . 'core' . DS . 'constant.php');
 
 class SQLQuery {
 
