@@ -73,7 +73,7 @@
 
 .collection-film-item{
   width: 30%;
-  height: 300px;
+  height: 500px;
 }
 
 .img-border{
@@ -88,4 +88,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }

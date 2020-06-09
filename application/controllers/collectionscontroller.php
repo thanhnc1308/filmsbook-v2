@@ -5,8 +5,14 @@ class CollectionsController extends BaseController{
 
   }
   
-  function index(){
-    
+  function index($user_id=null){
+    $user_id = 2;
+    $collections = $this->Collection->custom(
+    "SELECT collections.*, films.avatar FROM collections 
+      INNER JOIN collections_films ON collections.id = collections_films.collection_id
+      INNER JOIN films ON collections_films.film_id = films.id
+      WHERE user_id = $user_id");
+    $this->set('collections', $collections);
   }
 
   function create(){
