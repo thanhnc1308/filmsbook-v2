@@ -49,3 +49,15 @@ create table films_genres (
     film_id int,
     genre_id int
 );
+
+create table reviews (
+    id int primary key auto_increment, 
+    user_id int,
+    film_id int,
+    content varchar(2000),
+    moviedb_id int
+);
+
+create table casts (
+    
+)

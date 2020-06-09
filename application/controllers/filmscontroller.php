@@ -4,11 +4,33 @@ class FilmsController extends BaseController {
         
     }
     
-    function view() {
-        $this->Film->id = 1;
+    function view($id) {
+        // search for this film
+        $this->Film->id = $id;
         $this->Film->showHasManyAndBelongsToMany();
-        $data = $this->Category->search();
-        print_r($data);
+        $this->Film->showHasMany();
+        $film = $this->Film->search();
+        if($film == null) {
+            $this->set('status', 0);
+        } else {
+            $this->set('status', 1);
+            
+            // get all reviews coming with the film
+            $reviews = $film['Review'];
+            foreach($reviews as &$review) {
+                // get review's author name
+                $user_id = $review['Review']['user_id'];
+                $user = new User();
+                $user->id = $user_id;
+                $user = $user->search();
+                $username = $user['User']['name'];
+                
+                $review['Review']['username'] = $username;
+            }
+            
+            $this->set('film', $film);
+            $this->set('reviews', $reviews);
+        }
     }
     
     function index() {
@@ -104,6 +126,50 @@ class FilmsController extends BaseController {
             
             $this->set('film', $film);
         }
+    }
+    
+    function edit($id) {
+        $film = new Film();
+        $film->id = $id;
+        $film = $film->search();
+        
+        $genres = new Genre();
+        $genres = $genres->search();
+        
+        $countries = new Country();
+        $countries = $countries->search();
+        
+        $companies = new Company();
+        $companies = $companies->search();
+        
+        $this->set('film', $film);
+        $this->set('genres', $genres);
+        $this->set('companies', $companies);
+        $this->set('countries', $countries);
+    }
+    
+    function update($id) {
+        // get the movie from db
+        $film = new Film();
+        $film->id = $id;
+        $film = $film->search();
+        
+        // update all the fields
+        $film->title = $_POST['title'];
+        $film->overview = $_POST['overview'];
+        $film->release_date = $_POST['release_date'];
+        $film->popularity = $_POST['popularity'];
+        $film->runtime = $_POST['runtime'];
+        $film->moviedb_id = $_POST['moviedb_id'];
+
+        $film->budget = $_POST['budget'];
+        $film->original_language = $_POST['original_language'];
+        $film->poster_path = $_POST['poster_path'];
+        $film->revenue = $_POST['revenue'];
+        $film->vote_average = $_POST['vote_average'];
+        $film->vote_count = $_POST['vote_count'];
+        
+        // update all relationships
     }
     
     function test() {
