@@ -6,10 +6,10 @@ define('DEVELOPMENT_ENVIRONMENT', true);
 // define('DB_USER', 'root');
 // define('DB_PASSWORD', '');
 // define('DB_HOST', 'localhost');
-define('DB_NAME', 'VnYbPpwFQ4');
-define('DB_USER', 'VnYbPpwFQ4');
-define('DB_PASSWORD', 'kT9KeNqQQt');
-define('DB_HOST', 'remotemysql.com');
+define('DB_NAME', 'project1');
+define('DB_USER', 'project1');
+define('DB_PASSWORD', 'nGLLCqM1hPlkqGyyBoR0xFNVcxkUAEUc');
+define('DB_HOST', 'congty.io');
 
 define('BASE_PATH', 'http://localhost/filmsbook-v2');
 
