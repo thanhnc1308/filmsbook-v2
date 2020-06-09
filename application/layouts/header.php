@@ -15,6 +15,7 @@
             $html->includeCss('common');
             $html->includeCss('layout');
             $html->includeCss('films');
+            $html->includeCss('collections');
         ?>
         <title>Films Review</title>
     </head>
