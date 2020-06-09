@@ -214,7 +214,7 @@ class SQLQuery_v2 {
                         $tempResultsChild = array();
                         $resultsChild = array();
 
-                        if (mysqli_num_rows($resultChild) > 0) {
+                        if ($resultChild) {
                             $numOfFieldsChild = mysqli_num_fields($resultChild);
 //                            for ($j = 0; $j < $numOfFieldsChild; ++$j) {
 //                                array_push($tableChild, mysql_field_table($resultChild, $j));
@@ -236,7 +236,8 @@ class SQLQuery_v2 {
                         }
 
                         $tempResults[$aliasChild] = $resultsChild;
-                        mysqli_free_result($resultChild);
+                        if($resultChild)
+                            mysqli_free_result($resultChild);
                     }
                 }
 

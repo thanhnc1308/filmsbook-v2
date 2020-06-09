@@ -1,0 +1,63 @@
+create table films (
+    id int primary key auto_increment,
+    moviedb_id int,
+    budget long,
+    original_language varchar(20),
+    overview varchar(500),
+    popularity float,
+    poster_path varchar(100),
+    release_date date,
+    revenue long,
+    title varchar(100),
+    vote_average float,
+    vote_count int,
+    runtime int
+);
+
+create table genres {
+    id int primary key auto_increment,
+    moviedb_id int,
+    name varchar(50)
+};
+
+create table companies (
+    id int primary key auto_increment,
+    moviedb_id int,
+    name varchar(100)
+);
+
+create table countries (
+    id int primary key auto_increment,
+    moviedb_id varchar(20),
+    name varchar(100)
+);
+
+create table companies_films (
+    id int primary key auto_increment,
+    film_id int,
+    company_id int
+);
+
+create table countries_films (
+    id int primary key auto_increment,
+    film_id int,
+    country_id int
+);
+
+create table films_genres (
+    id int primary key auto_increment,
+    film_id int,
+    genre_id int
+);
+
+create table reviews (
+    id int primary key auto_increment, 
+    user_id int,
+    film_id int,
+    content varchar(2000),
+    moviedb_id int
+);
+
+create table casts (
+    
+)
