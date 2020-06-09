@@ -20,8 +20,9 @@
 }
 
 .collection-card{
-  width: 290px;
-  margin-right: 40px;
+  width: 250px;
+  height: 400px;
+  margin-right: 70px;
 }
 
 .film-stack{
@@ -35,14 +36,13 @@
 }
 
 .stack-item{
-  margin-right: -115px;
+  margin-right: -125px;
   box-shadow: 2px 0 7px #000;
   width: 150px;
   height: 200px;
   position: relative;
   border-radius: 4px;
   float: left;
-  background-color: blue;
 }
 
 .z-5{
@@ -73,7 +73,7 @@
 
 .collection-film-item{
   width: 30%;
-  height: 300px;
+  height: 500px;
 }
 
 .img-border{
@@ -88,4 +88,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
