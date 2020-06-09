@@ -34,6 +34,7 @@
 <!-- end footer -->
 </div>
 <?php
+$html->includeJs('prototype');
 $html->includeJs('base');
 $html->includeJs('activity');
 ?>
