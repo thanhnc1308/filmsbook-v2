@@ -8,13 +8,13 @@
                 <a href="#" class="fw-bold no-underline username"><?php echo $username ?></a>
             </div>
             <a
-                href="./watchlist"
+                href="<?php echo $html->getHref('profiles/watchlist') ?>"
                 class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline active"
                 >
                 Watchlists
             </a>
             <a
-                href="./likes"
+                href="<?php echo $html->getHref('profiles/likes') ?>"
                 class="tab-item ml-3 pt-3 pb-3 pl-2 pr-2 no-underline"
                 >
                 Likes

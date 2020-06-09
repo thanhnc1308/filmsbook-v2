@@ -39,7 +39,7 @@ class ProfilesController extends BaseController {
     // region override
 
     function beforeAction() {
-        include(dirname(__DIR__).'/../library/checklogin.php');
+        // include(dirname(__DIR__).'/../library/checklogin.php');
     }
 
     function afterAction() {
