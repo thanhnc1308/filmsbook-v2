@@ -12,5 +12,7 @@
  * @author lamnt
  */
 class Company extends BaseModel {
-    //put your code here
+    var $hasManyAndBelongsToMany = array(
+        'Film' => 'Film'
+    );
 }

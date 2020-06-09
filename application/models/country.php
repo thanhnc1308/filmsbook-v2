@@ -12,5 +12,7 @@
  * @author lamnt
  */
 class Country extends BaseModel {
-    //put your code here
+    var $hasManyAndBelongsToMany = array(
+        'Film' => 'Film'
+    );
 }

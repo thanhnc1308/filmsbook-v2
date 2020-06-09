@@ -7,12 +7,10 @@
  */
 
 /**
- * Description of genre
+ * Description of film_genre
  *
  * @author lamnt
  */
-class Genre extends BaseModel {
-    var $hasManyAndBelongsToMany = array(
-        'Film' => 'Film'
-    );
+class Films_genre extends BaseModel {
+
 }

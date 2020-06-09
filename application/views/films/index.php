@@ -18,6 +18,11 @@
                     echo "Vote Average: " . $film['Film']['vote_average'];
                     echo "Vote Count: " . $film['Film']['vote_count'];
                     
+                    echo "Genres: ";
+                    foreach($film['Genre'] as $genre) {
+                        echo $genre['Genre']['name'] . " ";
+                    }
+                    
                     echo "<br>";
                     echo "<hr>";
                 }

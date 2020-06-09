@@ -7,5 +7,9 @@
  */
 
 class Film extends BaseModel {
-    
+    var $hasManyAndBelongsToMany = array(
+        'Genre' => 'Genre',
+        'Company' => 'Company',
+        'Country' => 'Contry'
+    );
 }
