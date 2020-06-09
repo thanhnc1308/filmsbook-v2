@@ -8,7 +8,7 @@
         <span class="fw-bold font-size-medium">Tuan Anh</span>
       </div>
     </div>
-
+    <?php echo $collection['Collection'] ?>
     <h1>Collection name</h1>
     <p>This is the description about the Collection</p>
     <ul class="d-flex flex-wrap justify-content-start p-0">

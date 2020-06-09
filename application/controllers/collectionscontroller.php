@@ -13,15 +13,19 @@ class CollectionsController extends BaseController{
 
   }
 
-  function update($collectionId){
+  function update($id){
 
   }
 
-  function view($collectionId){
-    
+  function view($id){
+    $this->Collection->id = $id;
+    $this->Collection->showHasOne();
+    $this->Collection->showHasManyAndBelongsToMany();
+    $collection = $this->Collection->search();
+    $this->set('collection', $collection);
   }
 
-  function delete($collectionId){
+  function delete($id){
 
   }
 
