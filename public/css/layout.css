@@ -55,6 +55,7 @@ body {
     margin-top: 66px;
     width: 100%;
     height: calc(100vh - 150px);
+    padding-bottom: 1.5rem;
 }
 /* end content */
 
