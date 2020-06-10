@@ -48,6 +48,24 @@ body {
 .navbar .input-search {
     height: 30px;
 }
+
+#livesearch {
+    position: absolute;
+    border-radius: 5px;
+}
+
+#livesearch .link-film {
+    padding: .15rem;
+    border-bottom: 1px solid #808080;
+}
+
+#livesearch .link-film:hover {
+    background-color: #2b2a2a;
+}
+
+#livesearch .link-film a {
+    color: #9ab;
+}
 /* end navbar */
 
 /* content */

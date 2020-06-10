@@ -24,7 +24,7 @@ class LiveSearch {
             "1px solid #A5ACB2";
         }
       });
-    }, 500);
+    }, 300);
   }
 }
 
