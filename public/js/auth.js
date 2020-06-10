@@ -64,28 +64,35 @@ function removeError(elId) {
 }
 
 function onBtnLoginClick() {
-    if (checkEmail() && checkPassword()) {
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this);
+    if (checkPassword()) {
+        const url = `${BASE_URL}/login/auth`;
+        payload = {
+            "username": document.getElementById("username").value,
+            "password": document.getElementById("password").value
+        }
+        httpClient.post(url, payload, function (res) {
+            if (res.readyState == 4 && res.status == 200) {
+                if(res.responseText=='true'){
+                    window.open('http://localhost/filmsbook-v2')
+                }
             }
-        };
-        xmlhttp.open("GET", "login/auth", true);
-        xmlhttp.send();
+        });
     }
 }
 
 function onBtnSignupClick() {
-    if (checkEmail() && checkPassword() && checkUsername()) {
+    if (checkPassword() && checkUsername()) {
+        const url = `${BASE_URL}/signup/auth`;
         const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this);
+        payload = {
+            "username": document.getElementById("username").value,
+            "password": document.getElementById("password").value
+        }
+        httpClient.post(url, payload, function (res) {
+            if (res.readyState == 4 && res.status == 200) {
+                console.log(res);
             }
-        };
-        xmlhttp.open("GET", "signup/auth", true);
-        xmlhttp.send();
+        });
     }
 }
 
