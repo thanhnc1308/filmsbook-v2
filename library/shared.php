@@ -142,9 +142,7 @@ function callHook_v2()
             $controllerName = ucfirst($controller) . 'Controller';
             if (class_exists($controllerName)) {
                 $dispatch = new $controllerName($controller, $action);
-                echo $action;
                 if ((int) method_exists($controllerName, $action)) {
-                    echo $controller;
                     call_user_func_array(array($dispatch, "beforeAction"), $queryString);
                     call_user_func_array(array($dispatch, $action), $queryString);
                     call_user_func_array(array($dispatch, "afterAction"), $queryString);

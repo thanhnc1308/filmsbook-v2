@@ -16,7 +16,7 @@ class LiveSearch {
         document.getElementById("livesearch").style.border = "0px";
         return;
       }
-      const url = `${BASE_URL}/livesearch/search?q=${searchKey}`;
+      const url = `${BASE_URL}/livesearch/search/?q=${searchKey}`;
       httpClient.get(url, function (res) {
         if (res.readyState == 4 && res.status == 200) {
           document.getElementById("livesearch").innerHTML = res.responseText;

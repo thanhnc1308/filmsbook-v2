@@ -8,7 +8,6 @@ class LiveSearchController {
     function search($searchKey)
     {
         echo 'test' . $searchKey;
-        return 'test';
     }
 
     function afterAction()
