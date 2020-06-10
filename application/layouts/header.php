@@ -56,9 +56,11 @@
                     <div class="search">
                         <input
                             type="text"
+                            onkeyup="liveSearch.search(this.value)"
                             class="input-search rounded bg-dark border text-light pl-2"
                             placeholder="Search"
-                            />
+                        />
+                        <div id="livesearch"></div>
                     </div>
                 </div>
             </div>

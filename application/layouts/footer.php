@@ -34,8 +34,11 @@
 <!-- end footer -->
 </div>
 <?php
+$html->includeJs('config');
 $html->includeJs('prototype');
+$html->includeJs('httpClient');
 $html->includeJs('base');
+$html->includeJs('search');
 $html->includeJs('activity');
 ?>
 </body>

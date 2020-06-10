@@ -33,16 +33,6 @@ function setActiveClass(el, className) {
   el.classList.add("active");
 }
 
-BASE_URL = "/filmbooks-v2";
-/**
- * func generate router based on root url
- * @param {String} routerName
- * @author NCThanh 6.6.2020
- */
-function getRouter(routerName) {
-  return `${BASE_URL}/${routerName}`;
-}
-
 /**
  * func set nav-item active based on url
  * @author NCThanh 6.6.2020
