@@ -51,8 +51,7 @@
                                     />
                             </a>
                             <div class="overlay">
-                                <a href="/watch"><i class="fa fa-eye pointer mr-2 icon-button watch-active"></i></a>
-                                <a href="/like"><i class="fa fa-heart pointer icon-button like-active"></i></a>
+                                <a onclick="activity.toggleLike(<?php echo $likeItem['Activity']['activity_id'] ?>)"><i class="fa fa-heart pointer icon-button like-active"></i></a>
                             </div>
                         </div>
             <?php endforeach ?>
