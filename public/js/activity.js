@@ -110,12 +110,12 @@ class Activity {
     const me = this,
       url = `${BASE_URL}/profiles/addLike`,
       payload = {
-        filmId: me.currentWatchItem.getAttribute("film-id"),
-        userId: me.currentWatchItem.getAttribute("user-id"),
+        filmId: me.currentLikeItem.getAttribute("film-id"),
+        userId: me.currentLikeItem.getAttribute("user-id"),
       };
     httpClient.post(url, payload, function (res) {
       if (res.readyState == 4 && res.status == 200 && res.response === "1") {
-        me.currentWatchButton.classList.add("like-active");
+        me.currentLikeButton.classList.add("like-active");
       } else {
         console.log("Error: addToLike");
       }
@@ -123,7 +123,7 @@ class Activity {
   }
 
   /**
-   * func remove a film from user watch list
+   * func remove a film from user Like list
    * @param {*} activityId
    * @author NCThanh
    */
@@ -135,7 +135,7 @@ class Activity {
       };
     httpClient.post(url, payload, function (res) {
       if (res.readyState == 4 && res.status == 200 && res.response === "1") {
-        me.currentWatchButton.classList.remove("like-active");
+        me.currentLikeButton.classList.remove("like-active");
       } else {
         console.log("Error: removeLike");
       }

@@ -58,6 +58,7 @@
 .film-item {
     position: relative;
     display: flex;
+    margin-bottom: 12px;
     justify-content: center;
 }
 

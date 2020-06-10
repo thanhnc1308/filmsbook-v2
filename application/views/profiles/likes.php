@@ -38,7 +38,7 @@
                 </div>
                 <div class="content-body d-flex mt-4">
             <?php foreach ($likelist as $likeItem): ?>
-                <div activity-id='<?php echo $likeItem['Activity']['activity_id'] ?>' class="film-item mr-4">
+                <div activity-id='<?php echo $likeItem['Activity']['activity_id'] ?>' film-id='<?php echo $likeItem['Activity']['film_id'] ?>' user-id='<?php echo $likeItem['Activity']['user_id'] ?>' class="film-item mr-4">
                             <a href="<?php echo $html->getHref('films/view/' . $likeItem['Activity']['film_id']) ?>">
                                 <img
                                     class="rounded"

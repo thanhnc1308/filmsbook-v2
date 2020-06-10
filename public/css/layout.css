@@ -75,6 +75,10 @@ body {
     min-height: calc(100vh - 174px);
     padding-bottom: 1.5rem;
 }
+
+.content-body {
+    flex-flow: wrap;
+}
 /* end content */
 
 /* footer */
