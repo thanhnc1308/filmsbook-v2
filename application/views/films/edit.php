@@ -1,4 +1,28 @@
 <div>
+    <?php
+    $selected_genres = $film['Genre']; 
+    $selected_companies = $film['Company'];
+    $selected_countries = $film['Country'];
+    
+    // create an array of selected items;
+    $selected_genre_ids = [];
+    foreach($selected_genres as $genre) {
+        $id = $genre['Genre']['id'];
+        array_push($selected_genre_ids, $id);
+    }
+    
+    $selected_country_ids = [];
+    foreach($selected_countries as $country) {
+        $id = $country['Country']['id'];
+        array_push($selected_country_ids, $id);
+    }
+    
+    $selected_company_ids = [];
+    foreach($selected_companies as $company) {
+        $id = $company['Company']['id'];
+        array_push($selected_company_ids, $id);
+    }
+    ?>
     <h1>Edit movie: <?php echo $film['Film']['title']; ?></h1>
     <div>
         <form method="post" action="/filmsbook-v2/films/update/<?php echo $film['Film']['id']; ?>">
@@ -68,7 +92,11 @@
                     <?php
                         foreach($genres as $genre) {
                             $id = $genre['Genre']['id'];
-                            echo "<option value=$id>";
+                            echo "<option value=$id";
+                            if(in_array($id, $selected_genre_ids)) {
+                                echo " selected";
+                            }
+                            echo ">";
                             echo $genre['Genre']['name'];
                             echo "</option>";                            
                         }
@@ -82,7 +110,11 @@
                     <?php
                         foreach($companies as $company) {
                             $id = $company['Company']['id'];
-                            echo "<option value=$id>";
+                            echo "<option value=$id";
+                            if(in_array($id, $selected_company_ids)) {
+                                echo " selected";
+                            }
+                            echo ">";
                             echo $company['Company']['name'];
                             echo "</option>";                            
                         }
@@ -96,7 +128,11 @@
                     <?php
                         foreach($countries as $country) {
                             $id = $country['Country']['id'];
-                            echo "<option value=$id>";
+                            echo "<option value=$id";
+                            if(in_array($id, $selected_country_ids)) {
+                                echo " selected";
+                            }
+                            echo ">";
                             echo $country['Country']['name'];
                             echo "</option>";                            
                         }
