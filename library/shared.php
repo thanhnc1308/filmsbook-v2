@@ -1,8 +1,9 @@
 <?php
-require_once (ROOT . DS . 'core' . DS . 'constant.php');
+require_once(ROOT . DS . 'core' . DS . 'constant.php');
 
 /** Check if environment is development and display errors * */
-function setReporting() {
+function setReporting()
+{
     if (DEVELOPMENT_ENVIRONMENT == true) {
         error_reporting(E_ALL);
         ini_set('display_errors', 'On');
@@ -15,7 +16,8 @@ function setReporting() {
 }
 
 /** Check register globals and remove them * */
-function unregisterGlobals() {
+function unregisterGlobals()
+{
     if (ini_get('register_globals')) {
         $array = array('_SESSION', '_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
         foreach ($array as $value) {
@@ -29,7 +31,8 @@ function unregisterGlobals() {
 }
 
 /** Secondary Call Function * */
-function performAction($controller, $action, $queryString = null, $render = 0) {
+function performAction($controller, $action, $queryString = null, $render = 0)
+{
     $controllerName = ucfirst($controller) . 'Controller';
     $dispatch = new $controllerName($controller, $action);
     $dispatch->render = $render;
@@ -37,7 +40,8 @@ function performAction($controller, $action, $queryString = null, $render = 0) {
 }
 
 /** Routing * */
-function routeURL($url) {
+function routeURL($url)
+{
     global $routing;
 
     foreach ($routing as $pattern => $result) {
@@ -57,7 +61,8 @@ function routeURL($url) {
  * and the remaining as $queryString. 
  * $model is the singular version of $controller
  */
-function callHook() {
+function callHook()
+{
     global $uri;
 
     $urlArray = array();
@@ -91,7 +96,8 @@ function callHook() {
  * func check if it is the homepage then return the default controller
  * @author John Doe <john.doe@example.com>
  */
-function isDefaultController($uri) {
+function isDefaultController($uri)
+{
     global $uri;
     $urlArray = explode("/", $uri);
     array_shift($urlArray); // shift the space
@@ -104,7 +110,8 @@ function isDefaultController($uri) {
     }
 }
 
-function callHook_v2() {
+function callHook_v2()
+{
     global $url;
     global $uri;
     global $default;
@@ -129,33 +136,36 @@ function callHook_v2() {
         }
         $queryString = $urlArray;
     }
-    try {
 
-        $controllerName = ucfirst($controller) . 'Controller';
-        if (class_exists($controllerName)) {
-            
-            $dispatch = new $controllerName($controller, $action);
-
-            if ((int) method_exists($controllerName, $action)) {
-                call_user_func_array(array($dispatch, "beforeAction"), $queryString);
-                call_user_func_array(array($dispatch, $action), $queryString);
-                call_user_func_array(array($dispatch, "afterAction"), $queryString);
+    // if ($controller != 'library') {
+        try {
+            $controllerName = ucfirst($controller) . 'Controller';
+            if (class_exists($controllerName)) {
+                $dispatch = new $controllerName($controller, $action);
+                echo $action;
+                if ((int) method_exists($controllerName, $action)) {
+                    echo $controller;
+                    call_user_func_array(array($dispatch, "beforeAction"), $queryString);
+                    call_user_func_array(array($dispatch, $action), $queryString);
+                    call_user_func_array(array($dispatch, "afterAction"), $queryString);
+                } else {
+                }
             } else {
-                
             }
-        }else{
-            
+        } catch (Exception $ex) {
+            // do something
+            echo $ex;
         }
-    } catch (Exception $ex) {
-        // do something
-        echo $ex;
-    }
+    // } else {
+        // require_once(ROOT . DS . 'library' . DS . 'livesearch.php' . $queryString);
+    // }
 }
 
 /**
  * auto load our classes
  */
-function __autoload($className) {
+function __autoload($className)
+{
     try {
         if (file_exists(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php')) {
             require_once(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php');
@@ -167,12 +177,12 @@ function __autoload($className) {
             require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'notfound.php');
         }
     } catch (Exception $ex) {
-        
     }
 }
 
 /** GZip Output * */
-function gzipOutput() {
+function gzipOutput()
+{
     $ua = $_SERVER['HTTP_USER_AGENT'];
 
     if (0 !== strpos($ua, 'Mozilla/4.0 (compatible; MSIE ') || false !== strpos($ua, 'Opera')) {
@@ -180,9 +190,7 @@ function gzipOutput() {
     }
 
     $version = (float) substr($ua, 30);
-    return (
-            $version < 6 || ($version == 6 && false === strpos($ua, 'SV1'))
-            );
+    return ($version < 6 || ($version == 6 && false === strpos($ua, 'SV1')));
 }
 
 /** Get Required Files * */
