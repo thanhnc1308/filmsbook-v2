@@ -72,8 +72,8 @@ function onBtnLoginClick() {
         }
         httpClient.post(url, payload, function (res) {
             if (res.readyState == 4 && res.status == 200) {
-                if(res.responseText=='true'){
-                    window.open('http://localhost/filmsbook-v2')
+                if(res.responseText==1){
+                    window.location.replace('http://localhost/filmsbook-v2/films')
                 }
             }
         });
@@ -90,7 +90,9 @@ function onBtnSignupClick() {
         }
         httpClient.post(url, payload, function (res) {
             if (res.readyState == 4 && res.status == 200) {
-                console.log(res);
+                if(res.responseText==1){
+                    window.location.replace('http://localhost/filmsbook-v2/login')
+                }
             }
         });
     }

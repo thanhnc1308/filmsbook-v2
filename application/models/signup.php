@@ -6,17 +6,20 @@ class Signup extends BaseModel {
         return "users";
     }
     
-    function checkUser($username, $password){
+    function checkExistedUser($username, $password){
         $searchUserByName = "select * from " . DEFAULT_SCHEMA. ".users where username = '" .$username ."'";
         $user = $this->custom($searchUserByName);
         if(empty($user)){
-            $insertUser = "insert into " .DEFAULT_SCHEMA. ".users(username, password , created_at , updated_at , `role` ) values ('". $username ."','" 
-            .password_hash($password, PASSWORD_BCRYPT) ."', now(), now(), 'user')";
-            echo $insertUser;
-            $this->custom($insertUser);
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
+    }
+
+    function createNewUser($username, $password){
+        $insertUser = "insert into " .DEFAULT_SCHEMA. ".users(username, password , created_at , updated_at , `role` ) values ('". $username ."','" 
+        .password_hash($password, PASSWORD_BCRYPT) ."', now(), now(), 'user')";
+        $result = $this->custom($insertUser);
+        return $result;
     }
 }
