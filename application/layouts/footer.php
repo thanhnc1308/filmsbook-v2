@@ -40,6 +40,7 @@ $html->includeJs('httpClient');
 $html->includeJs('base');
 $html->includeJs('search');
 $html->includeJs('activity');
+$html->includeJs('collection');
 ?>
 </body>
 </html>

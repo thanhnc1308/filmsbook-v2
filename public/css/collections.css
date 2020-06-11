@@ -68,7 +68,7 @@
 .added-list{
   border: 1px solid #345;
   width: 100%;
-  min-height: 200px;
+  min-height: 300px;
 }
 
 .collection-film-item{
@@ -89,4 +89,42 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+}
+
+#add-film-search-results{
+  position: absolute;
+  z-index: 10;
+  background-color: #181d23;
+  border-radius: 5px;
+}
+
+#add-film-search-results .link-film {
+  padding: .15rem;
+  border-bottom: 1px solid #808080;
+}
+
+#add-film-search-results .link-film:hover {
+  background-color: #2b2a2a;
+  cursor: pointer;
+}
+
+.film-stack-content{
+  box-sizing: border-box;
+  border-bottom: 1px solid #345;
+}
+
+.delete-button{
+  font-size: larger;
+  border-radius: 50%;
+  background-color: grey;
+  color: antiquewhite;
+  border:none;
+}
+
+.delete-button:hover{
+  cursor: pointer;
+}
+
+.delete-button:focus{
+  outline: none;
 }
