@@ -45,5 +45,4 @@ class HTML {
         $link = '<link rel="stylesheet" href="' . BASE_PATH . '/public/css/' . $fileName . '.css" />';
         echo $link;
     }
-
 }
