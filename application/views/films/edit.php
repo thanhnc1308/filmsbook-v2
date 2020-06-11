@@ -70,6 +70,11 @@
                 <label>Poster_path</label>
                 <input type="text" name="poster_path" value="<?php echo $film['Film']['poster_path']; ?>">
             </div>
+            
+            <div>
+                <label>Trailer path</label>
+                <input type="text" name="trailer"  value="<?php echo $film['Film']['trailer']; ?>">
+            </div>
 
             <div>
                 <label>Revenue</label>

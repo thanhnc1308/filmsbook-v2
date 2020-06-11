@@ -38,13 +38,18 @@
             </div>
 
             <div>
-                <label>Original_language</label>
+                <label>Original language</label>
                 <input type="text" name="original_language">
             </div>
 
             <div>
-                <label>Poster_path</label>
+                <label>Poster path</label>
                 <input type="text" name="poster_path">
+            </div>
+            
+            <div>
+                <label>Trailer path</label>
+                <input type="text" name="trailer">
             </div>
 
             <div>
@@ -53,12 +58,12 @@
             </div>
 
             <div>
-                <label>Vote_average</label>
+                <label>Vote average</label>
                 <input type="number" step="0.1" name="vote_average">
             </div>
 
             <div>
-                <label>Vote_count</label>
+                <label>Vote count</label>
                 <input type="number" name="vote_count">
             </div>
 
@@ -109,6 +114,7 @@
                 <div id="cast-input">
                     <label>Actor</label>
                     <select name="actors[]">
+                        <option></option>
                         <?php
                             foreach($actors as $actor) {
                                 $id = $actor['Actor']['id'];

@@ -63,7 +63,7 @@ class FilmsController extends BaseController {
             && isset($_POST['release_date'])
             && isset($_POST['popularity'])
             && isset($_POST['runtime'])
-            && isset($_POST['moviedb_id'])
+//            && isset($_POST['moviedb_id'])
         ) {
             $film = new Film();
             $film->title = $_POST['title'];
@@ -76,16 +76,12 @@ class FilmsController extends BaseController {
             $film->budget = $_POST['budget'];
             $film->original_language = $_POST['original_language'];
             $film->poster_path = $_POST['poster_path'];
+            $film->trailer = $_POST['trailer'];
             $film->revenue = $_POST['revenue'];
             $film->vote_average = $_POST['vote_average'];
             $film->vote_count = $_POST['vote_count'];
             
-            $film->save();
-            
-            // get saved film id
-            $this->Film->where('moviedb_id', $_POST['moviedb_id']);
-            $film = $this->Film->search();
-            $film_id = $film[0]['Film']['id'];
+            $film_id = $film->save();
             
             // Save Genres
             foreach($_POST['genres'] as $genre_input) {
@@ -194,6 +190,7 @@ class FilmsController extends BaseController {
             $film->budget = $_POST['budget'];
             $film->original_language = $_POST['original_language'];
             $film->poster_path = $_POST['poster_path'];
+            $film->trailer = $_POST['trailer'];
             $film->revenue = $_POST['revenue'];
             $film->vote_average = $_POST['vote_average'];
             $film->vote_count = $_POST['vote_count'];
@@ -326,14 +323,80 @@ class FilmsController extends BaseController {
         
     }
     
-    function input_test() {
-        
-    }
-    
-    function test() {
-        $casts = $_POST['casts'];
-        foreach($casts as $cast) {
-            echo $cast . "<br>";
+    function delete() {
+        if(isset($_POST['id'])) {
+            // check if movie exists
+            $film_id = $_POST['id'];
+            $this->Film->id = $film_id;
+            $film = $this->Film->search();
+            var_dump($film);
+            if($film) {                
+                // films_genres
+                $films_genres = new Films_genre();
+                $films_genres->where('film_id', $film_id);
+                $films_genres = $films_genres->search();
+                foreach($films_genres as $fg) {
+                    $fg_id = $fg['Films_genre']['id'];
+                    $fg = new Films_genre();
+                    $fg->id = $fg_id;
+                    $fg->delete();
+                }
+                
+                // companies_films
+                $companies_films = new Companies_film();
+                $companies_films->where('film_id', $film_id);
+                $companies_films = $companies_films->search();
+                foreach($companies_films as $cf) {
+                    $cf_id = $cf['Companies_film']['id'];
+                    $cf = new Companies_film();
+                    $cf->id = $cf_id;
+                    $cf->delete();
+                }
+                
+                // countries_films
+                $countries_films = new Countries_film();
+                $countries_films->where('film_id', $film_id);
+                $countries_films = $countries_films->search();
+                foreach($countries_films as $cf) {
+                    $cf_id = $cf['Countries_film']['id'];
+                    $cf = new Countries_film();
+                    $cf->id = $cf_id;
+                    $cf->delete();
+                }
+                
+                // actors_films
+                $actors_films = new Actors_film();
+                $actors_films->where('film_id', $film_id);
+                $actors_films = $actors_films->search();
+                foreach($actors_films as $af) {
+                    $af_id = $af['Actors_film']['id'];
+                    $af = new Actors_film();
+                    $af->id = $af_id;
+                    $af->delete();
+                }
+                
+                // reviews
+                $reviews = new Review();
+                $reviews->where('film_id', $film_id);
+                $reviews = $reviews->search();
+                foreach($reviews as $review) {
+                    $rv_id = $review['Review']['id'];
+                    $rv = new Review();
+                    $rv->id = $rv_id;
+                    $rv->delete();
+                }
+                
+                // delete movie
+                $film_id = $film['Film']['id'];
+                $film = new Film();
+                $film->id = $film_id;
+                $film->delete();
+            } else {
+
+            }
+            
+        } else {
+
         }
     }
     

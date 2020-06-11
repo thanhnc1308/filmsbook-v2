@@ -3,6 +3,8 @@
         <div class="content-body d-flex mt-4">
             <?php
                 echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
+                $poster_path = $film['Film']['poster_path'];
+                echo "<img src=\"$poster_path\" width=\"154\">";
                 echo "Overview: " . $film['Film']['overview'];
                 echo "Release Date: " . $film['Film']['release_date'];
                 echo "Popularity: " . $film['Film']['popularity'];
@@ -11,7 +13,8 @@
                 echo "MovieDB's ID" . $film['Film']['moviedb_id'];
                 echo "Budget: " . $film['Film']['budget'];
                 echo "Original Language: " . $film['Film']['original_language'];
-                echo "Poster Path: " . $film['Film']['poster_path'];
+//                echo "Poster Path: " . $film['Film']['poster_path'];
+//                echo "Trailer: " . $film['Film']['trailer'];
                 echo "Revenue: " . $film['Film']['revenue'];
                 echo "Vote Average: " . $film['Film']['vote_average'];
                 echo "Vote Count: " . $film['Film']['vote_count'];
@@ -42,6 +45,9 @@
                     echo "Name: " . $actor['Actor']['name'];
                     echo "Character: " . $actor['actors_films']['character_name'];
                 }
+                
+                $trailer = "http://www.youtube.com/embed/" . $film['Film']['trailer'];
+                echo "<iframe src=\"$trailer\" width=\"420\" height=\"270\" frameborder=\"0\" allowfullscreen></iframe>";
 
                 echo "<br>";
                 echo "<hr>";
