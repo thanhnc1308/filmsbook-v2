@@ -34,23 +34,23 @@
                     >
                 </a>
                 <div class="navbar-list-item d-flex vertical-center">
-                    <div id='navLogin' onclick="onNavItemClick(this)" class="nav-item active">
+                    <div id='navLogin'  class="nav-item active">
                         <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Log in</a>
                     </div>
-                    <div id='navSignup' onclick="onNavItemClick(this)" class="nav-item">
+                    <div id='navSignup'  class="nav-item">
                         <a href="/filmsbook-v2/signup" class="nav-link text-uppercase mr-3 fw-bold"
                            >Create an account</a
                         >
                     </div>
-                    <div id='navProfiles' onclick="onNavItemClick(this)" class="nav-item">
+                    <div id='navProfiles'  class="nav-item">
                         <a href="/filmsbook-v2/profiles" class="nav-link text-uppercase mr-3 fw-bold"
                            >Username</a
                         >
                     </div>
-                    <div id='navFilms' onclick="onNavItemClick(this)" class="nav-item">
+                    <div id='navFilms'  class="nav-item">
                         <a href="/filmsbook-v2/films" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
                     </div>
-                    <div id='navCollections' onclick="onNavItemClick(this)" class="nav-item">
+                    <div id='navCollections'  class="nav-item">
                         <a href="/filmsbook-v2/collections" class="nav-link text-uppercase mr-3 fw-bold">Collections</a>
                     </div>
                     <div class="search">

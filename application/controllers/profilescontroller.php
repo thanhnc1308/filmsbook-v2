@@ -36,6 +36,44 @@ class ProfilesController extends BaseController {
         $this->set('username', DEFAULT_SCHEMA);
     }
 
+    /**
+     * func do add a film to watchlist
+     * @author NCThanh
+     */
+    function addWatchList() {
+        $this->doNotRenderHeader = 1;
+        $filmId = $_POST['filmId'];
+        $userId = $_POST['userId'];
+        $sql = "insert into " . DEFAULT_SCHEMA . ".activity (film_id,user_id,name,created_at,updated_at) VALUES (" . $filmId . "," . $userId . ",'watchlist',now() ,now());";
+        $result = $this->Profile->executeCommand($sql);
+        echo $result;
+    }
+
+    /**
+     * func do add a film to watchlist
+     * @author NCThanh
+     */
+    function addLike() {
+        $this->doNotRenderHeader = 1;
+        $filmId = $_POST['filmId'];
+        $userId = $_POST['userId'];
+        $sql = "insert into " . DEFAULT_SCHEMA . ".activity (film_id,user_id,name,created_at,updated_at) VALUES (" . $filmId . "," . $userId . ",'like',now() ,now());";
+        $result = $this->Profile->executeCommand($sql);
+        echo $result;
+    }
+
+    /**
+     * func do add a film to watchlist
+     * @author NCThanh
+     */
+    function removeActivity() {
+        $this->doNotRenderHeader = 1;
+        $activityId = $_POST['activityId'];
+        $sql = "delete from " . DEFAULT_SCHEMA . ".activity where id = " . $activityId . ";";
+        $result = $this->Profile->executeCommand($sql);
+        echo $result;
+    }
+
     // region override
 
     function beforeAction() {

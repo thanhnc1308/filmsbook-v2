@@ -38,7 +38,7 @@
                 </div>
                 <div class="content-body d-flex mt-4">
             <?php foreach ($likelist as $likeItem): ?>
-                <div activity-id='<?php echo $likeItem['Activity']['activity_id'] ?>' class="film-item mr-4">
+                <div activity-id='<?php echo $likeItem['Activity']['activity_id'] ?>' film-id='<?php echo $likeItem['Activity']['film_id'] ?>' user-id='<?php echo $likeItem['Activity']['user_id'] ?>' class="film-item mr-4">
                             <a href="<?php echo $html->getHref('films/view/' . $likeItem['Activity']['film_id']) ?>">
                                 <img
                                     class="rounded"
@@ -51,8 +51,7 @@
                                     />
                             </a>
                             <div class="overlay">
-                                <a href="/watch"><i class="fa fa-eye pointer mr-2 icon-button watch-active"></i></a>
-                                <a href="/like"><i class="fa fa-heart pointer icon-button like-active"></i></a>
+                                <a onclick="activity.toggleLike(<?php echo $likeItem['Activity']['activity_id'] ?>)"><i class="fa fa-heart pointer icon-button like-active"></i></a>
                             </div>
                         </div>
             <?php endforeach ?>

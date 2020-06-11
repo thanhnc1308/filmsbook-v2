@@ -380,6 +380,15 @@ class SQLQuery_v2 {
         }
     }
 
+    /**
+     * func execute a sql command
+     * @author NCThanh
+     */
+    function executeCommand($sql) {
+        $result = mysqli_query($this->_connection, $sql);
+        return $result;
+    }
+
     /** Clear All Variables * */
     function clear() {
         foreach ($this->_describe as $field) {

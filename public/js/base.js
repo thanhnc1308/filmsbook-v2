@@ -49,7 +49,10 @@ function setActiveNavbar() {
     navItem.classList.remove("active");
   }
 
-  currentActive.classList.add("active");
+  if (currentActive) {
+    currentActive.classList.add("active");
+  }
+
 }
 
 DOMReady(function () {

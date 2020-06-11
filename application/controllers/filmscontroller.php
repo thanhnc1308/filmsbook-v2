@@ -131,6 +131,8 @@ class FilmsController extends BaseController {
     function edit($id) {
         $film = new Film();
         $film->id = $id;
+        $film->showHasMany();
+        $film->showHasManyAndBelongsToMany();
         $film = $film->search();
         
         $genres = new Genre();
@@ -154,22 +156,122 @@ class FilmsController extends BaseController {
         $film->id = $id;
         $film = $film->search();
         
-        // update all the fields
-        $film->title = $_POST['title'];
-        $film->overview = $_POST['overview'];
-        $film->release_date = $_POST['release_date'];
-        $film->popularity = $_POST['popularity'];
-        $film->runtime = $_POST['runtime'];
-        $film->moviedb_id = $_POST['moviedb_id'];
+//        if movie exists then update
+        if($film) {
+            $film = new Film();
+            $film->id = $id;
+            
+            // update all the fields
+            $film->title = $_POST['title'];
+            $film->overview = $_POST['overview'];
+            $film->release_date = $_POST['release_date'];
+            $film->popularity = $_POST['popularity'];
+            $film->runtime = $_POST['runtime'];
+            $film->moviedb_id = $_POST['moviedb_id'];
 
-        $film->budget = $_POST['budget'];
-        $film->original_language = $_POST['original_language'];
-        $film->poster_path = $_POST['poster_path'];
-        $film->revenue = $_POST['revenue'];
-        $film->vote_average = $_POST['vote_average'];
-        $film->vote_count = $_POST['vote_count'];
+            $film->budget = $_POST['budget'];
+            $film->original_language = $_POST['original_language'];
+            $film->poster_path = $_POST['poster_path'];
+            $film->revenue = $_POST['revenue'];
+            $film->vote_average = $_POST['vote_average'];
+            $film->vote_count = $_POST['vote_count'];
+            
+            $film->save();
+            
+            // update all relationships
+            // remove all old relationships;
+            // films_genres
+            $films_genres = new Films_genre();
+            $films_genres->where('film_id', $id);
+            $films_genres = $films_genres->search();
+             
+            foreach($films_genres as $film_genre) {
+                $fg_id = $film_genre['Films_genre']['id'];
+                $fg = new Films_genre();
+                $fg->id = $fg_id;
+                $fg->delete();                
+            }
+            
+            // companies_films
+            $companies_films = new Companies_film();
+            $companies_films->where('film_id', $id);
+            $companies_films = $companies_films->search();
+            
+            foreach($companies_films as $company_film) {
+                $cf_id = $company_film['Companies_film']['id'];
+                $cf = new Companies_film();
+                $cf->id = $cf_id;
+                $cf->delete();
+            }
+            
+            // countries_films;
+            $countries_films = new Countries_film();
+            $countries_films->where('film_id', $id);
+            $countries_films = $countries_films->search();
+            
+            foreach($countries_films as $country_film) {
+                $cf_id = $country_film['Countries_film']['id'];
+                $cf = new Countries_film();
+                $cf->id = $cf_id;
+                $cf->delete();
+            }
+            
+            // add new relationships;
+            // Save Genres
+            foreach($_POST['genres'] as $genre_input) {
+                $genre = new Genre();
+                $genre->id = $genre_input;
+                $genre = $genre->search();
+                $genre_id = $genre['Genre']['id'];
+                
+                // save genre id along with film id in films_genres table
+                // how to represent an intermedia table with model?
+                $film_genre = new Films_genre();
+                $film_genre->film_id = $id;
+                $film_genre->genre_id = $genre_id;
+                $film_genre->save();
+            }
+            
+            // Save Companies 
+            foreach($_POST['companies'] as $company_input) {
+                $company = new Company();
+                $company->id = $company_input;
+                $company = $company->search();
+                $company_id = $company['Company']['id'];
+                
+                $company_film = new Companies_film();
+                $company_film->film_id = $id;
+                $company_film->company_id = $company_id;
+                $company_film->save();
+            }
+            
+            // Save Countries
+            foreach($_POST['countries'] as $country_input) {
+                $country = new Country();
+                $country->id = $country_input;
+                $country = $country->search();
+                $country_id = $country['Country']['id'];
+                
+                $countries_film = new Countries_film();
+                $countries_film->country_id = $country_id;
+                $countries_film->film_id = $id;
+                $countries_film->save();
+            }
+            
+            // set success status
+            $this->set('status', 1);
+            $this->set('film_id', $id);
+        } else {
+            // output film doesn't exist
+            // in update view
+            $this->set('status', 0);
+            $this->set('film_id', $id);
+        }
+            
+//        if no then output error
         
-        // update all relationships
+        
+        
     }
     
     function test() {
