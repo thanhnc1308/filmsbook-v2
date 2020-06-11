@@ -4,17 +4,20 @@
  * Class handle business logic for watchlist, liked film and review of user
  * @author NCThanh
  */
-class ProfilesController extends BaseController {
+class ProfilesController extends BaseController
+{
     /**
      * action get data for /watchlist
      * @author NCThanh
      */
-    function watchlist() {
+    function watchlist($query = '')
+    {
+        $query = $this->prepareQuery($query);
         $sqlWatchList = "select activity.id as activity_id, film_id, user_id, title, avatar from " . DEFAULT_SCHEMA . ".activity activity 
         inner join " . DEFAULT_SCHEMA . ".films films on activity.film_id = films.id
         inner join " . DEFAULT_SCHEMA . ".users users on activity.user_id = users.id
         where users.id = 2 and activity.name = 'watchlist'
-        order by activity.updated_at";
+        order by " . $query . ";";
         $watchlist = $this->Profile->custom($sqlWatchList);
         $this->set('watchlist', $watchlist);
         $this->set('username', DEFAULT_SCHEMA);
@@ -22,10 +25,36 @@ class ProfilesController extends BaseController {
     }
 
     /**
+     * func prepare query from raw query
+     * @author NCThanh
+     */
+    function prepareQuery($query)
+    {
+        if ($query) {
+            $query = substr($query, 6);
+            switch ($query) {
+                case 'created_at':
+                    $query = 'activity.created_at';
+                    break;
+                case 'title':
+                    $query = 'films.title';
+                    break;
+                default:
+                    $query = '';
+                    break;
+            }
+        } else {
+            $query = 'activity.updated_at';
+        }
+        return $query;
+    }
+
+    /**
      * action get data for /like
      * @author NCThanh
      */
-    function likes() {
+    function likes()
+    {
         $sqlLikeList = "select activity.id as activity_id, film_id, user_id, title, avatar from " . DEFAULT_SCHEMA . ".activity activity 
         inner join " . DEFAULT_SCHEMA . ".films films on activity.film_id = films.id
         inner join " . DEFAULT_SCHEMA . ".users users on activity.user_id = users.id
@@ -40,7 +69,8 @@ class ProfilesController extends BaseController {
      * func do add a film to watchlist
      * @author NCThanh
      */
-    function addWatchList() {
+    function addWatchList()
+    {
         $this->doNotRenderHeader = 1;
         $filmId = $_POST['filmId'];
         $userId = $_POST['userId'];
@@ -53,7 +83,8 @@ class ProfilesController extends BaseController {
      * func do add a film to watchlist
      * @author NCThanh
      */
-    function addLike() {
+    function addLike()
+    {
         $this->doNotRenderHeader = 1;
         $filmId = $_POST['filmId'];
         $userId = $_POST['userId'];
@@ -66,7 +97,8 @@ class ProfilesController extends BaseController {
      * func do add a film to watchlist
      * @author NCThanh
      */
-    function removeActivity() {
+    function removeActivity()
+    {
         $this->doNotRenderHeader = 1;
         $activityId = $_POST['activityId'];
         $sql = "delete from " . DEFAULT_SCHEMA . ".activity where id = " . $activityId . ";";
@@ -76,12 +108,12 @@ class ProfilesController extends BaseController {
 
     // region override
 
-    function beforeAction() {
+    function beforeAction()
+    {
         // include(dirname(__DIR__).'/../library/checklogin.php');
     }
 
-    function afterAction() {
-
+    function afterAction()
+    {
     }
-
 }

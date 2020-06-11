@@ -35,10 +35,11 @@
                   Genre
                 </div> -->
                 <div class="sorter">Sort by
-                    <select class="sort-item" id="sortFilm">
-                        <option value="whenAdded">When Added</option>
-                        <option value="filmName">Film Name</option>
-                        <option value="rating">Rating</option>
+                    <select onchange="sorter.sortFilm(this.value)" class="sort-item" id="sortFilm">
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="created_at">When Added</option>
+                        <option value="title">Film Name</option>
+                        <!-- <option value="rating">Rating</option> -->
                     </select>
                 </div>
             </div>
