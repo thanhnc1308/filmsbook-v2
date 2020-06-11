@@ -23,7 +23,7 @@ class FilmsController extends BaseController {
                 $user = new User();
                 $user->id = $user_id;
                 $user = $user->search();
-                $username = $user['User']['name'];
+                $username = $user['User']['username'];
                 
                 $review['Review']['username'] = $username;
             }
