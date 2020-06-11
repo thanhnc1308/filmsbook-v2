@@ -2,7 +2,6 @@
     <div class="container">
         <div class="content-body d-flex mt-4">
             <?php
-//                $category['Category']['name']
                 foreach($films as $film) {
                     echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
                     echo "Overview: " . $film['Film']['overview'];

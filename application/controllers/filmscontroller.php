@@ -51,6 +51,10 @@ class FilmsController extends BaseController {
         $countries = new Country();
         $countries = $countries->search();
         $this->set('countries', $countries);
+        
+        $actors = new Actor();
+        $actors = $actors->search();
+        $this->set('actors', $actors);
     }
     
     function store() {
@@ -91,7 +95,6 @@ class FilmsController extends BaseController {
                 $genre_id = $genre['Genre']['id'];
                 
                 // save genre id along with film id in films_genres table
-                // how to represent an intermedia table with model?
                 $film_genre = new Films_genre();
                 $film_genre->film_id = $film_id;
                 $film_genre->genre_id = $genre_id;
@@ -124,6 +127,21 @@ class FilmsController extends BaseController {
                 $countries_film->save();
             }
             
+            // Casts
+            $actors = $_POST['actors'];
+            $characters = $_POST['characters'];
+            $count = count($actors);
+            
+            for($i = 0; $i < $count; $i++) {
+                $actor_id = $actors[$i];
+                $character_name = $characters[$i];
+                
+                $cast = new Actors_film();
+                $cast->film_id = $film_id;
+                $cast->actor_id = $actor_id;
+                $cast->character_name = $character_name;
+                $cast->save();
+            }
             $this->set('film', $film);
         }
     }
@@ -144,10 +162,14 @@ class FilmsController extends BaseController {
         $companies = new Company();
         $companies = $companies->search();
         
+        $actors = new Actor();
+        $actors = $actors->search();
+        
         $this->set('film', $film);
         $this->set('genres', $genres);
         $this->set('companies', $companies);
         $this->set('countries', $countries);
+        $this->set('actors', $actors);
     }
     
     function update($id) {
@@ -178,8 +200,10 @@ class FilmsController extends BaseController {
             
             $film->save();
             
-            // update all relationships
-            // remove all old relationships;
+            // update many to many relationships
+            // by removing all old relationships;
+            // and add new ralationships
+            
             // films_genres
             $films_genres = new Films_genre();
             $films_genres->where('film_id', $id);
@@ -214,6 +238,18 @@ class FilmsController extends BaseController {
                 $cf = new Countries_film();
                 $cf->id = $cf_id;
                 $cf->delete();
+            }
+            
+            // actors_film;
+            $actors_films = new Actors_film();
+            $actors_films->where('film_id', $id);
+            $actors_films = $actors_films->search();
+            
+            foreach($actors_films as $actor_film) {
+                $af_id = $actor_film['Actors_film']['id'];
+                $af = new Actors_film();
+                $af->id = $af_id;
+                $af->delete();
             }
             
             // add new relationships;
@@ -258,6 +294,22 @@ class FilmsController extends BaseController {
                 $countries_film->save();
             }
             
+            // Save Casts
+            $actors = $_POST['actors'];
+            $characters = $_POST['characters'];
+            $count = count($actors);
+            
+            for($i = 0; $i < $count; $i++) {
+                $actor_id = $actors[$i];
+                $character_name = $characters[$i];
+                
+                $cast = new Actors_film();
+                $cast->film_id = $id;
+                $cast->actor_id = $actor_id;
+                $cast->character_name = $character_name;
+                $cast->save();
+            }
+            
             // set success status
             $this->set('status', 1);
             $this->set('film_id', $id);
@@ -274,10 +326,15 @@ class FilmsController extends BaseController {
         
     }
     
+    function input_test() {
+        
+    }
+    
     function test() {
-        $this->Film->where('moviedb_id', 443791);
-        $film = $this->Film->search();
-        var_dump($film);
+        $casts = $_POST['casts'];
+        foreach($casts as $cast) {
+            echo $cast . "<br>";
+        }
     }
     
     function afterAction() {

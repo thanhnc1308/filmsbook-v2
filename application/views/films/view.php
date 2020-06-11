@@ -36,6 +36,12 @@
                     echo "Username:" . $review['Review']['username'];
                     echo "Content: " . $review['Review']['content'];
                 }
+                
+                echo "Casts: ";
+                foreach($film['Actor'] as $actor) {
+                    echo "Name: " . $actor['Actor']['name'];
+                    echo "Character: " . $actor['actors_films']['character_name'];
+                }
 
                 echo "<br>";
                 echo "<hr>";
