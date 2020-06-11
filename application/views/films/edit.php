@@ -70,6 +70,11 @@
                 <label>Poster_path</label>
                 <input type="text" name="poster_path" value="<?php echo $film['Film']['poster_path']; ?>">
             </div>
+            
+            <div>
+                <label>Trailer path</label>
+                <input type="text" name="trailer"  value="<?php echo $film['Film']['trailer']; ?>">
+            </div>
 
             <div>
                 <label>Revenue</label>
@@ -140,6 +145,51 @@
                 </select>
             </div>
             
+            <div id="cast-input-parent">
+                <h1>Casts</h1>
+                <?php
+                    foreach($film['Actor'] as $prev_actor) {
+                        $prev_actor_id = $prev_actor['Actor']['id'];
+                        $prev_character = $prev_actor['actors_films']['character_name'];
+                        
+                        echo "<div id=\"cast-input\">";
+                        echo "<label>Actor</label>";
+                        echo "<select name=\"actors[]\">";
+                        foreach($actors as $actor) {
+                            $id = $actor['Actor']['id'];
+                            echo "<option value=$id";
+                            if($id == $prev_actor_id)
+                                echo " selected";
+                            echo ">";
+                            echo $actor['Actor']['name'];
+                            echo "</option>";                            
+                        }
+                        echo "</select>";
+                        echo "<label>Character</label>";
+                        echo "<input type=\"text\" name=\"characters[]\" value=\"$prev_character\">";
+                        echo "</div>";
+                    }
+                ?>
+                <div id="cast-input">
+                    <label>Actor</label>
+                    <select name="actors[]">
+                        <option></option>
+                        <?php
+                            foreach($actors as $actor) {
+                                $id = $actor['Actor']['id'];
+                                echo "<option value=$id>";
+                                echo $actor['Actor']['name'];
+                                echo "</option>";                            
+                            }
+                        ?>
+                    </select>
+                    <label>Character</label>
+                    <input type="text" name="characters[]">
+                </div>
+                
+            </div>
+            <button id="addcast-btn">Add more cast</div>
+            
             <div>
                 <input type="submit" value="Submit">
                 <input type="reset" value="Reset">
@@ -147,3 +197,7 @@
         </form>
     </div>
 </div>
+
+<?php
+$html->includeJs('filmcast');
+?>
