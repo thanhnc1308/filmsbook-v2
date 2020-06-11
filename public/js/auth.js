@@ -74,6 +74,8 @@ function onBtnLoginClick() {
             if (res.readyState == 4 && res.status == 200) {
                 if(res.responseText==1){
                     window.location.replace('http://localhost/filmsbook-v2/films')
+                }else{
+                    document.getElementById("login-error").style.display = "";
                 }
             }
         });
@@ -81,7 +83,7 @@ function onBtnLoginClick() {
 }
 
 function onBtnSignupClick() {
-    if (checkPassword() && checkUsername()) {
+    if (checkEmail() && checkPassword() && checkUsername()) {
         const url = `${BASE_URL}/signup/auth`;
         const xmlhttp = new XMLHttpRequest();
         payload = {
@@ -92,6 +94,8 @@ function onBtnSignupClick() {
             if (res.readyState == 4 && res.status == 200) {
                 if(res.responseText==1){
                     window.location.replace('http://localhost/filmsbook-v2/login')
+                }else{
+                    document.getElementById("signup-error").style.display = "";
                 }
             }
         });
