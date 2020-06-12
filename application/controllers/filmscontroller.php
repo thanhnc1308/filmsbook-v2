@@ -43,12 +43,11 @@ class FilmsController extends BaseController {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $role = $_SESSION["role"];
+        $role = $this->getUserRole();
 
         if($role!='admin'){
-            $this->render = 0;
-            header("Location: http://localhost/filmsbook-v2/login");
-            exit();
+            $html = new HTML;
+            require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
         }
 
         $genres = new Genre();
