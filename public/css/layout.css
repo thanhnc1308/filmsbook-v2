@@ -100,7 +100,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 50px;
-    height: 100%;
+    min-height: calc(100vh - 174px);
 }
 
 .error {

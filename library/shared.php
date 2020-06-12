@@ -1,4 +1,5 @@
 <?php
+require_once (ROOT . DS . 'library' . DS . 'exceptionhandler.php');
 require_once(ROOT . DS . 'core' . DS . 'constant.php');
 
 /** Check if environment is development and display errors * */
@@ -174,6 +175,7 @@ function __autoload($className)
         } else if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . 'templates' . DS . strtolower($className) . '.php')) {
             require_once(ROOT . DS . 'application' . DS . 'views' . DS . 'templates' . DS . strtolower($className) . '.php');
         } else {
+            $html = new HTML;
             require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'notfound.php');
         }
     } catch (Exception $ex) {
@@ -198,6 +200,7 @@ gzipOutput() || ob_start("ob_gzhandler");
 
 
 $cache = new Cache();
+$exceptionHandler = new ExceptionHandler();
 $inflect = new Inflection();
 
 setReporting();
