@@ -7,6 +7,9 @@ class BaseController {
     protected $_template;
     public $doNotRenderHeader;
     public $render;
+    protected $userId;
+    protected $userName;
+    protected $role;
 
     function __construct($controller, $action) {
         $this->_controller = ucfirst($controller);
@@ -17,15 +20,32 @@ class BaseController {
         $this->render = 1;
         $this->$model = new $model;
         $this->_template = new Template($controller, $action);
-        session_start();
-        $userId = '';
-        $userName = '';
-        if (isset($_SESSION["user_id"])) {
-            $userId = $_SESSION["user_id"];
-            $userName = $_SESSION["username"];
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
         }
-        $this->set('userid', $userId);
-        $this->set('username', $userName);
+        $this->userId = '';
+        $this->userName = '';
+        $this->role = '';
+        if (isset($_SESSION["user_id"])) {
+            $this->userId = $_SESSION["user_id"];
+            $this->userName = $_SESSION["username"];
+            $this->role = $_SESSION["role"];
+        }
+        $this->set('userid', $this->userId);
+        $this->set('username', $this->userName);
+        $this->set('role', $this->role);
+    }
+
+    function getUserId() {
+        return $this->userId;
+    }
+
+    function getUserName() {
+        return $this->userName;
+    }
+
+    function getUserRole() {
+        return $this->role;
     }
 
     function set($name, $value) {
@@ -45,7 +65,7 @@ class BaseController {
 
     function beforeAction()
     {
-        
+
     }
 
     function afterAction()

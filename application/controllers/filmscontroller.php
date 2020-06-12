@@ -40,7 +40,9 @@ class FilmsController extends BaseController {
     
     function create() {
         
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $role = $_SESSION["role"];
 
         if($role!='admin'){
