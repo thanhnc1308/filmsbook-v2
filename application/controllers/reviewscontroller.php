@@ -45,16 +45,17 @@ class ReviewsController extends BaseController {
             $film = $film->search();
             
             if($film) {
-                if(isset($_POST['user_id']) && isset($_POST['content'])) {
-                    $user_id = $_POST['user_id'];
+                if(isset($_POST['content'])) {
+                    $user_id = $this->getUserId();
                     $content = $_POST['content'];
 
                     $review = new Review();
-                    $review->user_id = $this->getUserId();
+                    $review->user_id = $user_id;
                     $review->film_id = $film_id;
                     $review->content = $content;
                     $review->save();
                 }
+                $this->set('film_id', $film_id);
             } else {
                 // redirect to error page
             }

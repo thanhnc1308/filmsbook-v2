@@ -45,6 +45,7 @@ class CountriesController extends BaseController {
             $country = new Country();
             $country->where('name', $name);
             $country = $country->search();
+            var_dump($country);
             
             if($country == null) {
                 $name = $_POST['name'];
