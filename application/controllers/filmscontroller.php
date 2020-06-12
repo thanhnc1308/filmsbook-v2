@@ -59,23 +59,21 @@ class FilmsController extends BaseController {
     
     function store() {
         if (isset($_POST['title']) 
-            && isset($_POST['overview'])
+            && isset($_POST['description'])
             && isset($_POST['release_date'])
             && isset($_POST['popularity'])
-            && isset($_POST['runtime'])
-//            && isset($_POST['moviedb_id'])
+            && isset($_POST['length'])
         ) {
             $film = new Film();
             $film->title = $_POST['title'];
-            $film->overview = $_POST['overview'];
+            $film->description = $_POST['description'];
             $film->release_date = $_POST['release_date'];
             $film->popularity = $_POST['popularity'];
-            $film->runtime = $_POST['runtime'];
-            $film->moviedb_id = $_POST['moviedb_id'];
+            $film->length = $_POST['length'];
             
             $film->budget = $_POST['budget'];
             $film->original_language = $_POST['original_language'];
-            $film->poster_path = $_POST['poster_path'];
+            $film->avatar = $_POST['avatar'];
             $film->trailer = $_POST['trailer'];
             $film->revenue = $_POST['revenue'];
             $film->vote_average = $_POST['vote_average'];
@@ -84,43 +82,49 @@ class FilmsController extends BaseController {
             $film_id = $film->save();
             
             // Save Genres
-            foreach($_POST['genres'] as $genre_input) {
-                $genre = new Genre();
-                $genre->id = $genre_input;
-                $genre = $genre->search();
-                $genre_id = $genre['Genre']['id'];
-                
-                // save genre id along with film id in films_genres table
-                $film_genre = new Films_genre();
-                $film_genre->film_id = $film_id;
-                $film_genre->genre_id = $genre_id;
-                $film_genre->save();
+            if(isset($_POST['genres'])) {
+                foreach($_POST['genres'] as $genre_input) {
+                    $genre = new Genre();
+                    $genre->id = $genre_input;
+                    $genre = $genre->search();
+                    $genre_id = $genre['Genre']['id'];
+
+                    // save genre id along with film id in films_genres table
+                    $film_genre = new Films_genre();
+                    $film_genre->film_id = $film_id;
+                    $film_genre->genre_id = $genre_id;
+                    $film_genre->save();
+                }
             }
             
             // Companies 
-            foreach($_POST['companies'] as $company_input) {
-                $company = new Company();
-                $company->id = $company_input;
-                $company = $company->search();
-                $company_id = $company['Company']['id'];
-                
-                $company_film = new Companies_film();
-                $company_film->film_id = $film_id;
-                $company_film->company_id = $company_id;
-                $company_film->save();
+            if(isset($_POST['companies'])) {
+                foreach($_POST['companies'] as $company_input) {
+                    $company = new Company();
+                    $company->id = $company_input;
+                    $company = $company->search();
+                    $company_id = $company['Company']['id'];
+
+                    $company_film = new Companies_film();
+                    $company_film->film_id = $film_id;
+                    $company_film->company_id = $company_id;
+                    $company_film->save();
+                }
             }
             
             // Countries
-            foreach($_POST['countries'] as $country_input) {
-                $country = new Country();
-                $country->id = $country_input;
-                $country = $country->search();
-                $country_id = $country['Country']['id'];
-                
-                $countries_film = new Countries_film();
-                $countries_film->country_id = $country_id;
-                $countries_film->film_id = $film_id;
-                $countries_film->save();
+            if(isset($_POST['countries'])) {
+                foreach($_POST['countries'] as $country_input) {
+                    $country = new Country();
+                    $country->id = $country_input;
+                    $country = $country->search();
+                    $country_id = $country['Country']['id'];
+
+                    $countries_film = new Countries_film();
+                    $countries_film->country_id = $country_id;
+                    $countries_film->film_id = $film_id;
+                    $countries_film->save();
+                }
             }
             
             // Casts
@@ -181,15 +185,14 @@ class FilmsController extends BaseController {
             
             // update all the fields
             $film->title = $_POST['title'];
-            $film->overview = $_POST['overview'];
+            $film->description = $_POST['description'];
             $film->release_date = $_POST['release_date'];
             $film->popularity = $_POST['popularity'];
-            $film->runtime = $_POST['runtime'];
-            $film->moviedb_id = $_POST['moviedb_id'];
+            $film->length = $_POST['length'];
 
             $film->budget = $_POST['budget'];
             $film->original_language = $_POST['original_language'];
-            $film->poster_path = $_POST['poster_path'];
+            $film->avatar = $_POST['avatar'];
             $film->trailer = $_POST['trailer'];
             $film->revenue = $_POST['revenue'];
             $film->vote_average = $_POST['vote_average'];

@@ -34,7 +34,6 @@ class ActorsController extends BaseController {
             $actor = new Actor();
             $actor->birthday = $_POST['birthday'];
             $actor->deathday = $_POST['deathday'];
-            $actor->moviedb_id = $_POST['moviedb_id'];
             $actor->name = $_POST['name'];
             $actor->gender = $_POST['gender'];
             $actor->biography = $_POST['biography'];

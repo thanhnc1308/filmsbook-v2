@@ -6,7 +6,6 @@
                     echo "<h1>Name: " . $actor['Actor']['name'] . "</h1>";
                     echo "Birthday: " . $actor['Actor']['birthday'];
                     echo "Deathday: " . $actor['Actor']['deathday'];
-                    echo "Moviedb_id: " . $actor['Actor']['moviedb_id'];
                     echo "Gender: ";
                     if($actor['Actor']['gender'] == 1) {
                         echo "Female";

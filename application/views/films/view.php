@@ -3,14 +3,13 @@
         <div class="content-body d-flex mt-4">
             <?php
                 echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
-                $poster_path = $film['Film']['poster_path'];
+                $poster_path = $film['Film']['avatar'];
                 echo "<img src=\"$poster_path\" width=\"154\">";
-                echo "Overview: " . $film['Film']['overview'];
+                echo "Description: " . $film['Film']['description'];
                 echo "Release Date: " . $film['Film']['release_date'];
                 echo "Popularity: " . $film['Film']['popularity'];
-                echo "Runtime: " . $film['Film']['runtime'];
+                echo "Length: " . $film['Film']['length'];
 
-                echo "MovieDB's ID" . $film['Film']['moviedb_id'];
                 echo "Budget: " . $film['Film']['budget'];
                 echo "Original Language: " . $film['Film']['original_language'];
 //                echo "Poster Path: " . $film['Film']['poster_path'];

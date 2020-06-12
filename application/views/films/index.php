@@ -4,15 +4,14 @@
             <?php
                 foreach($films as $film) {
                     echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
-                    echo "Overview: " . $film['Film']['overview'];
+                    echo "Overview: " . $film['Film']['description'];
                     echo "Release Date: " . $film['Film']['release_date'];
                     echo "Popularity: " . $film['Film']['popularity'];
-                    echo "Runtime: " . $film['Film']['runtime'];
+                    echo "Runtime: " . $film['Film']['length'];
                     
-                    echo "MovieDB's ID" . $film['Film']['moviedb_id'];
                     echo "Budget: " . $film['Film']['budget'];
                     echo "Original Language: " . $film['Film']['original_language'];
-                    echo "Poster Path: " . $film['Film']['poster_path'];
+                    echo "Poster Path: " . $film['Film']['avatar'];
                     echo "Revenue: " . $film['Film']['revenue'];
                     echo "Vote Average: " . $film['Film']['vote_average'];
                     echo "Vote Count: " . $film['Film']['vote_count'];

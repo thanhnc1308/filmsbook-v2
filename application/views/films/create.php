@@ -8,8 +8,8 @@
             </div>
             
             <div>
-                <label>Overview</label>
-                <input type="text" name="overview">
+                <label>Description</label>
+                <input type="text" name="description">
             </div>
 
             <div>
@@ -23,13 +23,8 @@
             </div>
 
             <div>
-                <label>Runtime</label>
-                <input type="number" name="runtime">
-            </div>
-
-            <div>
-                <label>Moviedb_id</label>
-                <input type="number" name="moviedb_id">
+                <label>Length</label>
+                <input type="number" name="length">
             </div>
 
             <div>
@@ -43,8 +38,8 @@
             </div>
 
             <div>
-                <label>Poster path</label>
-                <input type="text" name="poster_path">
+                <label>Avatar</label>
+                <input type="text" name="avatar">
             </div>
             
             <div>
