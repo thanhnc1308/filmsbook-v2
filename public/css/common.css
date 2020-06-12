@@ -508,6 +508,9 @@
     color: #000;
     text-decoration: none;
 }
+.font-size-title{
+    font-size: 35px;
+}
 
 .font-size-large{
     font-size: large;

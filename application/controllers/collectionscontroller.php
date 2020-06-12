@@ -2,11 +2,11 @@
 
 class CollectionsController extends BaseController{
   function beforeAction(){
-
+    include(dirname(__DIR__).'/../library/checklogin.php');
   }
   
-  function index($user_id=null){
-    $user_id = 2;
+  function index(){
+    $user_id = $this->getUserId();
     $collections = [];
     $collections_films = $this->Collection->custom(
     "SELECT collections.*, films.avatar FROM collections 
@@ -16,22 +16,26 @@ class CollectionsController extends BaseController{
     foreach($collections_films as $collection_film){
       $collection_id = $collection_film['Collection']['id'];
       $collections[$collection_id]['Collection'] = $collection_film['Collection'];
-      $collections[$collection_id]['Film'][] = $collection_film['Film']; 
+      $collections[$collection_id]['Film'][] = $collection_film['Film'];
+      $collections[$collection_id]['Owner']['id'] = $this->getUserId();
+      $collections[$collection_id]['Owner']['name'] = $this->getUserName();
     }
     $this->set('collections', $collections);
   }
 
   function add(){
+    $user_id = $this->getUserId();
     $this->doNotRenderHeader = 1;
     if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['films'])){
-      $name = $_POST['name'];
-      $description = $_POST['description'];
-      $film_ids = json_decode($_POST['films']);
-
+      $name = $this->Collection->escapeSecureSQL($_POST['name']);
+      $description = $this->Collection->escapeSecureSQL($_POST['description']);
+      $film_ids = $this->Collection->escapeSecureSQL(json_decode($_POST['films']));
+      
       try{
         $collection = new Collection();
         $collection->name = $name;
         $collection->description = $description;
+        $collection->user_id = $user_id;
   
         $collection_id = $collection->save();
   
@@ -45,7 +49,6 @@ class CollectionsController extends BaseController{
       } catch(Exception $e){
         echo var_dump($e);
       }
-      
     }
   }
 
@@ -62,6 +65,8 @@ class CollectionsController extends BaseController{
     $this->Collection->showHasOne();
     $this->Collection->showHasManyAndBelongsToMany();
     $collection = $this->Collection->search();
+    $collection['Owner']['id'] = $this->getUserId();
+    $collection['Owner']['name'] = $this->getUserName();
     $this->set('collection', $collection);
   }
 

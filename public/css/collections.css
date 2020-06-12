@@ -21,7 +21,7 @@
 
 .collection-card{
   width: 250px;
-  height: 400px;
+  height: 270px;
   margin-right: 70px;
 }
 
@@ -127,4 +127,21 @@
 
 .delete-button:focus{
   outline: none;
+}
+
+.owner-name{
+  line-height: 16px;
+}
+
+.owner-name-top{
+  line-height: 50px;
+}
+
+.edit-button{
+  color: gray;
+}
+
+.edit-button:hover{
+  color: #f8f9fa;
+  cursor: pointer;
 }
