@@ -24,7 +24,9 @@ class LoginController extends BaseController
         $result = $this->Login->checkUser($username, $password);
 
         if($result!=false){
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
             $_SESSION['user_id'] = $result[0];
             $_SESSION['username'] = $result[1];
             $_SESSION['role'] = $result[2];

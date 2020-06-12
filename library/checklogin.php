@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     // Overriding the error handler
     function errorHandlerCatchUndefinedIndex($errno, $errstr, $errfile, $errline ) {
         // We are only interested in one kind of error
