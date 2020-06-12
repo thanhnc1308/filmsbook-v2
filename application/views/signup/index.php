@@ -56,7 +56,7 @@
                         <input class="pl-2 pr-2 pt-2 pb-2 mb-2 rounded" type="text" placeholder="Username" name="username" id="username">
                         <input class="pl-2 pr-2 pt-2 pb-2 mb-2 rounded" type="text" placeholder="Email address" name="email" id="email">
                         <input class="pl-2 pr-2 pt-2 pb-2 mb-2 rounded" type="password" placeholder="Password" name="password" id="password">
-                        <div style="color: red; display:none" id="error">Username has already been taken</div>
+                        <div style="color: red; display:none" id="signup-error">Username has already been taken</div>
                         <input class="pl-2 pr-2 pt-2 pb-2 rounded bg-success" type="submit" value="Create your account" id='signup'>
                     </div>
                 </div>
