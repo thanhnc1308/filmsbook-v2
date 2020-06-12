@@ -22,7 +22,6 @@ class LiveSearchController
         // prepare search key
         $searchKey = $this->prepareSearchKey($searchKey);
         $sql = "select * from " . DEFAULT_SCHEMA . ".films films where films.title LIKE '%" . $searchKey . "%' order by updated_at;";
-        echo $sql;
         $result = $this->model->custom($sql);
         echo $this->safe_json_encode($result);
         // echo $this->prepareSearchResult($result);
