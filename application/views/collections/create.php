@@ -4,13 +4,13 @@
       <div class="w-100 d-flex">
         <div class="w-25">Name: </div>
         <div class="w-75">
-          <input type="text" name="name" class="w-50">
+          <input type="text" name="name" class="w-50" id="collection-name">
         </div>
       </div>
       <div class="w-100 d-flex mt-4">
         <div class="w-25">Descriptipn: </div>
         <div class="w-75">
-          <textarea name="description" placeholder="description about the collection" class="w-50 pt-1 pl-1" rows="7"></textarea>
+          <textarea name="description" id="collection-description" placeholder="description about the collection" class="w-50 pt-1 pl-1" rows="7"></textarea>
         </div>
       </div>
       <div class="w-100 d-flex mt-5">
@@ -18,7 +18,7 @@
           Add a film
         </div>
         <div class="w-75">
-          <input name="film-name" type="text" onkeyup="liveSearch.addFilmSearch(this.value)" placeholder="Search">
+          <input name="film-name" id="add-film-search-input" type="text" onkeyup="liveSearch.addFilmSearch(this.value)" placeholder="Search">
           <div id="add-film-search-results"></div>
         </div>
       </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button>Submit</button>
+        <button onclick="collection.create()">Submit</button>
       </div>
     </form>
   </div>

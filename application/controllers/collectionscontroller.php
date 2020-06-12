@@ -21,12 +21,40 @@ class CollectionsController extends BaseController{
     $this->set('collections', $collections);
   }
 
-  function create(){
+  function add(){
+    $this->doNotRenderHeader = 1;
+    if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['films'])){
+      $name = $_POST['name'];
+      $description = $_POST['description'];
+      $film_ids = json_decode($_POST['films']);
 
+      try{
+        $collection = new Collection();
+        $collection->name = $name;
+        $collection->description = $description;
+  
+        $collection_id = $collection->save();
+  
+        foreach($film_ids as $film_id){
+          $collection_film = new Collections_film();
+          $collection_film->collection_id = $collection_id;
+          $collection_film->film_id = $film_id;
+          $collection_film->save();
+        }
+        echo $collection_id;
+      } catch(Exception $e){
+        echo var_dump($e);
+      }
+      
+    }
   }
 
   function update($id){
-
+    $this->Collection->id = $id;
+    $this->Collection->showHasOne();
+    $this->Collection->showHasManyAndBelongsToMany();
+    $collection = $this->Collection->search();
+    $this->set('collection', $collection);
   }
 
   function view($id){

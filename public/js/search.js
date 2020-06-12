@@ -51,7 +51,8 @@ class LiveSearch {
     let result = '';
     films.forEach(film => {
       result += `<div class="link-film"><div 
-      class="fw-bold no-underline rounded" 
+      class="fw-bold no-underline rounded"
+      film-id="${film['Film']['id']}"
       film-title="${film['Film']['title']}"
       film-length="${film['Film']['length']}"
       film-year="${film['Film']['year']}"
