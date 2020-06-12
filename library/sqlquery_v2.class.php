@@ -353,8 +353,7 @@ class SQLQuery_v2 {
                     $updates .= '`' . $field . '` = \'' . $this->escapeSecureSQL($this->$field) . '\',';
                 }
             }
-
-            $updates = substr($updates, 0, -1);
+            $updates .= '`updated_at` = NOW()';
 
             $query = 'UPDATE ' . $this->_table . ' SET ' . $updates . ' WHERE `id`=\'' . $this->escapeSecureSQL($this->id) . '\'';
         } else {
@@ -367,17 +366,22 @@ class SQLQuery_v2 {
                     $values .= '\'' . $this->escapeSecureSQL($this->$field) . '\',';
                 }
             }
-            $values = substr($values, 0, -1);
-            $fields = substr($fields, 0, -1);
+            $fields .= '`created_at`, `updated_at`';
+            $values .= 'NOW(), NOW()';
 
             $query = 'INSERT INTO ' . $this->_table . ' (' . $fields . ') VALUES (' . $values . ')';
         }
         $this->_result = mysqli_query($this->_connection, $query);
-        $this->clear();
-        if ($this->_result == 0) {
-            /** Error Generation * */
-            return -1;
+        
+        // get the last recorded id
+        if($this->_result) {
+            $last_id = mysqli_insert_id($this->_connection);
+        } else {
+            $last_id = -1;
         }
+        
+        $this->clear();
+        return $last_id;
     }
 
     /**
