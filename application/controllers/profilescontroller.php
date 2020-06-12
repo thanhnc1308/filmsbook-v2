@@ -12,6 +12,9 @@ class ProfilesController extends BaseController
      */
     function watchlist($query = '')
     {
+        session_start();
+        $userId = $_SESSION["user_id"];
+        $userName = $_SESSION["username"];
         $query = $this->prepareQuery($query);
         $sqlWatchList = "select activity.id as activity_id, film_id, user_id, title, avatar from " . DEFAULT_SCHEMA . ".activity activity 
         inner join " . DEFAULT_SCHEMA . ".films films on activity.film_id = films.id
@@ -20,7 +23,8 @@ class ProfilesController extends BaseController
         order by " . $query . ";";
         $watchlist = $this->Profile->custom($sqlWatchList);
         $this->set('watchlist', $watchlist);
-        $this->set('username', DEFAULT_SCHEMA);
+        $this->set('userid', $userId);
+        $this->set('username', $userName);
         $this->set('numberOfWatch', count($watchlist));
     }
 
