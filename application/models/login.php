@@ -18,9 +18,10 @@ class Login extends BaseModel
             foreach($result as $user){
                 $hashed_password =  $user['User']['password'];
                 $role = $user['User']['role'];
+                $user_id = $user['User']['id'];
             }
             if(password_verify($password, $hashed_password)){
-                return array($username, $role);
+                return array($user_id, $username, $role);
             }
             return false;
         }

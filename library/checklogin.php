@@ -15,7 +15,7 @@
     echo($actual_link);
     if(strcmp($actual_link,'http://localhost/filmsbook-v2/login') != 0){
         try{
-            $role = $_SESSION["role"];
+            $username = $_SESSION['username'];
             echo $username;
         } catch (Exception $ex) {
             restore_error_handler();
