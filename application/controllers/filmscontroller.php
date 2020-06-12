@@ -34,7 +34,6 @@ class FilmsController extends BaseController {
     }
     
     function index() {
-        $this->Film->showHasManyAndBelongsToMany();
         $films = $this->Film->search();
         $this->set('films', $films);
     }
