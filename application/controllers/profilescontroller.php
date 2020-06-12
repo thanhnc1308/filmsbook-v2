@@ -16,7 +16,7 @@ class ProfilesController extends BaseController
         $sqlWatchList = "select activity.id as activity_id, film_id, user_id, title, avatar from " . DEFAULT_SCHEMA . ".activity activity 
         inner join " . DEFAULT_SCHEMA . ".films films on activity.film_id = films.id
         inner join " . DEFAULT_SCHEMA . ".users users on activity.user_id = users.id
-        where users.id = 2 and activity.name = 'watchlist'
+        where users.id = " . $this->getUserId() . " and activity.name = 'watchlist'
         order by " . $query . ";";
         $watchlist = $this->Profile->custom($sqlWatchList);
         $this->set('watchlist', $watchlist);
