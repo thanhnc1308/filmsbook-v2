@@ -1,50 +1,72 @@
+<?php
+    if($status == 0)
+        header("Location: " . $html->getHref('films'));
+?>
+
 <div class="content bg-body pt-4">
     <div class="container">
-        <div class="content-body d-flex mt-4">
+        <div class="content-body mt-4">
             <?php
                 echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
-                echo "Overview: " . $film['Film']['overview'];
-                echo "Release Date: " . $film['Film']['release_date'];
-                echo "Popularity: " . $film['Film']['popularity'];
-                echo "Runtime: " . $film['Film']['runtime'];
+                $poster_path = $film['Film']['avatar'];
+                echo "<img src=\"$poster_path\" width=\"154\">";
+                echo "<p>Description: " . $film['Film']['description'] . "</p><br>";
+                echo "Release Date: " . $film['Film']['release_date'] . "<br>";
+                echo "Popularity: " . $film['Film']['popularity'] . "<br>";
+                echo "Length: " . $film['Film']['length'] . "<br>";
 
-                echo "MovieDB's ID" . $film['Film']['moviedb_id'];
-                echo "Budget: " . $film['Film']['budget'];
-                echo "Original Language: " . $film['Film']['original_language'];
-                echo "Poster Path: " . $film['Film']['poster_path'];
-                echo "Revenue: " . $film['Film']['revenue'];
-                echo "Vote Average: " . $film['Film']['vote_average'];
-                echo "Vote Count: " . $film['Film']['vote_count'];
+                echo "Budget: " . $film['Film']['budget'] . "<br>";
+                echo "Original Language: " . $film['Film']['original_language'] . "<br>";
+//                echo "Poster Path: " . $film['Film']['poster_path'];
+//                echo "Trailer: " . $film['Film']['trailer'];
+                echo "Revenue: " . $film['Film']['revenue'] . "<br>";
+                echo "Vote Average: " . $film['Film']['vote_average'] . "<br>";
+                echo "Vote Count: " . $film['Film']['vote_count'] . "<br>";
 
-                echo "Genres: ";
+                echo "<br>Genres: ";
+                echo "<div>";
                 foreach($film['Genre'] as $genre) {
-                    echo $genre['Genre']['name'] . " ";
+                    $id = $genre['Genre']['id'];
+                    $name = $genre['Genre']['name'];
+                    $genre_thumbnail = new GenreThumbnail($id, $name);
+                    $genre_thumbnail->render($html);
                 }
+                echo "</div>";
                 
-                echo "Companies: ";
+                echo "<br>Companies: ";
                 foreach($film['Company'] as $company) {
-                    echo $company['Company']['name'] . " ";
+                    $id = $company['Company']['id'];
+                    $name = $company['Company']['name'];
+                    $company_thumbnail = new CompanyThumbnail($id, $name);
+                    $company_thumbnail->render($html);
                 }
                 
-                echo "Countries: ";
+                echo "<br>Countries: ";
                 foreach($film['Country'] as $country) {
-                    echo $country['Country']['name'] . " ";
+                    $id = $country['Country']['id'];
+                    $name = $country['Country']['name'];
+                    $country_thumbnail = new CountryThumbnail($id, $name);
+                    $country_thumbnail->render($html);
                 }
                 
-                echo "Reviews: ";
-                foreach($reviews as $review) {
-                    echo "Username:" . $review['Review']['username'];
-                    echo "Content: " . $review['Review']['content'];
-                }
-                
-                echo "Casts: ";
+                echo "<br>Casts:<br>";
                 foreach($film['Actor'] as $actor) {
-                    echo "Name: " . $actor['Actor']['name'];
-                    echo "Character: " . $actor['actors_films']['character_name'];
+                    $id = $actor['Actor']['id'];
+                    $name = $actor['Actor']['name'];
+                    $profile_path = $actor['Actor']['profile_path'];
+                    $country_thumbnail = new ActorThumbnail($id, $name, $profile_path);
+                    $country_thumbnail->render_small($html);
+                    echo " as " . $actor['actors_films']['character_name'] . "<br>";
                 }
-
-                echo "<br>";
-                echo "<hr>";
+                
+                echo "<br>Reviews:<br>";
+                foreach($reviews as $review) {
+                    echo $review['Review']['username'] . " - " . $review['Review']['content'];
+                }
+                
+                $trailer = "http://www.youtube.com/embed/" . $film['Film']['trailer'];
+                echo "<br>Trailer:<br>";
+                echo "<iframe src=\"$trailer\" width=\"420\" height=\"270\" frameborder=\"0\" allowfullscreen></iframe>";
             ?>
         </div>
     </div>

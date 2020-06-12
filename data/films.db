@@ -1,80 +1,75 @@
+// oke
 create table films (
     id int primary key auto_increment,
-    moviedb_id int,
     budget long,
     original_language varchar(20),
-    overview varchar(500),
+    description varchar(1000),
     popularity float,
-    poster_path varchar(100),
+    avatar varchar(100),
+    trailer varchar(100),
     release_date date,
     revenue long,
     title varchar(100),
     vote_average float,
     vote_count int,
-    runtime int
+    length int,
+    like_num int,
+    created_at datetime,
+    updated_at datetime
 );
 
-create table genres {
+// oke
+create table genres (
     id int primary key auto_increment,
-    moviedb_id int,
     name varchar(50)
-};
+);
 
+// oke
 create table companies (
     id int primary key auto_increment,
-    moviedb_id int,
     name varchar(100)
 );
 
+// oke
 create table countries (
     id int primary key auto_increment,
-    moviedb_id varchar(20),
     name varchar(100)
 );
 
+// oke
 create table companies_films (
     id int primary key auto_increment,
     film_id int,
     company_id int
 );
 
+// oke
 create table countries_films (
     id int primary key auto_increment,
     film_id int,
     country_id int
 );
 
+// oke
 create table films_genres (
     id int primary key auto_increment,
     film_id int,
     genre_id int
 );
 
+// oke
 create table reviews (
     id int primary key auto_increment, 
     user_id int,
     film_id int,
-    content varchar(2000),
-    moviedb_id int
+    content varchar(2000)
 );
 
-{
-    "birthday": "1979-03-09",
-    "deathday": null,
-    "moviedb_id": 25072,
-    "name": "Oscar Isaac",
-    "gender": 2,
-    "biography": "Oscar Isaac is an American film and television actor, musician and singer of Guatemalan and Cuban descent. He's a graduate from the Juilliard School in New York City, USA, and starred in feature films such as Inside Llewyn Davis, directed by the Coen Brothers, the science fiction thriller Ex Machina, the Star Wars franchise films Episode VII - The Force Awakens and Episode VIII - The Last Jedi, and as the mutant supervillain Apocalypse in the ninth X-Men film X-Men: Apocalypse.",
-    "popularity": 7.492,
-    "place_of_birth": "Guatemala City, Guatemala",
-    "profile_path": "\/cY6ail3ebXDx9FCoZMgVGAbmBus.jpg"
-}
-
+// oke
 create table actors (
     id int auto_increment primary key,
     birthday date,
     deathday date,
-    moviedb_id int,
     name varchar(50),
     gender int,
     biography varchar(500),
@@ -83,6 +78,7 @@ create table actors (
     profile_path varchar(200)
 );
 
+// oke
 create table actors_films (
     id int auto_increment primary key,
     film_id int,

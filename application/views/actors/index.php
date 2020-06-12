@@ -3,23 +3,12 @@
         <div class="content-body d-flex mt-4">
             <?php
                 foreach($actors as $actor) {
-                    echo "<h1>Name: " . $actor['Actor']['name'] . "</h1>";
-                    echo "Birthday: " . $actor['Actor']['birthday'];
-                    echo "Deathday: " . $actor['Actor']['deathday'];
-                    echo "Moviedb_id: " . $actor['Actor']['moviedb_id'];
-                    echo "Gender: ";
-                    if($actor['Actor']['gender'] == 1) {
-                        echo "Female";
-                    } else {
-                        echo "Male";
-                    }
-                    echo "Popularity: " . $actor['Actor']['popularity'];
-                    echo "Place of birth: " . $actor['Actor']['place_of_birth'];
-                    echo "Profile path: " . $actor['Actor']['profile_path'];
-                    echo "Biography: " . $actor['Actor']['biography'];
+                    $name = $actor['Actor']['name'];
+                    $profile_path = $actor['Actor']['profile_path'];
+                    $id = $actor['Actor']['id'];
                     
-                    echo "<br>";
-                    echo "<hr>";
+                    $actor_thumbnail = new ActorThumbnail($id, $name, $profile_path);
+                    $actor_thumbnail->render($html);
                 }
             ?>
         </div>

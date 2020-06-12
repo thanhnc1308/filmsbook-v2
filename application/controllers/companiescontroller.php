@@ -21,22 +21,34 @@ class CompaniesController extends BaseController {
         $this->set('companies', $compaies);
     }
     
+    public function view($id) {
+        // check if $id exists
+        $this->Company->id = $id;
+        $this->Company->showHasManyAndBelongsToMany();
+        $company = $this->Company->search();
+        if($company) {
+            $this->set('status', 1);
+            $this->set('company', $company);
+        } else {
+            $this->set('status', 0);
+        }
+    }
+    
     public function create() {
         
     }
     
     public function store() {
-        if(isset($_POST['moviedb_id']) && isset($_POST['name'])) {
-            $moviedb_id = $_POST['moviedb_id'];
+        if(isset($_POST['name'])) {
+            $name = $_POST['name'];
             $company = new Company();
-            $company->where('moviedb_id', $moviedb_id);
+            $company->where('name', $name);
             $company = $company->search();
             
             if($company == null) {
                 $name = $_POST['name'];
             
                 $company = new Company();
-                $company->moviedb_id = $moviedb_id;
                 $company->name = $name;
                 $company->save();
             }

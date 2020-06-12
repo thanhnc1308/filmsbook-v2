@@ -21,8 +21,17 @@ class ActorsController extends BaseController {
         $this->set('actors', $actors);
     }
     
-    function view() {
-        
+    function view($id) {
+        // check if $id exists
+        $this->Actor->id = $id;
+        $this->Actor->showHasManyAndBelongsToMany();
+        $actor = $this->Actor->search();
+        if($actor) {
+            $this->set('status', 1);
+            $this->set('actor', $actor);
+        } else {
+            $this->set('status', 0);
+        }
     }
     
     function create() {
@@ -34,7 +43,6 @@ class ActorsController extends BaseController {
             $actor = new Actor();
             $actor->birthday = $_POST['birthday'];
             $actor->deathday = $_POST['deathday'];
-            $actor->moviedb_id = $_POST['moviedb_id'];
             $actor->name = $_POST['name'];
             $actor->gender = $_POST['gender'];
             $actor->biography = $_POST['biography'];

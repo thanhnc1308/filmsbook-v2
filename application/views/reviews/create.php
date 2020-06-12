@@ -2,10 +2,6 @@
     <h1>Add new Review</h1>
     <div>
         <form method="post" action="<?php echo BASE_PATH; ?>/reviews/store/<?php echo $film_id ?>">
-            <div>
-                <label for="moviedb_id">MovieDB ID</label>
-                <input type="number" name="moviedb_id">
-            </div>
             
             <div>
                 <label for="user_id">User id</label>

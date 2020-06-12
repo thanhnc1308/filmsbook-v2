@@ -21,23 +21,35 @@ class CountriesController extends BaseController {
         $this->set('countries', $countries);
     }
     
+    public function view($id) {
+        // check if $id exists
+        $this->Country->id = $id;
+        $this->Country->showHasManyAndBelongsToMany();
+        $country = $this->Country->search();
+        if($country) {
+            $this->set('status', 1);
+            $this->set('country', $country);
+        } else {
+            $this->set('status', 0);
+        }
+    }
+    
     function create() {
         
     }
     
     function store() {
-        if(isset($_POST['moviedb_id']) && isset($_POST['name'])) {
-            // check if moviedb_id of the country exists
-            $moviedb_id = $_POST['moviedb_id'];
-            
+        if(isset($_POST['name'])) {
+            // avoid adding duplicate country
+            $name = $_POST['name'];            
             $country = new Country();
-            $country->where('moviedb_id', $moviedb_id);
+            $country->where('name', $name);
             $country = $country->search();
+            
             if($country == null) {
                 $name = $_POST['name'];
             
                 $country = new Country();
-                $country->moviedb_id = $moviedb_id;
                 $country->name = $name;
                 $country->save();
             }
