@@ -40,6 +40,16 @@ class FilmsController extends BaseController {
     }
     
     function create() {
+        
+        session_start();
+        $role = $_SESSION["role"];
+
+        if($role!='admin'){
+            $this->render = 0;
+            header("Location: http://localhost/filmsbook-v2/login");
+            exit();
+        }
+
         $genres = new Genre();
         $genres = $genres->search();
         $this->set('genres', $genres);

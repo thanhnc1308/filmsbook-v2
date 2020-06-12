@@ -25,8 +25,9 @@ class LoginController extends BaseController
 
         if($result!=false){
             session_start();
-            $_SESSION['username'] = $result[0];
-            $_SESSION['role'] = $result[1];
+            $_SESSION['user_id'] = $result[0];
+            $_SESSION['username'] = $result[1];
+            $_SESSION['role'] = $result[2];
             echo true;
         }
         
