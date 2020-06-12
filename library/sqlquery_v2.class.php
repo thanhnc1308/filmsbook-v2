@@ -265,6 +265,8 @@ class SQLQuery_v2 {
 
         global $inflect;
 
+        $query = $this->escapeSecureSQL($query);
+
         $this->_result = mysqli_query($this->_connection, $query);
 
         $result = array();
@@ -461,6 +463,7 @@ class SQLQuery_v2 {
      * @author ThanhNC 16.05.2020
      */
     function escapeSecureSQL($sql) {
+        $sql = htmlentities(($sql));
         return mysqli_real_escape_string($this->_connection, $sql);
     }
 
