@@ -5,6 +5,9 @@ class LoginController extends BaseController
 
     function beforeAction()
     {
+        if (!(session_status() == PHP_SESSION_NONE)) {
+            session_destroy();
+        }
     }
 
     function view($userId = null)
