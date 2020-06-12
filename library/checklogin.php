@@ -14,11 +14,9 @@
     set_error_handler("errorHandlerCatchUndefinedIndex");
     
     $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    echo($actual_link);
     if(strcmp($actual_link,'http://localhost/filmsbook-v2/login') != 0){
         try{
             $username = $_SESSION['username'];
-            echo $username;
         } catch (Exception $ex) {
             restore_error_handler();
             header("Location: http://localhost/filmsbook-v2/login");
