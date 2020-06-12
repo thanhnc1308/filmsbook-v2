@@ -4,13 +4,13 @@
       <div class="w-100 d-flex">
         <div class="w-25">Name: </div>
         <div class="w-75">
-          <input type="text" name="name" class="w-50">
+          <input type="text" name="name" class="w-50" value="<?php echo $collection['Collection']['name']?>">
         </div>
       </div>
       <div class="w-100 d-flex mt-4">
         <div class="w-25">Descriptipn: </div>
         <div class="w-75">
-          <textarea name="description" placeholder="description about the collection" class="w-50 pt-1 pl-1" rows="7"></textarea>
+          <textarea name="description" value="<?php echo $collection['Collection']['description']?>" class="w-50 pt-1 pl-1" rows="7"></textarea>
         </div>
       </div>
       <div class="w-100 d-flex justify-content-start mt-5">
