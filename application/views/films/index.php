@@ -4,17 +4,11 @@
             <?php
                 foreach($films as $film) {
                     $title = $film['Film']['title'];
-                    echo "<h1>$title</h1>";
-                    
                     $poster_path = $film['Film']['avatar'];
-                    echo "<img src=\"$poster_path\" width=\"154\">";
+                    $id = $film['Film']['id'];
                     
-                    foreach($film['Genre'] as $genre) {
-                        echo $genre['Genre']['name'] . " ";
-                    }
-                    
-                    echo "<hr>";
-                    echo "<br>";
+                    $film_thumbnail = new FilmThumbnail($id, $title, $poster_path);
+                    $film_thumbnail->render($html);
                 }
             ?>
         </div>

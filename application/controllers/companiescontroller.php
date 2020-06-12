@@ -21,6 +21,19 @@ class CompaniesController extends BaseController {
         $this->set('companies', $compaies);
     }
     
+    public function view($id) {
+        // check if $id exists
+        $this->Company->id = $id;
+        $this->Company->showHasManyAndBelongsToMany();
+        $company = $this->Company->search();
+        if($company) {
+            $this->set('status', 1);
+            $this->set('company', $company);
+        } else {
+            $this->set('status', 0);
+        }
+    }
+    
     public function create() {
         
     }

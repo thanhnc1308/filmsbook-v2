@@ -171,6 +171,8 @@ function __autoload($className)
             require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
         } else if (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) {
             require_once(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php');
+        } else if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . 'templates' . DS . strtolower($className) . '.php')) {
+            require_once(ROOT . DS . 'application' . DS . 'views' . DS . 'templates' . DS . strtolower($className) . '.php');
         } else {
             require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'notfound.php');
         }

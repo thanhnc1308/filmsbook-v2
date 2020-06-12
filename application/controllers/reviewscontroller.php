@@ -20,8 +20,17 @@ class ReviewsController extends BaseController {
         
     }
     
-    function view() {
-        
+    function view($id) {
+        // check if $id exists
+        $this->Review->id = $id;
+        $this->Review->showHasOne();
+        $review = $this->Review->search();
+        if($review) {
+            $this->set('status', 1);
+            $this->set('review', $review);
+        } else {
+            $this->set('status', 0);
+        }
     }
     
     function create($film_id) {
