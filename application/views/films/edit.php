@@ -32,8 +32,8 @@
             </div>
             
             <div>
-                <label>Overview</label>
-                <input type="text" name="overview" value="<?php echo $film['Film']['overview']; ?>">
+                <label>Description</label>
+                <input type="text" name="description" value="<?php echo $film['Film']['description']; ?>">
             </div>
 
             <div>
@@ -47,13 +47,8 @@
             </div>
 
             <div>
-                <label>Runtime</label>
-                <input type="number" name="runtime" value="<?php echo $film['Film']['runtime']; ?>">
-            </div>
-
-            <div>
-                <label>Moviedb_id</label>
-                <input type="number" name="moviedb_id" value="<?php echo $film['Film']['moviedb_id']; ?>">
+                <label>Length</label>
+                <input type="number" name="length" value="<?php echo $film['Film']['length']; ?>">
             </div>
 
             <div>
@@ -67,8 +62,13 @@
             </div>
 
             <div>
-                <label>Poster_path</label>
-                <input type="text" name="poster_path" value="<?php echo $film['Film']['poster_path']; ?>">
+                <label>Avatar</label>
+                <input type="text" name="avatar" value="<?php echo $film['Film']['avatar']; ?>">
+            </div>
+            
+            <div>
+                <label>Trailer path</label>
+                <input type="text" name="trailer"  value="<?php echo $film['Film']['trailer']; ?>">
             </div>
 
             <div>

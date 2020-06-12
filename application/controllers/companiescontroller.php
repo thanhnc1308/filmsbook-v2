@@ -26,17 +26,16 @@ class CompaniesController extends BaseController {
     }
     
     public function store() {
-        if(isset($_POST['moviedb_id']) && isset($_POST['name'])) {
-            $moviedb_id = $_POST['moviedb_id'];
+        if(isset($_POST['name'])) {
+            $name = $_POST['name'];
             $company = new Company();
-            $company->where('moviedb_id', $moviedb_id);
+            $company->where('name', $name);
             $company = $company->search();
             
             if($company == null) {
                 $name = $_POST['name'];
             
                 $company = new Company();
-                $company->moviedb_id = $moviedb_id;
                 $company->name = $name;
                 $company->save();
             }

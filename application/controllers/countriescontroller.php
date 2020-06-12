@@ -26,18 +26,17 @@ class CountriesController extends BaseController {
     }
     
     function store() {
-        if(isset($_POST['moviedb_id']) && isset($_POST['name'])) {
-            // check if moviedb_id of the country exists
-            $moviedb_id = $_POST['moviedb_id'];
-            
+        if(isset($_POST['name'])) {
+            // avoid adding duplicate country
+            $name = $_POST['name'];            
             $country = new Country();
-            $country->where('moviedb_id', $moviedb_id);
+            $country->where('name', $name);
             $country = $country->search();
+            
             if($country == null) {
                 $name = $_POST['name'];
             
                 $country = new Country();
-                $country->moviedb_id = $moviedb_id;
                 $country->name = $name;
                 $country->save();
             }

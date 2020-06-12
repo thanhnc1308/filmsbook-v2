@@ -2,11 +2,11 @@
 <div>
     <div>
         <label>Name</label>
-        <input type="text" name="name" value="<?php echo $film->name ?>" disabled="true">
+        <input type="text" name="name" value="<?php echo $film['Film']['name'] ?>" disabled="true">
     </div>
     
     <div>
         <label>Description</label>
-        <input type="text" name="description" value="<?php echo $film->description ?>" disabled="true">
+        <input type="text" name="description" value="<?php echo $film['Film']['description'] ?>" disabled="true">
     </div>
 </div>

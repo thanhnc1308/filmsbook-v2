@@ -2,10 +2,6 @@
     <h1>Add new Actor</h1>
     <div>
         <form method="post" action="/filmsbook-v2/actors/store">
-            <div>
-                <label for="moviedb_id">MovieDB ID</label>
-                <input type="text" name="moviedb_id">
-            </div>
             
             <div>
                 <label for="birthday">Birthday</label>
@@ -14,7 +10,7 @@
             
             <div>
                 <label for="deathday">Deathday</label>
-                <input type="text" name="deathday">
+                <input type="date" name="deathday">
             </div>
             
             <div>
