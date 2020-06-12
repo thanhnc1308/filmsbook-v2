@@ -20,8 +20,17 @@ class ReviewsController extends BaseController {
         
     }
     
-    function view() {
-        
+    function view($id) {
+        // check if $id exists
+        $this->Review->id = $id;
+        $this->Review->showHasOne();
+        $review = $this->Review->search();
+        if($review) {
+            $this->set('status', 1);
+            $this->set('review', $review);
+        } else {
+            $this->set('status', 0);
+        }
     }
     
     function create($film_id) {
@@ -41,7 +50,7 @@ class ReviewsController extends BaseController {
                     $content = $_POST['content'];
 
                     $review = new Review();
-                    $review->user_id = $user_id;
+                    $review->user_id = $_SESSION['user_id'];
                     $review->film_id = $film_id;
                     $review->content = $content;
                     $review->save();
@@ -54,12 +63,42 @@ class ReviewsController extends BaseController {
         }
     }
     
-    function edit() {
-        
+    function edit($id) {
+        // check if id exists
+        if($id) {
+            $this->Review->id = $id;
+            $review = $this->Review->search();
+            if($review) {
+                $this->set('review', $review);
+            } else {
+                // todo: redirect error page
+            }
+        } else {
+            // todo: redirect error page
+        }
     }
     
-    function update() {
-        
+    function update($id) {
+        if($id) {
+            $this->Review->id = $id;
+            $review = $this->Review->search();
+            if($review) {
+                // todo: validate post input
+                $updated_content = $_POST['content'];
+                
+                $updated_review = new Review();
+                $updated_review->id = $id;
+                $updated_review->user_id = $review['Review']['user_id'];
+                $updated_review->film_id = $review['Review']['film_id'];
+                $updated_review->content = $updated_content;
+                
+                $updated_review->save();
+            } else {
+                // todo: redirect error page
+            }
+        } else {
+            // todo: redirect error page
+        }
     }
     
     function delete() {

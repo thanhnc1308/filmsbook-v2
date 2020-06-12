@@ -21,6 +21,19 @@ class CountriesController extends BaseController {
         $this->set('countries', $countries);
     }
     
+    public function view($id) {
+        // check if $id exists
+        $this->Country->id = $id;
+        $this->Country->showHasManyAndBelongsToMany();
+        $country = $this->Country->search();
+        if($country) {
+            $this->set('status', 1);
+            $this->set('country', $country);
+        } else {
+            $this->set('status', 0);
+        }
+    }
+    
     function create() {
         
     }

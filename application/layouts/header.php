@@ -34,19 +34,24 @@
                     >
                 </a>
                 <div class="navbar-list-item d-flex vertical-center">
-                    <div id='navLogin'  class="nav-item active">
-                        <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Log in</a>
-                    </div>
-                    <div id='navSignup'  class="nav-item">
-                        <a href="/filmsbook-v2/signup" class="nav-link text-uppercase mr-3 fw-bold"
-                           >Create an account</a
-                        >
-                    </div>
-                    <div id='navProfiles'  class="nav-item">
-                        <a href="/filmsbook-v2/profiles" class="nav-link text-uppercase mr-3 fw-bold"
-                           >Username</a
-                        >
-                    </div>
+                    <?php
+                        if (!$username) {
+                            echo '<div id="navLogin"  class="nav-item active">
+                            <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Log in</a>
+                        </div>
+                        <div id="navSignup"  class="nav-item">
+                            <a href="/filmsbook-v2/signup" class="nav-link text-uppercase mr-3 fw-bold"
+                               >Create an account</a
+                            >
+                        </div>';
+                        } else {
+                            echo '<div id="navProfiles"  class="nav-item">
+                            <a href="/filmsbook-v2/profiles" class="nav-link text-uppercase mr-3 fw-bold"
+                               >' . $username . '</a
+                            >
+                        </div>';
+                        }
+                    ?>
                     <div id='navFilms'  class="nav-item">
                         <a href="/filmsbook-v2/films" class="nav-link text-uppercase mr-3 fw-bold">Films</a>
                     </div>

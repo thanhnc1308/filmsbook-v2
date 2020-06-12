@@ -23,7 +23,7 @@ class FilmsController extends BaseController {
                 $user = new User();
                 $user->id = $user_id;
                 $user = $user->search();
-                $username = $user['User']['name'];
+                $username = $user['User']['username'];
                 
                 $review['Review']['username'] = $username;
             }
@@ -34,12 +34,21 @@ class FilmsController extends BaseController {
     }
     
     function index() {
-        $this->Film->showHasManyAndBelongsToMany();
         $films = $this->Film->search();
         $this->set('films', $films);
     }
     
     function create() {
+        
+        session_start();
+        $role = $_SESSION["role"];
+
+        if($role!='admin'){
+            $this->render = 0;
+            header("Location: http://localhost/filmsbook-v2/login");
+            exit();
+        }
+
         $genres = new Genre();
         $genres = $genres->search();
         $this->set('genres', $genres);

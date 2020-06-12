@@ -1,12 +1,12 @@
 <div class="content bg-body pt-4">
     <div class="container">
-        <div class="content-body d-flex mt-4">
+        <div class="content-body mt-4">
             <?php
                 foreach($companies as $company) {
+                    $id = $company['Company']['id'];
                     $name = $company['Company']['name'];
-                    echo "<p>Name: $name</p>";
-                    echo "<br>";
-                    echo "<hr>";
+                    $company_thumbnail = new CompanyThumbnail($id, $name);
+                    $company_thumbnail->render($html);
                 }
             ?>
         </div>

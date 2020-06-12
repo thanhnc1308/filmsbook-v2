@@ -101,3 +101,7 @@
     display: inline-grid;
     padding-bottom: 1.5rem;
 }
+
+.border-input {
+    border: 2px solid;
+}

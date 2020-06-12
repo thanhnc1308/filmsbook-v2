@@ -3,26 +3,12 @@
         <div class="content-body d-flex mt-4">
             <?php
                 foreach($films as $film) {
-                    echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
-                    echo "Overview: " . $film['Film']['description'];
-                    echo "Release Date: " . $film['Film']['release_date'];
-                    echo "Popularity: " . $film['Film']['popularity'];
-                    echo "Runtime: " . $film['Film']['length'];
+                    $title = $film['Film']['title'];
+                    $poster_path = $film['Film']['avatar'];
+                    $id = $film['Film']['id'];
                     
-                    echo "Budget: " . $film['Film']['budget'];
-                    echo "Original Language: " . $film['Film']['original_language'];
-                    echo "Poster Path: " . $film['Film']['avatar'];
-                    echo "Revenue: " . $film['Film']['revenue'];
-                    echo "Vote Average: " . $film['Film']['vote_average'];
-                    echo "Vote Count: " . $film['Film']['vote_count'];
-                    
-                    echo "Genres: ";
-                    foreach($film['Genre'] as $genre) {
-                        echo $genre['Genre']['name'] . " ";
-                    }
-                    
-                    echo "<br>";
-                    echo "<hr>";
+                    $film_thumbnail = new FilmThumbnail($id, $title, $poster_path);
+                    $film_thumbnail->render($html);
                 }
             ?>
         </div>

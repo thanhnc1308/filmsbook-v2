@@ -17,6 +17,15 @@ class BaseController {
         $this->render = 1;
         $this->$model = new $model;
         $this->_template = new Template($controller, $action);
+        session_start();
+        $userId = '';
+        $userName = '';
+        if (isset($_SESSION["user_id"])) {
+            $userId = $_SESSION["user_id"];
+            $userName = $_SESSION["username"];
+        }
+        $this->set('userid', $userId);
+        $this->set('username', $userName);
     }
 
     function set($name, $value) {
@@ -32,5 +41,14 @@ class BaseController {
         if ($this->render) {
             $this->_template->render($this->doNotRenderHeader);
         }
+    }
+
+    function beforeAction()
+    {
+        
+    }
+
+    function afterAction()
+    {
     }
 }

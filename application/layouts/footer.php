@@ -39,6 +39,7 @@ $html->includeJs('prototype');
 $html->includeJs('httpClient');
 $html->includeJs('base');
 $html->includeJs('search');
+$html->includeJs('sorter');
 $html->includeJs('activity');
 $html->includeJs('collection');
 ?>
