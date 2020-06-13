@@ -54,12 +54,49 @@ class ActorsController extends BaseController {
         }
     }
     
-    function edit() {
-        
+    function edit($actor_id) {
+        if($actor_id) {
+            if(is_numeric($actor_id)) {
+                var_dump("hello");
+                $actor = new Actor();
+                $actor->id= $actor_id;
+                $actor = $actor->search();
+                
+                if($actor) {
+                    $this->set('actor', $actor);
+                    $this->set('status', 1);
+                } else {
+                    $this->set('status', 0);
+                }                
+            } else {
+                $this->set('status', 0);
+            }
+        } else {
+            $this->set('status', 0);
+        }
     }
     
-    function update() {
-        
+    function update($actor_id) {
+        // validate actor_id
+        if($actor_id) {
+            if(is_numeric($actor_id)) {
+                $actor = new Actor();
+                $actor->id= $actor_id;
+                $result = $actor->search();
+                if($result) {
+                    $actor = $this->loadFields();
+                    $actor->id = $actor_id;
+                    $actor->save();
+                    $this->set('actor_id', $actor_id);
+                } else {
+                    
+                }
+            } else {
+                
+            }
+        } else {
+            
+        }
     }
     
     function delete() {
@@ -69,4 +106,19 @@ class ActorsController extends BaseController {
     function afterAction() {
         
     }
+    
+    function test() {
+        var_dump($this->Actor->getDescribe());
+    }
+    
+//    protected function loadFields() {
+//        $describe = $this->Actor->getDescribe();
+//        $actor = new Actor();
+//        foreach($describe as $field) {
+//            if(isset($_POST[$field])) {
+//                $actor->$field = $actor->escapeSecureSQL($_POST[$field]);
+//            }
+//        }
+//        return $actor;
+//    }
 }

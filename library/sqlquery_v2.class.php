@@ -484,6 +484,15 @@ class SQLQuery_v2 {
     function getIdValue() {
         return null;
     }
+    
+    /**
+     * function get all fields in a model
+     * @return string
+     * @author ThanhNC 16.05.2020
+     */
+    function getDescribe() {
+        return $this->_describe;
+    }
 
     // #endregion override
 }
