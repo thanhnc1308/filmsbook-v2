@@ -91,7 +91,31 @@ class ActorsController extends BaseController {
     }
     
     function delete() {
-        
+        // validate id exist in post request and id is number
+        if(isset($_POST['id']) && is_numeric($_POST['id'])) {
+            // validate if this actor            
+            $id = $this->Actor->escapeSecureSQL($_POST['id']);
+            $actor = new Actor();
+            $actor->id = $id;
+            $actor = $actor->search();
+            var_dump();
+            if($actor) {
+               // delete all actors_films 
+                $actors_films = new Actors_film();
+                $actors_films->where('id', $id);
+                $results = $actors_films->search();
+
+                foreach($results as $result) {
+                    $af = new Actors_film();
+                    $af->id = $result['Actors_film']['id'];
+                    $af->delete();
+                }
+                
+                $actor = new Actor();
+                $actor->id = $id;
+                $actor->delete();
+            }
+        }
     }
     
     function afterAction() {

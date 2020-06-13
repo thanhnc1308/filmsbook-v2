@@ -6,3 +6,4 @@
  * and open the template in the editor.
  */
 
+header('Location: ' . $html->getHref('actors'));
