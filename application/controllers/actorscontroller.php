@@ -39,17 +39,8 @@ class ActorsController extends BaseController {
     }
     
     function store() {
-        if(isset($_POST['name'])) {
-            $actor = new Actor();
-            $actor->birthday = $_POST['birthday'];
-            $actor->deathday = $_POST['deathday'];
-            $actor->name = $_POST['name'];
-            $actor->gender = $_POST['gender'];
-            $actor->biography = $_POST['biography'];
-            $actor->popularity = $_POST['popularity'];
-            $actor->place_of_birth = $_POST['place_of_birth'];
-            $actor->profile_path = $_POST['profile_path'];
-            
+        if(isset($_POST['name']) && !empty($_POST['name'])) {
+            $actor = $this->loadFields();            
             $actor->save();
         }
     }
@@ -106,19 +97,4 @@ class ActorsController extends BaseController {
     function afterAction() {
         
     }
-    
-    function test() {
-        var_dump($this->Actor->getDescribe());
-    }
-    
-//    protected function loadFields() {
-//        $describe = $this->Actor->getDescribe();
-//        $actor = new Actor();
-//        foreach($describe as $field) {
-//            if(isset($_POST[$field])) {
-//                $actor->$field = $actor->escapeSecureSQL($_POST[$field]);
-//            }
-//        }
-//        return $actor;
-//    }
 }

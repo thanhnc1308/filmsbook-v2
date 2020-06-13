@@ -4,6 +4,11 @@
         <form method="post" action="/filmsbook-v2/actors/store">
             
             <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" required>
+            </div>
+            
+            <div>
                 <label for="birthday">Birthday</label>
                 <input type="date" name="birthday">
             </div>
@@ -11,11 +16,6 @@
             <div>
                 <label for="deathday">Deathday</label>
                 <input type="date" name="deathday">
-            </div>
-            
-            <div>
-                <label for="name">Name</label>
-                <input type="text" name="name">
             </div>
             
             <div>
