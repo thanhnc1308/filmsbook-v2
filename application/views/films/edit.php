@@ -150,6 +150,7 @@
                         echo "<div id=\"cast-input\">";
                         echo "<label>Actor</label>";
                         echo "<select name=\"actors[]\">";
+                        echo "<option></option>";
                         foreach($actors as $actor) {
                             $id = $actor['Actor']['id'];
                             echo "<option value=$id";
