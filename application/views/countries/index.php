@@ -1,12 +1,18 @@
 <div class="content bg-body pt-4">
+    <!-- tab bar-->
+    <?php
+    $tabbar = new TabBar('countries');
+    $tabbar->render($html);
+    ?>
+    
     <div class="container">
-        <div class="content-body d-flex mt-4">
+        <div class="content-body mt-4">
             <?php
                 foreach($countries as $country) {
+                    $id = $country['Country']['id'];
                     $name = $country['Country']['name'];
-                    echo "<p>Name: $name</p>";
-                    echo "<br>";
-                    echo "<hr>";
+                    $country_thumbnail = new CountryThumbnail($id, $name);
+                    $country_thumbnail->render($html);
                 }
             ?>
         </div>

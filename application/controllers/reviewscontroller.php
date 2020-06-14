@@ -17,7 +17,10 @@ class ReviewsController extends BaseController {
     }
     
     function index() {
+        $this->Review->showHasOne();
+        $reviews = $this->Review->search();
         
+        $this->set('reviews', $reviews);
     }
     
     function view($id) {
