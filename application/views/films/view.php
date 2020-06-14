@@ -159,7 +159,7 @@ $fields = [
                         <?php
                         foreach ($reviews as $review) {
                             echo "<h4>";
-                            echo "<a href=\"" . $html->getHref('reviews/view/' . $review['Review']['id']) . "\">Review</a>";
+                            echo "<a class=\"film-link\" href=\"" . $html->getHref('reviews/view/' . $review['Review']['id']) . "\">Review</a>";
                             echo " by " . $review['Review']['username'] . "</h4>";
                             echo "<p>" . $review['Review']['content'] . "</p>";
                         }

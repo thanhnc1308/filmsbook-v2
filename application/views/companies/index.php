@@ -6,6 +6,11 @@
     ?>
     
     <div class="container">
+        <?php
+            $create_btn = new CreateButton('companies');
+            $create_btn->render($html);
+        ?>
+        
         <div class="content-body mt-4">
             <?php
                 foreach($companies as $company) {
@@ -13,6 +18,7 @@
                     $name = $company['Company']['name'];
                     $company_thumbnail = new CompanyThumbnail($id, $name);
                     $company_thumbnail->render($html);
+                    echo "<br>";
                 }
             ?>
         </div>

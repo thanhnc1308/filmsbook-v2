@@ -13,19 +13,29 @@ $films = $genre['Film'];
 ?>
 
 <div class="content bg-body pt-4">
-    <h1>
-        <?php
-            echo "<h1>" . $genre['Genre']['name'] . "</h1>";
-        ?>
-    </h1>
+    <!-- tab bar-->
     <?php
-    foreach($films as $film) {
-        $id = $film['Film']['id'];
-        $title = $film['Film']['title'];
-        $avatar = $film['Film']['avatar'];
-
-        $film_thumbnail = new FilmThumbnail($id, $title, $avatar);
-        $film_thumbnail->render($html);
-    }
+    $tabbar = new TabBar('genres');
+    $tabbar->render($html);
     ?>
+    
+    <div class="container">
+        <h1>
+            <?php
+                echo "<h1>" . $genre['Genre']['name'] . "</h1>";
+            ?>
+        </h1>
+        <div class="content-body d-flex mt-4">
+            <?php
+            foreach($films as $film) {
+                $id = $film['Film']['id'];
+                $title = $film['Film']['title'];
+                $avatar = $film['Film']['avatar'];
+
+                $film_thumbnail = new FilmThumbnail($id, $title, $avatar);
+                $film_thumbnail->render($html);
+            }
+            ?>
+        </div>
+    </div>    
 </div>

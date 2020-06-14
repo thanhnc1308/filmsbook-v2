@@ -6,6 +6,11 @@
     ?>
     
     <div class="container">
+        <?php
+            $create_btn = new CreateButton('countries');
+            $create_btn->render($html);
+        ?>
+        
         <div class="content-body mt-4">
             <?php
                 foreach($countries as $country) {
@@ -13,6 +18,7 @@
                     $name = $country['Country']['name'];
                     $country_thumbnail = new CountryThumbnail($id, $name);
                     $country_thumbnail->render($html);
+                    echo "<br>";
                 }
             ?>
         </div>

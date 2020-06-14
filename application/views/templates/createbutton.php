@@ -19,9 +19,9 @@ class CreateButton {
     }
     
     function render($html) {
-        $link = $html->getHref($controller . '/create');
-        echo "<div>";
-        echo "<a href=\"$link\" class=\"create-btn\">Add new Item</a>";
+        $link = $html->getHref($this->controller . '/create');
+        echo "<div class=\"create-bar\">";
+        echo "<a href=\"$link\" class=\"create-btn no-underline\">Add new Item</a>";
         echo "</div>";
     }
 }

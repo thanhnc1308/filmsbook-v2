@@ -33,10 +33,14 @@
     border-radius: 5px;
 }
 
-.create-btn {
+.create-bar {
+    margin-top: 1.8em;
+}
+.create-bar .create-btn {
     border-radius: 5px;
     color: #fff;
     background-color: #32a852;
+    padding: 4px 8px;
 }
 
 .tab-bar .tab-name {

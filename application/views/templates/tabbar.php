@@ -19,6 +19,7 @@ class TabBar {
         $this->controllers = [
             'films',
             'actors',
+            'genres',
             'companies',
             'countries',
             'reviews'

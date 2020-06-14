@@ -6,6 +6,11 @@
     ?>
     
     <div class="container">
+        <?php
+            $create_btn = new CreateButton('actors');
+            $create_btn->render($html);
+        ?>
+        
         <div class="content-body d-flex mt-4">
             <?php
                 foreach($actors as $actor) {

@@ -19,7 +19,7 @@ class ActorThumbnail {
     
     function render_small($html) {
         echo "<div>";
-        echo "<a href=\"";
+        echo "<a class=\"film-link\" href=\"";
         echo $html->getHref('actors/view/' . $this->id);
         echo "\">" . $this->name . "</a>";
         echo "</div>";
