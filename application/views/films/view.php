@@ -123,7 +123,7 @@ $fields = [
                     <div class="film-detail-title">
                         <h3>Casts</h3>
                     </div>
-                    <div class="film-detail-content d-flex">
+                    <div class="film-detail-content">
                         <?php
                         foreach ($film['Actor'] as $actor) {
                             $id = $actor['Actor']['id'];
@@ -132,6 +132,7 @@ $fields = [
                             $actor_thumbnail = new ActorThumbnail($id, $name, $profile_path);
 
                             // render
+                            echo "<div class=\"d-flex\">";
                             echo "<div>";
                             echo "<h4>";
                             $actor_thumbnail->render_small($html);
@@ -139,6 +140,7 @@ $fields = [
                             echo "</div>";
                             echo "<div class=\"pl-1\">";
                             echo "<h4> as " . $actor['actors_films']['character_name'] . "</h4>";
+                            echo "</div>";
                             echo "</div>";
                         }
                         ?>
