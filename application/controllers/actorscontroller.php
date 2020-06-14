@@ -78,6 +78,7 @@ class ActorsController extends BaseController {
                     $actor = $this->loadFields();
                     $actor->id = $actor_id;
                     $actor->save();
+                    var_dump($actor);
                     $this->set('actor_id', $actor_id);
                 } else {
                     

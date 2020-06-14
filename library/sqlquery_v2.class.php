@@ -344,18 +344,20 @@ class SQLQuery_v2 {
      * @return type
      */
     function save() {
+        
         $query = '';
         if ($this->id) {
             // update the entity
             $updates = '';
             foreach ($this->_describe as $field) {
-                if ($this->$field) {
+                if (isset($this->$field)) {
                     $updates .= '`' . $field . '` = \'' . $this->escapeSecureSQL($this->$field) . '\',';
                 }
             }
             $updates .= '`updated_at` = NOW()';
 
             $query = 'UPDATE ' . $this->_table . ' SET ' . $updates . ' WHERE `id`=\'' . $this->escapeSecureSQL($this->id) . '\'';
+//            echo $query;
         } else {
             // create new entity
             $fields = '';
@@ -370,6 +372,7 @@ class SQLQuery_v2 {
             $values .= 'NOW(), NOW()';
 
             $query = 'INSERT INTO ' . $this->_table . ' (' . $fields . ') VALUES (' . $values . ')';
+//            echo $query;
         }
         $this->_result = mysqli_query($this->_connection, $query);
         
