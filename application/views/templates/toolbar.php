@@ -26,7 +26,7 @@ class ToolBar {
     }
     
     function render($html) {
-        $delete_link = $html->getHref('films/delete');
+        $delete_link = $html->getHref($this->controller . '/delete');
         echo "<form method=\"post\" action=\"$delete_link\">";
         echo "<div class=\"tab-bar\">";
         echo "<div class=\"row vertical-center mt-2 pt-2 pb-2\">";

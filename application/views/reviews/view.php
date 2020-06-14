@@ -26,6 +26,9 @@
                 echo "<p> - a review by $username</p>";
                 
                 echo $content;
+                
+                $toolbar = new ToolBar('reviews', $review['Review']['id']);
+                $toolbar->render($html);
             ?>
         </div>
     </div>

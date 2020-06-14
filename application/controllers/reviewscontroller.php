@@ -90,30 +90,37 @@ class ReviewsController extends BaseController {
             $this->Review->id = $id;
             $review = $this->Review->search();
             if($review) {
-                // todo: validate post input
-                var_dump($review);
-                var_dump($_POST);
-                $updated_content = $_POST['content'];
+                $updated_content = $this->cleanInput($_POST['content']);
                 
                 $updated_review = new Review();
                 $updated_review->id = $id;
                 $updated_review->user_id = $review['Review']['user_id'];
                 $updated_review->film_id = $review['Review']['film_id'];
-                $updated_review->content = $updated_content;
-                
+                $updated_review->content = $updated_content;                
                 
                 $updated_review->save();
-                var_dump($updated_review);
             } else {
                 // todo: redirect error page
             }
         } else {
             // todo: redirect error page
         }
+        $this->set('id', $id);
     }
     
     function delete() {
-        
+        if(isset($_POST['id'])) {
+            $review_id = $this->cleanInput($_POST['id']);
+            // validate if this id exists
+            $this->Review->id = $review_id;
+            $result = $this->Review->search();
+            // delete
+            if($result) {
+                $review = new Review();
+                $review->id = $review_id;
+                $review->delete();
+            }
+        }
     }
     
     function afterAction() {
