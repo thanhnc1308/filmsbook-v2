@@ -4,6 +4,14 @@
  */
 
 class LiveSearch {
+
+  constructor() {
+    // NCThanh1 14.6.2020 - hide div when click on outside
+    hideWhenClickOutside('livesearch');
+    hideWhenClickOutside('add-film-search-results');
+    toast.show('test', 'toast-error');
+  }
+
   navBarSearch(searchKey){
     this.search(searchKey, "livesearch", this.renderHtmlResultForNavBar);
   }

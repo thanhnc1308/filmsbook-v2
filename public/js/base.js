@@ -17,6 +17,29 @@ function DOMReady(fn) {
 }
 
 /**
+ * func hide div when click outside
+ * @param {*} id
+ * @author NCThanh
+ */
+function hideWhenClickOutside(id, cbOnClickIn, cbOnClickOut) {
+  const el = document.getElementById(id);
+  if (el) {
+    window.addEventListener("click", function (e) {
+      if (el.contains(e.target)) {
+        if (cbOnClickIn instanceof Function) {
+          cbOnClickIn(el);
+        }
+      } else {
+        // Clicked outside the box
+        if (cbOnClickOut instanceof Function) {
+          cbOnClickOut(el);
+        }
+      }
+    });
+  }
+}
+
+/**
  * func add classs to a element and remove all others
  * @param {*} el
  * @param {*} className
@@ -52,7 +75,6 @@ function setActiveNavbar() {
   if (currentActive) {
     currentActive.classList.add("active");
   }
-
 }
 
 DOMReady(function () {

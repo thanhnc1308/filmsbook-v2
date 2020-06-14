@@ -36,6 +36,7 @@
 <?php
 $html->includeJs('config');
 $html->includeJs('prototype');
+$html->includeJs('toast');
 $html->includeJs('httpClient');
 $html->includeJs('base');
 $html->includeJs('search');
