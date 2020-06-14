@@ -3,11 +3,16 @@
     <div class="d-flex horizontal-between content-header">
       <div class="my-auto">
         <span class="font-size-title"><?php echo $collection['Collection']['name'] ?></span>
-        <?php echo '<a href="' . BASE_PATH . "/collections/update/{$collection['Collection']['id']}\">" ?>
-        <span class="font-size-large edit-button" title="Edit collection">
+        <?php 
+        if($collection['current_user_id'] == $collection['Owner']['id']){
+          echo '<a href="' . BASE_PATH . "/collections/update/{$collection['Collection']['id']}\">";
+          echo '<span class="font-size-large edit-button" title="Edit collection">
           <i class="fa fa-edit"></i>
-        </span>
-        </a>
+          </span>
+          </a>';
+        }
+        ?>
+        
       </div>
       <div class="mb-2 d-flex">
         <span class="fw-bold font-size-large owner-name-top pr-3"><?php echo $collection['Owner']['name'] ?></span>
