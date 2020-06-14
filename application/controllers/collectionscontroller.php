@@ -183,8 +183,6 @@ class CollectionsController extends BaseController
     $this->set('collection', $collection);
   }
 
-
-
   function afterAction()
   {
   }
