@@ -26,9 +26,13 @@ class ActorThumbnail {
     }
     
     function render($html) {
-        echo "<div>";
-        echo "<div><img src=\"" . $this->profile_path . "\" width=\"154\"></div>";
-        echo "<div><a href=\"" . $html->getHref('actors/view/') . $this->id . "\">" . $this->name . "</a></div>";
+        echo "<div class=\"film-item mr-4\">";
+        echo "<a class=\"film-link\" href=\"" . $html->getHref('actors/view/' . $this->id) . "\">";
+        echo "<img src=\"" . $this->profile_path . "\" class=\"rounded\" width=\"125\" height=\"187\" title=\"" . $this->name . "\">";
+        echo "<div class=\"film-title\">";
+        echo $this->name;
+        echo "</div>";
+        echo "</a>";
         echo "</div>";
     }
 }

@@ -32,7 +32,7 @@ class FilmThumbnail {
     
     function render($html) {
         echo "<div class=\"film-item mr-4\">";
-        echo "<a href=\"" . $html->getHref('films/view/' . $this->id) . "\">";
+        echo "<a class=\"film-link\" href=\"" . $html->getHref('films/view/' . $this->id) . "\">";
         echo "<img src=\"" . $this->avatar . "\" class=\"rounded\" width=\"125\" height=\"187\" title=\"" . $this->title . "\">";
         echo "<div class=\"film-title\">";
         echo $this->title;
