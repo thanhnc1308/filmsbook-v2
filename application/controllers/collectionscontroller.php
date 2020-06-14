@@ -10,23 +10,44 @@ class CollectionsController extends BaseController
   function index()
   {
     $user_id = $this->getUserId();
-    $collections = [];
+    
     $collections_films = $this->Collection->custom(
-      "SELECT collections.*, films.avatar FROM collections 
+      "SELECT collections.*, films.avatar, users.username FROM collections 
       LEFT JOIN collections_films ON collections.id = collections_films.collection_id
       LEFT JOIN films ON collections_films.film_id = films.id
+      LEFT JOIN users ON collections.user_id = users.id
       WHERE user_id = $user_id"
     );
+    
+    $collections = $this->format_collections($collections_films);
+
+    $random_collections_films = $this->Collection->custom(
+      "SELECT collections.*, films.avatar, users.username FROM collections 
+      LEFT JOIN collections_films ON collections.id = collections_films.collection_id
+      LEFT JOIN films ON collections_films.film_id = films.id
+      LEFT JOIN users ON collections.user_id = users.id
+      WHERE user_id != $user_id
+      ORDER BY RAND()
+      LIMIT 3
+      "
+    );
+    $random_collections = $this->format_collections($random_collections_films);
+    
+    $this->set('collections', $collections);
+    $this->set('random_collections', $random_collections);
+    $this->set('username', $this->getUserName());
+  }
+
+  function format_collections($collections_films){
+    $collections = [];
     foreach ($collections_films as $collection_film) {
       $collection_id = $collection_film['Collection']['id'];
       $collections[$collection_id]['Collection'] = $collection_film['Collection'];
       $collections[$collection_id]['Film'][] = $collection_film['Film'];
-      $collections[$collection_id]['Owner']['id'] = $this->getUserId();
-      $collections[$collection_id]['Owner']['name'] = $this->getUserName();
+      $collections[$collection_id]['Owner']['id'] = $collection_film['Collection']['user_id'];
+      $collections[$collection_id]['Owner']['name'] = $collection_film['User']['username'];
     }
-
-    $this->set('collections', $collections);
-    $this->set('username', $this->getUserName());
+    return $collections;
   }
 
   function add()
@@ -156,8 +177,9 @@ class CollectionsController extends BaseController
     $this->Collection->showHasOne();
     $this->Collection->showHasManyAndBelongsToMany();
     $collection = $this->Collection->search();
-    $collection['Owner']['id'] = $this->getUserId();
-    $collection['Owner']['name'] = $this->getUserName();
+    $collection['Owner']['id'] = $collection['User']['id'];
+    $collection['Owner']['name'] = $collection['User']['username'];
+    $collection['current_user_id'] = $this->getUserId();
     $this->set('collection', $collection);
   }
 
