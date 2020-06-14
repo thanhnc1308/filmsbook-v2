@@ -112,3 +112,29 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.film-overview {
+    margin-left: 1em;
+}
+
+.film-overview > h1 {
+    margin-top: 0;
+}
+
+.film-detail-item {
+    display: flex;
+}
+
+.film-detail-title {
+    width: 192px;
+    overflow: hidden;
+}
+
+.film-detail-content {
+    margin-left: 1em;
+}
+
+.fullsize-textbox {
+    width: 100%;
+    rows: 5;
+}

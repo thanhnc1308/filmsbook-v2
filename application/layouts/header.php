@@ -12,7 +12,7 @@
     $html->includeCss('films');
     $html->includeCss('collections');
     ?>
-    <title>Films Review</title>
+    <title>Filmsbook</title>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
                 <?php
                 $html->includeImage('film.png', 50, 50);
                 ?>
-                <span class="text-light no-underline logo-text fw-bold">FilmsReview</span>
+                <span class="text-light no-underline logo-text fw-bold">Filmsbook</span>
             </a>
             <div class="navbar-list-item d-flex vertical-center">
                 <?php
