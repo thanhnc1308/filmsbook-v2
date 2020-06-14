@@ -1,125 +1,205 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    font-family: 'DM Mono', monospace;
-    color: #9ab;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: "DM Mono", monospace;
+  color: #9ab;
 }
 
 .bg-navbar {
-    background-color: #14181c !important;
+  background-color: #14181c !important;
 }
 
 .bg-body {
-    background-color: #181d23 !important;
+  background-color: #181d23 !important;
 }
 
 .bg-footer {
-    background-color: #2c3440 !important;
+  background-color: #2c3440 !important;
 }
 
 .pl-10 {
-    padding-left: 10rem;
+  padding-left: 10rem;
 }
 
 .pr-10 {
-    padding-right: 10rem;
+  padding-right: 10rem;
 }
 
 /* navbar */
 .navbar {
-    z-index: 1;
+  z-index: 1;
 }
 
 .navbar .nav-link {
-    text-decoration: none;
-    color: #9ab;
-    font-size: 16px;
+  text-decoration: none;
+  color: #9ab;
+  font-size: 16px;
 }
 
 .navbar .nav-link:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .active a {
-    color: #fff !important;
+  color: #fff !important;
 }
 
 .navbar .logo-text {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .navbar .input-search {
-    height: 30px;
+  height: 30px;
 }
 
 #livesearch {
-    position: absolute;
-    border-radius: 5px;
+  position: absolute;
+  border-radius: 5px;
+  overflow: overlay;
+  height: 400px;
 }
 
 #livesearch .link-film {
-    padding: .15rem;
-    background: #000;
-    border-bottom: 1px solid #808080;
+  padding: 0.15rem;
+  background: #000;
+  border-bottom: 1px solid #808080;
 }
 
 #livesearch .link-film:hover {
-    background-color: #5d5d5d;
+  background-color: #5d5d5d;
 }
 
 #livesearch .link-film a {
-    color: #9ab;
+  color: #9ab;
 }
 /* end navbar */
 
 /* content */
 .content {
-    margin-top: 66px;
-    width: 100%;
-    min-height: calc(100vh - 174px);
-    padding-bottom: 1.5rem;
+  margin-top: 66px;
+  width: 100%;
+  min-height: calc(100vh - 174px);
+  padding-bottom: 1.5rem;
 }
 
 .content-body {
-    flex-flow: wrap;
+  flex-flow: wrap;
 }
 /* end content */
 
 /* footer */
 .footer {
-    height: 60px;
+  height: 60px;
 }
 
 .footer .social-item {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .footer .footer-copyright {
-    font-size: 14px;
+  font-size: 14px;
 }
 /* end footer */
 
 .not-found {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    min-height: calc(100vh - 174px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  min-height: calc(100vh - 174px);
 }
 
 .error {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  height: 100%;
 }
 
-.w-100{
-    width: 100%;
+.w-100 {
+  width: 100%;
 }
 
-.flex-wrap{
-    flex-wrap: wrap;
+.flex-wrap {
+  flex-wrap: wrap;
 }
+
+/* toast */
+
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 30px;
+}
+
+#toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#toast.toast-success {
+    background-color: green;
+}
+
+#toast.toast-error {
+    background-color: red;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+/* end toast */

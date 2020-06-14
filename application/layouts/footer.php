@@ -4,8 +4,8 @@
     >
     <div class="footer-copyright text-light">
         © 2020 Copyright:
-        <a class="text-light" href="https://filmsreview.com/">
-            filmsreview.com</a
+        <a class="text-light" href="https://filmsbook.com/">
+            filmsbook.com</a
         >
     </div>
     <div class="social-network d-flex">
@@ -36,6 +36,7 @@
 <?php
 $html->includeJs('config');
 $html->includeJs('prototype');
+$html->includeJs('toast');
 $html->includeJs('httpClient');
 $html->includeJs('base');
 $html->includeJs('search');

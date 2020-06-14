@@ -48,7 +48,6 @@ class ActorsController extends BaseController {
     function edit($actor_id) {
         if($actor_id) {
             if(is_numeric($actor_id)) {
-                var_dump("hello");
                 $actor = new Actor();
                 $actor->id= $actor_id;
                 $actor = $actor->search();

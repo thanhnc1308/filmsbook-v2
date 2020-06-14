@@ -16,6 +16,23 @@
     background-color: #678;
 }
 
+.tab-bar .danger{
+    color: #fff;
+    background-color: #f26951;
+}
+
+.tab-bar .warning {
+    color: #fff;
+    background-color: #ffce54
+}
+
+.tab-bar .btn {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: none;
+    border-radius: 5px;
+}
+
 .tab-bar .tab-name {
     text-decoration: none;
     color: #9ab;
@@ -111,4 +128,34 @@
     width: 125px; 
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.film-overview {
+    margin-left: 1em;
+}
+
+.film-overview > h1 {
+    margin-top: 0;
+}
+
+.film-detail-item {
+    display: flex;
+}
+
+.film-detail-title {
+    width: 192px;
+    overflow: hidden;
+}
+
+.film-detail-content {
+    margin-left: 1em;
+}
+
+.fullsize-textbox {
+    width: 100%;
+    rows: 5;
+}
+
+.film-link {
+    color: #9ab;
 }
