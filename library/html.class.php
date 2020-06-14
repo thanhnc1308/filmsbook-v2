@@ -8,8 +8,8 @@
  */
 class HTML {
 
-    function includeImage($dir, $width, $height) {
-        $link = '<img width="' . $width . '" height="' . $height . '" src="' . BASE_PATH . '/public/img/' . $dir . '"/>';
+    function includeImage($dir, $width, $height, $classList='') {
+        $link = '<img class="' . $classList . '" width="' . $width . '" height="' . $height . '" src="' . BASE_PATH . '/public/img/' . $dir . '"/>';
         echo $link;
     }
 

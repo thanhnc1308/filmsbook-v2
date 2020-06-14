@@ -21,7 +21,7 @@
 
 .collection-card{
   width: 250px;
-  height: 400px;
+  height: 270px;
   margin-right: 70px;
 }
 
@@ -73,7 +73,7 @@
 
 .collection-film-item{
   width: 30%;
-  height: 500px;
+  height: 450px;
 }
 
 .img-border{
@@ -91,21 +91,33 @@
   cursor: pointer;
 }
 
-#add-film-search-results{
+.add-film-search-results{
   position: absolute;
   z-index: 10;
   background-color: #181d23;
   border-radius: 5px;
 }
 
-#add-film-search-results .link-film {
+.add-film-search-results .link-film {
   padding: .15rem;
   border-bottom: 1px solid #808080;
 }
 
-#add-film-search-results .link-film:hover {
+.add-film-search-results .link-film:hover {
   background-color: #2b2a2a;
   cursor: pointer;
+}
+
+.delete-confirm-message{
+  position: relative;
+  z-index: 15;
+  border-radius: 5px;
+  float: right;
+  margin-left: auto;
+  height: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
 }
 
 .film-stack-content{
@@ -127,4 +139,34 @@
 
 .delete-button:focus{
   outline: none;
+}
+
+.owner-name{
+  line-height: 16px;
+}
+
+.owner-name-top{
+  line-height: 50px;
+}
+
+.edit-button{
+  color: gray;
+}
+
+.edit-button:hover{
+  color: #f8f9fa;
+  cursor: pointer;
+}
+
+.delete-collection-button{
+  float: right;
+  font-size: xx-large;
+}
+
+.confirm-button{
+  background-color: #9ab;
+}
+
+.display-none{
+  display: none;
 }
