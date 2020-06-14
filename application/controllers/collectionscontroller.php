@@ -21,6 +21,7 @@ class CollectionsController extends BaseController{
       $collections[$collection_id]['Owner']['name'] = $this->getUserName();
     }
     $this->set('collections', $collections);
+    $this->set('username', $this->getUserName());
   }
 
   function add(){

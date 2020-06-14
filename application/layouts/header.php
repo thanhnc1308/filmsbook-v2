@@ -27,7 +27,7 @@
             </a>
             <div class="navbar-list-item d-flex vertical-center">
                 <?php
-                if (!$username) {
+                if (!isset($username) || !$username) {
                     echo '<div id="navLogin"  class="nav-item active">
                             <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Log in</a>
                         </div>

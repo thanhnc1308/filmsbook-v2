@@ -18,16 +18,15 @@
           Add a film
         </div>
         <div class="w-75">
-          <input name="film-name" id="add-film-search-input" type="text" onkeyup="liveSearch.addFilmSearch(this.value)" placeholder="Search">
-          <div id="add-film-search-results"></div>
+          <input name="film-name" class="add-film-search-input" type="text" onkeyup="liveSearch.addFilmSearch(this.value)" placeholder="Search">
+          <div class="add-film-search-results"></div>
         </div>
       </div>
       <div class="added-list mt-4">
         <div 
-            class="ml-4 pt-2 pb-2 mr-4" 
-            id="collection-added-films"
+            class="ml-4 pt-2 pb-2 mr-4 collection-added-films"
         >
-          <div id="empty-collection-message" class="w-100 text-center fw-bold">Your list is empty</div>
+          <div class="empty-collection-message" class="w-100 text-center fw-bold">Your list is empty</div>
         </div>
       </div>
       <div class="text-center">

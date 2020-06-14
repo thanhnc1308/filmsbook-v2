@@ -11,6 +11,10 @@ class LiveSearch {
   addFilmSearch(searchKey){
     this.search(searchKey, "add-film-search-results", this.renderHtmlResultForAddFilm);
   }
+
+  updateFilmSearch(searchKey){
+    this.search(searchKey, "add-film-search-results", this.renderHtmlResultForAddFilm);
+  }
   /**
    * func do live search and display result
    * @author NCThanh
@@ -19,8 +23,8 @@ class LiveSearch {
   search(searchKey, resultAreaId, renderHtmlResult) {
     setTimeout(function () {
       if (searchKey.length == 0) {
-        document.getElementById(resultAreaId).innerHTML = "";
-        document.getElementById(resultAreaId).style.border = "0px";
+        document.getElementsByClassName(resultAreaId)[0].innerHTML = "";
+        document.getElementsByClassName(resultAreaId)[0].style.border = "0px";
         return;
       }
       const url = `${BASE_URL}/livesearch/search/?q=${searchKey}`;
@@ -31,8 +35,8 @@ class LiveSearch {
           if(films.length != 0){
             result = renderHtmlResult(films);
           }
-          document.getElementById(resultAreaId).innerHTML = result;
-          document.getElementById(resultAreaId).style.border =
+          document.getElementsByClassName(resultAreaId)[0].innerHTML = result;
+          document.getElementsByClassName(resultAreaId)[0].style.border =
             "1px solid #A5ACB2";
         }
       });
@@ -55,9 +59,8 @@ class LiveSearch {
       film-id="${film['Film']['id']}"
       film-title="${film['Film']['title']}"
       film-length="${film['Film']['length']}"
-      film-year="${film['Film']['year']}"
       film-avatar="${film['Film']['avatar']}"
-      onclick="collection.addToCollection(this)"
+      onclick="collection.addFilmFromSearch(this)"
       >${film['Film']['title']}</div></div>`
     });
     return result;

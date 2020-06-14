@@ -91,19 +91,19 @@
   cursor: pointer;
 }
 
-#add-film-search-results{
+.add-film-search-results{
   position: absolute;
   z-index: 10;
   background-color: #181d23;
   border-radius: 5px;
 }
 
-#add-film-search-results .link-film {
+.add-film-search-results .link-film {
   padding: .15rem;
   border-bottom: 1px solid #808080;
 }
 
-#add-film-search-results .link-film:hover {
+.add-film-search-results .link-film:hover {
   background-color: #2b2a2a;
   cursor: pointer;
 }

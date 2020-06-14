@@ -14,7 +14,7 @@ function inflect_count($count)
     <div class="text-center">
       Collect, curate, and share. Lists are the perfect way to group films.
       <div class="pt-3">
-        <a class="create-button" href="create">Start your own list</a>
+        <a class="create-button" href="collections/create">Start your own list</a>
       </div>
     </div>
     <div class="content-header pt-4">
@@ -22,7 +22,7 @@ function inflect_count($count)
     </div>
     <div class="content-body d-flex flex-wrap mt-4 justify-content-start">
       <?php foreach ($collections as $collection) : ?>
-        <?php echo "<a href=\"view/{$collection['Collection']['id']}\">"?>
+        <?php echo "<a href=\"collections/view/{$collection['Collection']['id']}\">"?>
           <div class="collection-card">
             <div class="film-stack w-100">
               <?php for ($i = 0; $i < 5; $i++) : ?>
