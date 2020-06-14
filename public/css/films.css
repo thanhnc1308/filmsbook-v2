@@ -16,6 +16,23 @@
     background-color: #678;
 }
 
+.tab-bar .danger{
+    color: #fff;
+    background-color: #f26951;
+}
+
+.tab-bar .warning {
+    color: #fff;
+    background-color: #ffce54
+}
+
+.tab-bar .btn {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: none;
+    border-radius: 5px;
+}
+
 .tab-bar .tab-name {
     text-decoration: none;
     color: #9ab;

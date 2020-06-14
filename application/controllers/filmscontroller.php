@@ -309,10 +309,9 @@ class FilmsController extends BaseController {
     function delete() {
         if(isset($_POST['id'])) {
             // check if movie exists
-            $film_id = $_POST['id'];
+            $film_id = $this->cleanInput($_POST['id']);
             $this->Film->id = $film_id;
             $film = $this->Film->search();
-            var_dump($film);
             if($film) {                
                 // films_genres
                 $films_genres = new Films_genre();
