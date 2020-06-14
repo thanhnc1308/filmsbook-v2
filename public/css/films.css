@@ -33,6 +33,12 @@
     border-radius: 5px;
 }
 
+.create-btn {
+    border-radius: 5px;
+    color: #fff;
+    background-color: #32a852;
+}
+
 .tab-bar .tab-name {
     text-decoration: none;
     color: #9ab;
