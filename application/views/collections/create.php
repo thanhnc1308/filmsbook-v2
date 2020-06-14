@@ -26,10 +26,10 @@
         <div 
             class="ml-4 pt-2 pb-2 mr-4 collection-added-films"
         >
-          <div class="empty-collection-message" class="w-100 text-center fw-bold">Your list is empty</div>
+          <div class="empty-collection-message w-100 text-center fw-bold">Your list is empty</div>
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center mt-4">
         <button onclick="collection.create()">Submit</button>
       </div>
     </form>

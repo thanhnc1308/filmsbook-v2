@@ -21,10 +21,10 @@ class Collection {
   }
 
   addToCollection(film){
-    if(this.films.indexOf(film['id']) == -1){
-      this.films.push(film['id']);
+    if(collection.films.indexOf(film['id']) == -1){
+      collection.films.push(film['id']);
 
-      let filmStack = `<a href="${BASE_URL}/films/view/${film['id']}">
+      let filmStack = `<a href="${BASE_URL}/films/view/${film['id']}" class="film-update" film-id="${film['id']}">
       <div class="d-flex horizontal-between film-stack-content pb-2 pt-2" id="collection-film-${film['id']}">
       <div class="d-flex">
           <img src="${film['avatar']}" width="100" height="100">
@@ -55,11 +55,12 @@ class Collection {
     event.stopPropagation();
     let collectionName = document.getElementById("collection-name").value;
     let collectionDescription = document.getElementById("collection-description").value;
+    let films = collection.loadFilmsFromUpdatePage();
     
     httpClient.post(`${BASE_URL}/collections/add`, {
       name : collectionName,
       description : collectionDescription,
-      films : JSON.stringify(collection.films)
+      films : JSON.stringify(films)
     }, (res) => {
       if (res.readyState == 4) {
         if (res.status == 200){
@@ -90,7 +91,8 @@ class Collection {
     httpClient.post(`${BASE_URL}/collections/edit`, {
       name : collectionName,
       description : collectionDescription,
-      films : JSON.stringify(films)
+      films : JSON.stringify(films),
+      collection_id: collectionId
     }, (res) => {
       if (res.readyState == 4) {
         if (res.status == 200){
@@ -109,6 +111,35 @@ class Collection {
       film['id'] != id;
     });
     document.getElementById(`collection-film-${id}`).outerHTML = '';
+  }
+
+  confirmDelete(){
+    event.preventDefault();
+    event.stopPropagation();
+    document.getElementById('confirm-delete-collection').classList.remove('display-none');
+  }
+
+  closeDeletePopup(){
+    event.preventDefault();
+    event.stopPropagation();
+    document.getElementById('confirm-delete-collection').classList.add('display-none');
+  }
+
+  deleteCollection(id){
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(id);
+    httpClient.post(`${BASE_URL}/collections/delete`, {
+      id: id
+    }, (res) => {
+      if (res.readyState == 4) {
+        if (res.status == 200){
+          window.location.href = `${BASE_URL}/collections/index`;
+        } else{
+          alert("Error");
+        }
+      }
+    });
   }
 }
 

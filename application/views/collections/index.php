@@ -1,10 +1,10 @@
 <?php
-function inflect_count($count)
+function inflect_count($count, $unit)
 {
   if ($count == 0 || $count == 1) {
-    return $count . ' item';
+    return "$count $unit";
   } else {
-    return $count . ' items';
+    return "$count $unit" . "s";
   }
 }
 ?>
@@ -14,15 +14,16 @@ function inflect_count($count)
     <div class="text-center">
       Collect, curate, and share. Lists are the perfect way to group films.
       <div class="pt-3">
-        <a class="create-button" href="collections/create">Start your own list</a>
+        <?php echo "<a class=\"create-button\" href=\"" . BASE_PATH . "/collections/create\">Start your own list</a>" ?>
+        
       </div>
     </div>
     <div class="content-header pt-4">
-      Your list (<?php echo inflect_count(count($collections)); ?>)
+      Your list (<?php echo inflect_count(count($collections), 'collection'); ?>)
     </div>
     <div class="content-body d-flex flex-wrap mt-4 justify-content-start">
       <?php foreach ($collections as $collection) : ?>
-        <?php echo "<a href=\"collections/view/{$collection['Collection']['id']}\">"?>
+        <?php echo "<a class=\"text-light\" href=\"" . BASE_PATH . "/collections/view/{$collection['Collection']['id']}\">"?>
           <div class="collection-card">
             <div class="film-stack w-100">
               <?php for ($i = 0; $i < 5; $i++) : ?>
@@ -36,13 +37,8 @@ function inflect_count($count)
                 ?>
               <?php endfor ?>
               <div class="mt-2 mb-1 d-flex horizontal-between w-100">
-                <div class="fw-bold font-size-large w-75">
-                  <a href="#">
+                <div class="fw-bold font-size-large truncate-text">
                     <?php echo $collection['Collection']['name'] ?>
-                  </a>
-                </div>
-                <div class="w-25 mt-1">
-                  <?php echo inflect_count(count($collection['Film'])); ?>
                 </div>
               </div>
               <div class="d-flex horizontal-between">
@@ -55,7 +51,7 @@ function inflect_count($count)
                   </div>
                 </div>
                 <div>
-                  <div>&#10084; 1000 &#128172; 100</div>
+                  <?php echo inflect_count(count($collection['Film']), 'film'); ?>
                 </div>
               </div>
             </div>

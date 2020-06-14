@@ -20,12 +20,14 @@
     <p><?php echo $collection['Collection']['description'] ?></p>
     <ul class="d-flex flex-wrap justify-content-start p-0">
       <?php foreach ($collection['Film'] as $films) : ?>
-        <?php echo '<a href="' . BASE_PATH . "/films/view/{$films['Film']['id']}\">" ?>
         <li class="collection-film-item mt-2 mr-4" title="<?php echo $films['Film']['title'] ?>">
-          <img src=<?php echo $films['Film']['avatar'] ?> class="w-100 h-75 img-border">
-          <p class="truncate-text"><?php echo $films['Film']['title'] ?></p>
+          <?php echo '<a href="' . BASE_PATH . "/films/view/{$films['Film']['id']}\" class=\"text-light\">" ?>
+          <div class="w-100">
+            <img src=<?php echo $films['Film']['avatar'] ?> class="w-100 h-85 img-border">
+            <p class="truncate-text"><?php echo $films['Film']['title'] ?></p>
+          </div>
+          </a>
         </li>
-        </a>
       <?php endforeach ?>
     </ul>
   </div>
