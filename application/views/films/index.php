@@ -16,3 +16,6 @@
     <!-- end tab content -->
 </div>
 <!-- end content -->
+<?php
+$html->includeCss('films');
+?>

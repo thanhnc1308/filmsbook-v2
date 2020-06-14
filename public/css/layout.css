@@ -27,6 +27,10 @@ body {
 }
 
 /* navbar */
+.navbar {
+    z-index: 1;
+}
+
 .navbar .nav-link {
     text-decoration: none;
     color: #9ab;
@@ -56,11 +60,12 @@ body {
 
 #livesearch .link-film {
     padding: .15rem;
+    background: #000;
     border-bottom: 1px solid #808080;
 }
 
 #livesearch .link-film:hover {
-    background-color: #2b2a2a;
+    background-color: #5d5d5d;
 }
 
 #livesearch .link-film a {

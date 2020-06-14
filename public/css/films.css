@@ -105,3 +105,10 @@
 .border-input {
     border: 2px solid;
 }
+
+.film-title {
+    white-space: nowrap; 
+    width: 125px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

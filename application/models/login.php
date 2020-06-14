@@ -8,8 +8,14 @@ class Login extends BaseModel
         return "users";
     }
 
+    /**
+     * Check account's username and password info in database
+     */
     function checkUser($username, $password)
     {
+        $username = $this->escapeSecureSQL($username);
+        $password = $this->escapeSecureSQL($password);
+        
         $sql = "select * from " . DEFAULT_SCHEMA . ".users where username = '" . $username . "'";
         $result = $this->custom($sql);
         if (empty($result)) {

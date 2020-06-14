@@ -3,8 +3,19 @@
 class LoginController extends BaseController
 {
 
+    /**
+     * When user try to login again or logout
+     * => Delete session
+     */
     function beforeAction()
     {
+        $this->set('userid', '');
+        $this->set('username', '');
+        $this->set('role', '');
+
+        if (!(session_status() == PHP_SESSION_NONE)) {
+            session_destroy();
+        }
     }
 
     function view($userId = null)
@@ -15,6 +26,10 @@ class LoginController extends BaseController
     {
     }
 
+    /**
+     * Get user input and check account in database
+     * If input is corret, set session
+     */
     function auth()
     {
         $this->render = 0; //not render whole page

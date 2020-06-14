@@ -43,12 +43,11 @@ class FilmsController extends BaseController {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $role = $_SESSION["role"];
+        $role = $this->getUserRole();
 
         if($role!='admin'){
-            $this->render = 0;
-            header("Location: http://localhost/filmsbook-v2/login");
-            exit();
+            $html = new HTML;
+            require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
         }
 
         $genres = new Genre();
@@ -69,36 +68,15 @@ class FilmsController extends BaseController {
     }
     
     function store() {
-        if (isset($_POST['title']) 
-            && isset($_POST['description'])
-            && isset($_POST['release_date'])
-            && isset($_POST['popularity'])
-            && isset($_POST['length'])
-        ) {
-            $film = new Film();
-            $film->title = $_POST['title'];
-            $film->description = $_POST['description'];
-            $film->release_date = $_POST['release_date'];
-            $film->popularity = $_POST['popularity'];
-            $film->length = $_POST['length'];
-            
-            $film->budget = $_POST['budget'];
-            $film->original_language = $_POST['original_language'];
-            $film->avatar = $_POST['avatar'];
-            $film->trailer = $_POST['trailer'];
-            $film->revenue = $_POST['revenue'];
-            $film->vote_average = $_POST['vote_average'];
-            $film->vote_count = $_POST['vote_count'];
+        if (isset($_POST['title']) && !empty($_POST['title'])) {
+            $film = $this->loadFields();
             
             $film_id = $film->save();
             
             // Save Genres
             if(isset($_POST['genres'])) {
                 foreach($_POST['genres'] as $genre_input) {
-                    $genre = new Genre();
-                    $genre->id = $genre_input;
-                    $genre = $genre->search();
-                    $genre_id = $genre['Genre']['id'];
+                    $genre_id = $this->cleanInput($genre_input);
 
                     // save genre id along with film id in films_genres table
                     $film_genre = new Films_genre();
@@ -111,10 +89,7 @@ class FilmsController extends BaseController {
             // Companies 
             if(isset($_POST['companies'])) {
                 foreach($_POST['companies'] as $company_input) {
-                    $company = new Company();
-                    $company->id = $company_input;
-                    $company = $company->search();
-                    $company_id = $company['Company']['id'];
+                    $company_id = $this->cleanInput($company_input);
 
                     $company_film = new Companies_film();
                     $company_film->film_id = $film_id;
@@ -126,11 +101,8 @@ class FilmsController extends BaseController {
             // Countries
             if(isset($_POST['countries'])) {
                 foreach($_POST['countries'] as $country_input) {
-                    $country = new Country();
-                    $country->id = $country_input;
-                    $country = $country->search();
-                    $country_id = $country['Country']['id'];
-
+                    $country_id = $this->cleanInput($country_input);
+                    
                     $countries_film = new Countries_film();
                     $countries_film->country_id = $country_id;
                     $countries_film->film_id = $film_id;
@@ -144,14 +116,16 @@ class FilmsController extends BaseController {
             $count = count($actors);
             
             for($i = 0; $i < $count; $i++) {
-                $actor_id = $actors[$i];
-                $character_name = $characters[$i];
+                $actor_id = $this->cleanInput($actors[$i]);
+                $character_name = $this->cleanInput($characters[$i]);
                 
-                $cast = new Actors_film();
-                $cast->film_id = $film_id;
-                $cast->actor_id = $actor_id;
-                $cast->character_name = $character_name;
-                $cast->save();
+                if($actor_id) {
+                    $cast = new Actors_film();
+                    $cast->film_id = $film_id;
+                    $cast->actor_id = $actor_id;
+                    $cast->character_name = $character_name;
+                    $cast->save();
+                }
             }
             $this->set('film', $film);
         }
@@ -159,8 +133,7 @@ class FilmsController extends BaseController {
     
     function edit($id) {
         $film = new Film();
-        $film->id = $id;
-        $film->showHasMany();
+        $film->id = $this->cleanInput($id);
         $film->showHasManyAndBelongsToMany();
         $film = $film->search();
         
@@ -185,31 +158,18 @@ class FilmsController extends BaseController {
     
     function update($id) {
         // get the movie from db
-        $film = new Film();
-        $film->id = $id;
-        $film = $film->search();
+        $film_id = $this->cleanInput($id);
+        $film_search = new Film();
+        $film_search->id = $film_id;
+        $result = $film_search->search();
         
-//        if movie exists then update
-        if($film) {
-            $film = new Film();
-            $film->id = $id;
-            
-            // update all the fields
-            $film->title = $_POST['title'];
-            $film->description = $_POST['description'];
-            $film->release_date = $_POST['release_date'];
-            $film->popularity = $_POST['popularity'];
-            $film->length = $_POST['length'];
-
-            $film->budget = $_POST['budget'];
-            $film->original_language = $_POST['original_language'];
-            $film->avatar = $_POST['avatar'];
-            $film->trailer = $_POST['trailer'];
-            $film->revenue = $_POST['revenue'];
-            $film->vote_average = $_POST['vote_average'];
-            $film->vote_count = $_POST['vote_count'];
+        // if movie exists then update
+        if($result) {
+            $film = $this->loadFields();
+            $film->id = $film_id;
             
             $film->save();
+            var_dump($film);
             
             // update many to many relationships
             // by removing all old relationships;
@@ -265,60 +225,69 @@ class FilmsController extends BaseController {
             
             // add new relationships;
             // Save Genres
-            foreach($_POST['genres'] as $genre_input) {
-                $genre = new Genre();
-                $genre->id = $genre_input;
-                $genre = $genre->search();
-                $genre_id = $genre['Genre']['id'];
-                
-                // save genre id along with film id in films_genres table
-                // how to represent an intermedia table with model?
-                $film_genre = new Films_genre();
-                $film_genre->film_id = $id;
-                $film_genre->genre_id = $genre_id;
-                $film_genre->save();
+            if(isset($_POST['genres'])) {
+                foreach($_POST['genres'] as $genre_input) {
+                    $genre = new Genre();
+                    $genre->id = $genre_input;
+                    $genre = $genre->search();
+                    $genre_id = $genre['Genre']['id'];
+
+                    // save genre id along with film id in films_genres table
+                    // how to represent an intermedia table with model?
+                    $film_genre = new Films_genre();
+                    $film_genre->film_id = $id;
+                    $film_genre->genre_id = $genre_id;
+                    $film_genre->save();
+                }
             }
             
             // Save Companies 
-            foreach($_POST['companies'] as $company_input) {
-                $company = new Company();
-                $company->id = $company_input;
-                $company = $company->search();
-                $company_id = $company['Company']['id'];
-                
-                $company_film = new Companies_film();
-                $company_film->film_id = $id;
-                $company_film->company_id = $company_id;
-                $company_film->save();
+            if(isset($_POST['companies'])) {
+                foreach($_POST['companies'] as $company_input) {
+                    $company = new Company();
+                    $company->id = $company_input;
+                    $company = $company->search();
+                    $company_id = $company['Company']['id'];
+
+                    $company_film = new Companies_film();
+                    $company_film->film_id = $id;
+                    $company_film->company_id = $company_id;
+                    $company_film->save();
+                }
             }
             
             // Save Countries
-            foreach($_POST['countries'] as $country_input) {
-                $country = new Country();
-                $country->id = $country_input;
-                $country = $country->search();
-                $country_id = $country['Country']['id'];
-                
-                $countries_film = new Countries_film();
-                $countries_film->country_id = $country_id;
-                $countries_film->film_id = $id;
-                $countries_film->save();
+            if(isset($_POST['companies'])) {
+                foreach($_POST['countries'] as $country_input) {
+                    $country = new Country();
+                    $country->id = $country_input;
+                    $country = $country->search();
+                    $country_id = $country['Country']['id'];
+
+                    $countries_film = new Countries_film();
+                    $countries_film->country_id = $country_id;
+                    $countries_film->film_id = $id;
+                    $countries_film->save();
+                }
             }
             
             // Save Casts
-            $actors = $_POST['actors'];
-            $characters = $_POST['characters'];
-            $count = count($actors);
-            
-            for($i = 0; $i < $count; $i++) {
-                $actor_id = $actors[$i];
-                $character_name = $characters[$i];
-                
-                $cast = new Actors_film();
-                $cast->film_id = $id;
-                $cast->actor_id = $actor_id;
-                $cast->character_name = $character_name;
-                $cast->save();
+            if(isset($_POST['actors'])) {
+                $actors = $_POST['actors'];
+                $characters = $_POST['characters'];
+                $count = count($actors);
+
+                for($i = 0; $i < $count; $i++) {
+                    $actor_id = $actors[$i];
+                    $character_name = $characters[$i];
+                    if($actor_id) {
+                        $cast = new Actors_film();
+                        $cast->film_id = $id;
+                        $cast->actor_id = $actor_id;
+                        $cast->character_name = $character_name;
+                        $cast->save();
+                    }
+                }
             }
             
             // set success status

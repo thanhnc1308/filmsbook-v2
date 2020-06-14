@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-header('Location: ' . $html->getHref('actors'));
+header('Location: ' . $html->getHref('films/view/' . $film_id));

@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-header("Location: http://localhost/filmsbook-v2/countries");
+header("Location: " . $html->getHref('countries'));

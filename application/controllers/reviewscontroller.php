@@ -45,16 +45,17 @@ class ReviewsController extends BaseController {
             $film = $film->search();
             
             if($film) {
-                if(isset($_POST['user_id']) && isset($_POST['content'])) {
-                    $user_id = $_POST['user_id'];
+                if(isset($_POST['content'])) {
+                    $user_id = $this->getUserId();
                     $content = $_POST['content'];
 
                     $review = new Review();
-                    $review->user_id = $_SESSION['user_id'];
+                    $review->user_id = $user_id;
                     $review->film_id = $film_id;
                     $review->content = $content;
                     $review->save();
                 }
+                $this->set('film_id', $film_id);
             } else {
                 // redirect to error page
             }
@@ -67,11 +68,14 @@ class ReviewsController extends BaseController {
         // check if id exists
         if($id) {
             $this->Review->id = $id;
+            $this->Review->showHasOne();
             $review = $this->Review->search();
             if($review) {
+                $this->set('status', 1);
                 $this->set('review', $review);
             } else {
                 // todo: redirect error page
+                $this->set('status', 0);
             }
         } else {
             // todo: redirect error page
@@ -84,6 +88,8 @@ class ReviewsController extends BaseController {
             $review = $this->Review->search();
             if($review) {
                 // todo: validate post input
+                var_dump($review);
+                var_dump($_POST);
                 $updated_content = $_POST['content'];
                 
                 $updated_review = new Review();
@@ -92,7 +98,9 @@ class ReviewsController extends BaseController {
                 $updated_review->film_id = $review['Review']['film_id'];
                 $updated_review->content = $updated_content;
                 
+                
                 $updated_review->save();
+                var_dump($updated_review);
             } else {
                 // todo: redirect error page
             }

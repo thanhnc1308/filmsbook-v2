@@ -11,6 +11,14 @@
                 echo "<h1>Title: " . $film['Film']['title'] . "</h1>";
                 $poster_path = $film['Film']['avatar'];
                 echo "<img src=\"$poster_path\" width=\"154\">";
+                
+                echo "<div>";
+                echo "<button id=\"like-btn\">Like</button>";
+                echo "<button id=\"watch-btn\">Watch</button>";
+                echo "</div>";
+                
+                echo "<div>";
+                echo "</div>";
                 echo "<p>Description: " . $film['Film']['description'] . "</p><br>";
                 echo "Release Date: " . $film['Film']['release_date'] . "<br>";
                 echo "Popularity: " . $film['Film']['popularity'] . "<br>";

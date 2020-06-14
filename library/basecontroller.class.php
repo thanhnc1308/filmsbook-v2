@@ -71,4 +71,35 @@ class BaseController {
     function afterAction()
     {
     }
+    
+    protected function loadFields() {
+        $klass = get_class($this);
+        $controller = preg_replace('/Controller/', '', $klass);
+        $model = $this->getModelName($controller);
+        $describe = $this->$model->getDescribe();
+        $instance = new $this->$model;
+        
+        foreach($describe as $field) {
+            if($field == 'id') {
+                continue;
+            }
+            if(isset($_POST[$field])) {
+                if(empty($_POST[$field]))
+                    $instance->$field = null;
+                else
+                    $instance->$field = $instance->escapeSecureSQL($_POST[$field]);
+            }
+        }
+        return $instance;
+    }
+    
+    protected function cleanInput($input) {
+        // get model name
+        $klass = get_class($this);
+        $controller = preg_replace('/Controller/', '', $klass);
+        $model = $this->getModelName($controller);
+        
+        // return cleaned input
+        return $this->$model->escapeSecureSQL($input);
+    }
 }

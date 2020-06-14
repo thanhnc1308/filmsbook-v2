@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-header("Location: " . BASE_PATH . "/actors");
+header('Location: ' . $html->getHref('actors'));
