@@ -19,7 +19,7 @@
     <div id="app">
         <!-- navbar -->
         <div class="navbar d-flex horizontal-between bg-navbar pl-10 pr-10 pt-2 pb-2 fixed-top">
-            <a href="#" class="logo d-flex vertical-center no-underline">
+            <a href="<?php echo $html->getHref('films'); ?>" class="logo d-flex vertical-center no-underline">
                 <?php
                 $html->includeImage('film.png', 50, 50);
                 ?>
