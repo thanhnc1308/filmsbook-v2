@@ -27,7 +27,7 @@ class LoginController extends BaseController
     }
 
     /**
-     * Check user input and check account in database
+     * Get user input and check account in database
      * If input is corret, set session
      */
     function auth()

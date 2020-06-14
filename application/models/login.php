@@ -13,6 +13,9 @@ class Login extends BaseModel
      */
     function checkUser($username, $password)
     {
+        $username = $this->escapeSecureSQL($username);
+        $password = $this->escapeSecureSQL($password);
+        
         $sql = "select * from " . DEFAULT_SCHEMA . ".users where username = '" . $username . "'";
         $result = $this->custom($sql);
         if (empty($result)) {
