@@ -6,17 +6,8 @@
     
     <div class="container">
         <?php
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-            if(isset($_SESSION['role']))
-            {
-                $role = $_SESSION['role'];
-                if($role == 'admin'){
-                $create_btn = new CreateButton('films');
-                $create_btn->render($html);
-                } 
-            }
+            $create_btn = new CreateButton('genres');
+            $create_btn->render($html);
         ?>
         
         <div class="content-body mt-4">

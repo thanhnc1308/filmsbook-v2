@@ -35,10 +35,13 @@ class GenresController extends BaseController {
     }
     
     function create() {
-        
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
     }
     
-    function store() {        
+    function store() {  
+        
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         if(isset($_POST['name'])) {
             $name = $_POST['name'];
             // avoid adding duplicate genre

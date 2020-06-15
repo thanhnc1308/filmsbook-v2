@@ -35,10 +35,13 @@ class CountriesController extends BaseController {
     }
     
     function create() {
-        
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
     }
     
     function store() {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         if(isset($_POST['name'])) {
             // avoid adding duplicate country
             $name = $_POST['name'];            

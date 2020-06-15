@@ -35,10 +35,12 @@ class CompaniesController extends BaseController {
     }
     
     public function create() {
-        
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
     }
     
     public function store() {
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         if(isset($_POST['name'])) {
             $name = $_POST['name'];
             $company = new Company();
