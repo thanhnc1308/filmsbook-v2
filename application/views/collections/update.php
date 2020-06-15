@@ -17,7 +17,7 @@
   <div class="w-100 d-flex mt-4">
     <div class="w-25 font-size-large">Description: </div>
     <div class="w-50">
-      <textarea name="description" title="Collection description" id="collection-new-description" value="<?php echo $collection['Collection']['description'] ?>" class="w-100 pt-1 pl-1 rounded bg-dark text-light" rows="7"></textarea>
+      <textarea name="description" title="Collection description" id="collection-new-description" class="w-100 pt-1 pl-1 rounded bg-dark text-light" rows="7"><?php echo $collection['Collection']['description'] ?></textarea>
     </div>
     <div class="delete-confirm-message bg-dark display-none" id="confirm-delete-collection">
       <span>Confirm deleting</span><br>
