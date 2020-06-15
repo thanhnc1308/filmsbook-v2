@@ -73,8 +73,10 @@ function onBtnLoginClick() {
         httpClient.post(url, payload, function (res) {
             if (res.readyState == 4 && res.status == 200) {
                 if(res.responseText==1){
+                    toast.show('Login successfully !', 'toast-success');
                     window.location.replace('http://localhost/filmsbook-v2/films')
                 }else{
+                    toast.show('Login failed !', 'toast-error');
                     document.getElementById("login-error").style.display = "";
                 }
             }
@@ -93,8 +95,10 @@ function onBtnSignupClick() {
         httpClient.post(url, payload, function (res) {
             if (res.readyState == 4 && res.status == 200) {
                 if(res.responseText==1){
+                    toast.show('Signup successfully !', 'toast-success');
                     window.location.replace('http://localhost/filmsbook-v2/login')
                 }else{
+                    toast.show('Signup failed !', 'toast-error');
                     document.getElementById("signup-error").style.display = "";
                 }
             }

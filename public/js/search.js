@@ -4,23 +4,35 @@
  */
 
 class LiveSearch {
-
   constructor() {
     // NCThanh1 14.6.2020 - hide div when click on outside
-    hideWhenClickOutside('livesearch');
-    hideWhenClickOutside('add-film-search-results');
+    hideWhenClickOutside("livesearch", null, function cbOnClickOut(el) {
+      const searchDiv = document.getElementById('livesearch');
+      if (document.body.contains(searchDiv) && searchDiv.textContent) {
+        searchDiv.innerHTML = '';
+      }
+    });
+    hideWhenClickOutside("add-film-search-results");
   }
 
-  navBarSearch(searchKey){
+  navBarSearch(searchKey) {
     this.search(searchKey, "livesearch", this.renderHtmlResultForNavBar);
   }
 
-  addFilmSearch(searchKey){
-    this.search(searchKey, "add-film-search-results", this.renderHtmlResultForAddFilm);
+  addFilmSearch(searchKey) {
+    this.search(
+      searchKey,
+      "add-film-search-results",
+      this.renderHtmlResultForAddFilm
+    );
   }
 
-  updateFilmSearch(searchKey){
-    this.search(searchKey, "add-film-search-results", this.renderHtmlResultForAddFilm);
+  updateFilmSearch(searchKey) {
+    this.search(
+      searchKey,
+      "add-film-search-results",
+      this.renderHtmlResultForAddFilm
+    );
   }
   /**
    * func do live search and display result
@@ -39,7 +51,7 @@ class LiveSearch {
         if (res.readyState == 4 && res.status == 200) {
           let films = JSON.parse(res.responseText);
           let result = '<div class="link-film">Not found</div>';
-          if(films.length != 0){
+          if (films.length != 0) {
             result = renderHtmlResult(films);
           }
           document.getElementsByClassName(resultAreaId)[0].innerHTML = result;
@@ -51,27 +63,27 @@ class LiveSearch {
   }
 
   renderHtmlResultForNavBar = (films) => {
-      let result = '';
-      films.forEach(film => {
-        result += `<div class="link-film"><a href="${BASE_PATH}/films/view/${film['Film']['id']}" class="fw-bold no-underline rounded" target="_blank">${film['Film']['title']}</a></div>`
-      });
-      return result;
-  }
-
-  renderHtmlResultForAddFilm = (films) => {
-    let result = '';
-    films.forEach(film => {
-      result += `<div class="link-film"><div 
-      class="fw-bold no-underline rounded"
-      film-id="${film['Film']['id']}"
-      film-title="${film['Film']['title']}"
-      film-length="${film['Film']['length']}"
-      film-avatar="${film['Film']['avatar']}"
-      onclick="collection.addFilmFromSearch(this)"
-      >${film['Film']['title']}</div></div>`
+    let result = "";
+    films.forEach((film) => {
+      result += `<div class="link-film"><a href="${BASE_PATH}/films/view/${film["Film"]["id"]}" class="fw-bold no-underline rounded" target="_blank">${film["Film"]["title"]}</a></div>`;
     });
     return result;
-  }
+  };
+
+  renderHtmlResultForAddFilm = (films) => {
+    let result = "";
+    films.forEach((film) => {
+      result += `<div class="link-film"><div 
+      class="fw-bold no-underline rounded"
+      film-id="${film["Film"]["id"]}"
+      film-title="${film["Film"]["title"]}"
+      film-length="${film["Film"]["length"]}"
+      film-avatar="${film["Film"]["avatar"]}"
+      onclick="collection.addFilmFromSearch(this)"
+      >${film["Film"]["title"]}</div></div>`;
+    });
+    return result;
+  };
 }
 
 const liveSearch = new LiveSearch();
