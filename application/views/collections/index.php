@@ -61,7 +61,7 @@ function inflect_count($count, $unit)
     </div>
 
     <div class="content-header pt-4">
-      Recommend list (<?php echo inflect_count(count($random_collections), 'collection'); ?>)
+      Other people lists (<?php echo inflect_count(count($random_collections), 'collection'); ?>)
     </div>
     <div class="content-body d-flex flex-wrap mt-4 justify-content-start">
       <?php foreach ($random_collections as $collection) : ?>
