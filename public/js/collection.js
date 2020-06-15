@@ -24,8 +24,8 @@ class Collection {
     if(collection.films.indexOf(film['id']) == -1){
       collection.films.push(film['id']);
 
-      let filmStack = `<a href="${BASE_URL}/films/view/${film['id']}" class="film-update" film-id="${film['id']}">
-      <div class="d-flex horizontal-between film-stack-content pb-2 pt-2" id="collection-film-${film['id']}">
+      let filmStack = `<a href="${BASE_URL}/films/view/${film['id']}" class="film-update" film-id="${film['id']}" id="collection-film-${film['id']}">
+      <div class="d-flex horizontal-between film-stack-content pb-2 pt-2">
       <div class="d-flex">
           <img src="${film['avatar']}" width="100" height="100">
           <div class="ml-2 my-auto">${film['title']} - ${film['length']}'</div>
@@ -87,6 +87,7 @@ class Collection {
     let collectionName = document.getElementById("collection-new-name").value;
     let collectionDescription = document.getElementById("collection-new-description").value;
     let films = collection.loadFilmsFromUpdatePage();
+    console.log(films);
 
     httpClient.post(`${BASE_URL}/collections/edit`, {
       name : collectionName,
