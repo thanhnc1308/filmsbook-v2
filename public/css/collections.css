@@ -128,13 +128,15 @@
 .delete-button{
   font-size: larger;
   border-radius: 50%;
-  background-color: grey;
   color: antiquewhite;
+  background-color: #343a40;
   border:none;
 }
 
 .delete-button:hover{
   cursor: pointer;
+  background-color: grey;
+  color: white;
 }
 
 .delete-button:focus{
@@ -169,4 +171,9 @@
 
 .display-none{
   display: none;
+}
+
+.collection-input{
+  line-height: 30px;
+  font-size: large;
 }
