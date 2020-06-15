@@ -55,7 +55,7 @@
                 </div>
                 <div class="search">
                     <input type="text" onkeyup="liveSearch.navBarSearch(this.value)" class="input-search rounded bg-dark border text-light pl-2" placeholder="Search" />
-                    <div class="livesearch"></div>
+                    <div id="livesearch" class="livesearch"></div>
                 </div>
             </div>
         </div>
