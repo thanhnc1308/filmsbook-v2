@@ -11,44 +11,73 @@
  *
  * @author lamnt
  */
-class ReviewsController extends BaseController {
-    function beforeAction() {
-        
+class ReviewsController extends BaseController
+{
+
+    protected $userId;
+
+    function beforeAction()
+    {
     }
-    
-    function index() {
+
+    function index()
+    {
         $this->Review->showHasOne();
         $reviews = $this->Review->search();
-        
+
         $this->set('reviews', $reviews);
     }
-    
-    function view($id) {
+
+    function view($id)
+    {
         // check if $id exists
         $this->Review->id = $id;
         $this->Review->showHasOne();
         $review = $this->Review->search();
-        if($review) {
+        if ($review) {
             $this->set('status', 1);
             $this->set('review', $review);
         } else {
             $this->set('status', 0);
         }
     }
-    
-    function create($film_id) {
+
+    function create($film_id)
+    {
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $role = $this->getUserRole();
+
+        if (!$role) {
+            include(dirname(__DIR__) . '/../library/checklogin.php');
+        }
+
         $this->set('film_id', $film_id);
     }
-    
-    function store($film_id) {
-        if($film_id) {
+
+    function store($film_id)
+    {
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $role = $this->getUserRole();
+
+        if ($role != 'admin') {
+            $html = new HTML;
+            require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
+        }
+
+        if ($film_id) {
             // validate film id
             $film = new Film();
             $film->id = $film_id;
             $film = $film->search();
-            
-            if($film) {
-                if(isset($_POST['content'])) {
+
+            if ($film) {
+                if (isset($_POST['content'])) {
                     $user_id = $this->getUserId();
                     $content = $_POST['content'];
 
@@ -66,16 +95,32 @@ class ReviewsController extends BaseController {
             // redirect to error page
         }
     }
-    
-    function edit($id) {
+
+    function edit($id)
+    {
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         // check if id exists
-        if($id) {
+        if ($id) {
             $this->Review->id = $id;
             $this->Review->showHasOne();
             $review = $this->Review->search();
-            if($review) {
-                $this->set('status', 1);
-                $this->set('review', $review);
+
+            $this->userId = $review['Review']['user_id'];
+            if ($review) {
+
+                if (isset($_SESSION['role']) && isset($_SESSION['user_id'])) {
+                    $role = $_SESSION['role'];
+                    $userSessionId = $_SESSION['user_id'];
+
+                    if ($role == 'admin' || $userSessionId == $this->userId) {
+                        $this->set('status', 1);
+                        $this->set('review', $review);
+                    }
+                }
             } else {
                 // todo: redirect error page
                 $this->set('status', 0);
@@ -84,21 +129,32 @@ class ReviewsController extends BaseController {
             // todo: redirect error page
         }
     }
-    
-    function update($id) {
-        if($id) {
+
+    function update($id)
+    {
+        if ($id) {
             $this->Review->id = $id;
             $review = $this->Review->search();
-            if($review) {
-                $updated_content = $this->cleanInput($_POST['content']);
-                
-                $updated_review = new Review();
-                $updated_review->id = $id;
-                $updated_review->user_id = $review['Review']['user_id'];
-                $updated_review->film_id = $review['Review']['film_id'];
-                $updated_review->content = $updated_content;                
-                
-                $updated_review->save();
+
+            $this->userId = $review['Review']['user_id'];
+            if ($review) {
+
+                if (isset($_SESSION['role']) && isset($_SESSION['user_id'])) {
+                    $role = $_SESSION['role'];
+                    $userSessionId = $_SESSION['user_id'];
+
+                    if ($role == 'admin' || $userSessionId == $this->userId) {
+                        $updated_content = $this->cleanInput($_POST['content']);
+
+                        $updated_review = new Review();
+                        $updated_review->id = $id;
+                        $updated_review->user_id = $review['Review']['user_id'];
+                        $updated_review->film_id = $review['Review']['film_id'];
+                        $updated_review->content = $updated_content;
+        
+                        $updated_review->save();
+                    }
+                }
             } else {
                 // todo: redirect error page
             }
@@ -107,23 +163,29 @@ class ReviewsController extends BaseController {
         }
         $this->set('id', $id);
     }
-    
-    function delete() {
-        if(isset($_POST['id'])) {
+
+    function delete()
+    {
+        if (isset($_POST['id'])) {
             $review_id = $this->cleanInput($_POST['id']);
             // validate if this id exists
             $this->Review->id = $review_id;
             $result = $this->Review->search();
+
+            $this->userId = $result['Review']['user_id'];
             // delete
-            if($result) {
-                $review = new Review();
-                $review->id = $review_id;
-                $review->delete();
+            if ($result) {
+
+                if (isset($_SESSION['role']) && isset($_SESSION['user_id'])){
+                    $review = new Review();
+                    $review->id = $review_id;
+                    $review->delete();
+                }
             }
         }
     }
-    
-    function afterAction() {
-        
+
+    function afterAction()
+    {
     }
 }
