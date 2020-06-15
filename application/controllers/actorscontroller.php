@@ -35,10 +35,13 @@ class ActorsController extends BaseController {
     }
     
     function create() {
-        
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
     }
     
     function store() {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         if(isset($_POST['name']) && !empty($_POST['name'])) {
             $actor = $this->loadFields();            
             $actor->save();
@@ -46,6 +49,9 @@ class ActorsController extends BaseController {
     }
     
     function edit($actor_id) {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         if($actor_id) {
             if(is_numeric($actor_id)) {
                 $actor = new Actor();
@@ -67,6 +73,9 @@ class ActorsController extends BaseController {
     }
     
     function update($actor_id) {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         // validate actor_id
         if($actor_id) {
             if(is_numeric($actor_id)) {
@@ -91,6 +100,9 @@ class ActorsController extends BaseController {
     }
     
     function delete() {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         // validate id exist in post request and id is number
         if(isset($_POST['id']) && is_numeric($_POST['id'])) {
             // validate if this actor            

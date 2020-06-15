@@ -39,16 +39,8 @@ class FilmsController extends BaseController {
     }
     
     function create() {
-        
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $role = $this->getUserRole();
 
-        if($role!='admin'){
-            $html = new HTML;
-            require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
-        }
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
 
         $genres = new Genre();
         $genres = $genres->search();
@@ -68,6 +60,9 @@ class FilmsController extends BaseController {
     }
     
     function store() {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+        
         if (isset($_POST['title']) && !empty($_POST['title'])) {
             $film = $this->loadFields();
             
@@ -132,6 +127,9 @@ class FilmsController extends BaseController {
     }
     
     function edit($id) {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         $film = new Film();
         $film->id = $this->cleanInput($id);
         $film->showHasManyAndBelongsToMany();
@@ -157,6 +155,9 @@ class FilmsController extends BaseController {
     }
     
     function update($id) {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         // get the movie from db
         $film_id = $this->cleanInput($id);
         $film_search = new Film();
@@ -307,6 +308,9 @@ class FilmsController extends BaseController {
     }
     
     function delete() {
+
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+
         if(isset($_POST['id'])) {
             // check if movie exists
             $film_id = $this->cleanInput($_POST['id']);

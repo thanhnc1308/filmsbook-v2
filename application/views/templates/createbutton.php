@@ -11,17 +11,28 @@
  *
  * @author lamnt
  */
-class CreateButton {
+class CreateButton
+{
     protected $controller;
-    
-    function __construct($controller) {
+
+    function __construct($controller)
+    {
         $this->controller = $controller;
     }
-    
-    function render($html) {
-        $link = $html->getHref($this->controller . '/create');
-        echo "<div class=\"create-bar\">";
-        echo "<a href=\"$link\" class=\"create-btn no-underline\">Add new Item</a>";
-        echo "</div>";
+
+    function render($html)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION['role'])) {
+            $role = $_SESSION['role'];
+            if ($role == 'admin') {
+                $link = $html->getHref($this->controller . '/create');
+                echo "<div class=\"create-bar\">";
+                echo "<a href=\"$link\" class=\"create-btn no-underline\">Add new Item</a>";
+                echo "</div>";
+            }
+        }
     }
 }

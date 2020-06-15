@@ -1,38 +1,28 @@
 <?php
+class ReviewToolBar extends ToolBar
+{
+    protected $userId;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of toolbar
- *
- * @author lamnt
- */
-class ToolBar {
-    protected $actions;
-    protected $controller;
-    protected $id;
-    
-    function __construct($controller, $id) {
+    function __construct($controller, $id, $userId)
+    {
         $this->id = $id;
-        $this->controller = $controller;        
+        $this->controller = $controller;
+        $this->userId = $userId;
         $this->actions = [
             'edit' => $controller . "/edit/" . $id,
             'delete' => $controller . "/delete"
         ];
     }
-    
+
     function render($html) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        if(isset($_SESSION['role']))
+        if(isset($_SESSION['role']) && isset($_SESSION['user_id']))
         {
             $role = $_SESSION['role'];
-            if($role == 'admin'){
+            $userSessionId = $_SESSION['user_id'];
+            if($role == 'admin' || $userSessionId == $this->userId){
                 $delete_link = $html->getHref($this->controller . '/delete');
                 echo "<form method=\"post\" action=\"$delete_link\">";
                 echo "<div class=\"tab-bar\">";
