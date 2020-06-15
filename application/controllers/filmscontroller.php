@@ -33,8 +33,11 @@ class FilmsController extends BaseController {
         }
 
         // NCThanh 15.6.2020 - get status added to wattchlist or like
-        $this->set('watchListId', $this->Film->getStatusWatchList($this->getUserId(), $id));
-        $this->set('likeId', $this->Film->getStatusLike($this->getUserId(), $id));
+        // lamnt 16.6.2020 - add check login
+        if($this->getUserId()) {
+            $this->set('watchListId', $this->Film->getStatusWatchList($this->getUserId(), $id));
+            $this->set('likeId', $this->Film->getStatusLike($this->getUserId(), $id));
+        }
     }
     
     function index() {

@@ -66,6 +66,7 @@ class ReviewsController extends BaseController
         $role = $this->getUserRole();
 
         if (!$role) {
+            $this->set('status', 0);
             include(dirname(__DIR__) . '/../library/checklogin.php');
         } else {
             if ($film_id) {
@@ -87,13 +88,13 @@ class ReviewsController extends BaseController
                             $review->save();
                         }
                     }
-                    $this->set('film_id', $film_id);
                 } else {
                     // redirect to error page
                 }
             } else {
                 // redirect to error page
             }
+            $this->set('status', 1);
         }
     }
 

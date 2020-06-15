@@ -46,8 +46,8 @@ $fields = [
                 <div class="film-overview">
                     <h1><?php echo $title; ?></h1>
                     <div film-id='<?php echo $film_id ?>' user-id='<?php echo $userid ?>' class="fav-bar">
-                        <a activity-id='<?php echo $watchListId ?>' title="Add to watch list" onclick="activity.toggleWatchListInView(this)"><i class="fa fa-eye pointer mr-2 icon-button icon-button-watch font-size-large <?php echo $watchListId != -1 ? 'watch-active' : '' ?>"></i></a>
-                        <a activity-id='<?php echo $likeId ?>' title="Add to like list" onclick="activity.toggleLikeInView(this)"><i class="fa fa-heart pointer icon-button icon-button-like font-size-large <?php echo $likeId != -1 ? 'like-active' : '' ?>"></i></a>
+                        <a activity-id='<?php if(isset($watchListId)) echo $watchListId ?>' title="Add to watch list" onclick="activity.toggleWatchListInView(this)"><i class="fa fa-eye pointer mr-2 icon-button icon-button-watch font-size-large <?php echo $watchListId != -1 ? 'watch-active' : '' ?>"></i></a>
+                        <a activity-id='<?php if(isset($likeId)) echo $likeId ?>' title="Add to like list" onclick="activity.toggleLikeInView(this)"><i class="fa fa-heart pointer icon-button icon-button-like font-size-large <?php echo $likeId != -1 ? 'like-active' : '' ?>"></i></a>
                     </div>
                     <p><?php echo $description; ?></p>
                 </div>
