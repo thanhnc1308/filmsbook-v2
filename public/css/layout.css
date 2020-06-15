@@ -150,11 +150,13 @@ body {
 }
 
 #toast.toast-success {
-    background-color: green;
+  border: none;
+  background-color: rgb(78, 211, 78);
 }
 
 #toast.toast-error {
-    background-color: red;
+  border: none;
+  background-color: rgb(255, 57, 46);
 }
 
 /* Animations to fade the snackbar in and out */
