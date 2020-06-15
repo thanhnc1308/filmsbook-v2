@@ -28,7 +28,7 @@ body {
 
 /* navbar */
 .navbar {
-  z-index: 1;
+  z-index: 100;
 }
 
 .navbar .nav-link {
