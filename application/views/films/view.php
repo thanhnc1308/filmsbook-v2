@@ -45,19 +45,19 @@ $fields = [
 
                 <div class="film-overview">
                     <h1><?php echo $title; ?></h1>
-                    <div class="fav-bar">
-                        <button id="watch-btn" class="btn">Watch</button>
-                        <button id="like-btn" class="btn">Like</button>
+                    <div film-id='<?php echo $film_id ?>' user-id='<?php echo $userid ?>' class="fav-bar">
+                        <a activity-id='<?php echo $watchListId ?>' title="Add to watch list" onclick="activity.toggleWatchListInView(this)"><i class="fa fa-eye pointer mr-2 icon-button icon-button-watch font-size-large <?php echo $watchListId != -1 ? 'watch-active' : '' ?>"></i></a>
+                        <a activity-id='<?php echo $likeId ?>' title="Add to like list" onclick="activity.toggleLikeInView(this)"><i class="fa fa-heart pointer icon-button icon-button-like font-size-large <?php echo $likeId != -1 ? 'like-active' : '' ?>"></i></a>
                     </div>
                     <p><?php echo $description; ?></p>
                 </div>
             </div>
-            
-            
+
+
             <!--Toolbar-->
             <?php
-                $toolbar = new ToolBar('films', $film_id);
-                $toolbar->render($html);
+            $toolbar = new ToolBar('films', $film_id);
+            $toolbar->render($html);
             ?>
             <hr>
 
@@ -172,7 +172,7 @@ $fields = [
 
                     <div>
                         <form method="post" action="<?php echo $html->getHref('reviews/store/' . $film_id); ?>">
-                            <textarea class="fullsize-textbox" name="content" rows="5"  placeholder="Your review"></textarea>
+                            <textarea class="fullsize-textbox" name="content" rows="5" placeholder="Your review"></textarea>
                             <input class="review-btn mt-2" type="submit" value="Add your own review">
                         </form>
                     </div>

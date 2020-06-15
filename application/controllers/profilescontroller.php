@@ -74,7 +74,13 @@ class ProfilesController extends BaseController
         $userId = $_POST['userId'];
         $sql = "insert into " . DEFAULT_SCHEMA . ".activity (film_id,user_id,name,created_at,updated_at) VALUES (" . $filmId . "," . $userId . ",'watchlist',now() ,now());";
         $result = $this->Profile->executeCommand($sql);
-        echo $result;
+
+        if ($result) {
+            $newActivity = $this->Profile->custom('select id as activity_id from activity where name = "watchlist" and user_id = ' . $userId . ' and film_id = ' . $filmId . ';');
+            echo $newActivity[0]['Activity']['activity_id'];
+        } else {
+            echo '-1';
+        }
     }
 
     /**
@@ -88,7 +94,12 @@ class ProfilesController extends BaseController
         $userId = $_POST['userId'];
         $sql = "insert into " . DEFAULT_SCHEMA . ".activity (film_id,user_id,name,created_at,updated_at) VALUES (" . $filmId . "," . $userId . ",'like',now() ,now());";
         $result = $this->Profile->executeCommand($sql);
-        echo $result;
+        if ($result) {
+            $newActivity = $this->Profile->custom('select id as activity_id from activity where name = "like" and user_id = ' . $userId . ' and film_id = ' . $filmId . ';');
+            echo $newActivity[0]['Activity']['activity_id'];
+        } else {
+            echo '-1';
+        }
     }
 
     /**

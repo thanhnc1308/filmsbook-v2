@@ -44,6 +44,24 @@ class Activity {
   }
 
   /**
+   * func add or remove watchlist item
+   * @param {String} activityId
+   * @author NCThanh
+   */
+  toggleWatchListInView(el) {
+    const me = this,
+      activityId = el.getAttribute("activity-id");
+    me.currentWatchItem = el.parentElement;
+    me.currentWatchButton = el.querySelector(".icon-button-watch");
+    const isCurrentActive = me.currentWatchButton.classList.contains("watch-active");
+    if (!isCurrentActive) {
+      me.addToWatchList();
+    } else {
+      me.removeWatchList(activityId);
+    }
+  }
+
+  /**
    * func add a film to user watchlist
    * @author NCThanh
    */
@@ -55,10 +73,13 @@ class Activity {
         userId: me.currentWatchItem.getAttribute("user-id"),
       };
     httpClient.post(url, payload, function (res) {
-      if (res.readyState == 4 && res.status == 200 && res.response === "1") {
-        me.currentWatchButton.classList.add("watch-active");
-      } else {
-        console.log("Error: addToWatchList");
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.response !== "-1") {
+          me.currentWatchButton.classList.add("watch-active");
+          me.currentWatchButton.parentElement.setAttribute('activity-id', res.response)
+        } else {
+          console.log("Error: addToWatchList");
+        }
       }
     });
   }
@@ -75,10 +96,12 @@ class Activity {
         activityId,
       };
     httpClient.post(url, payload, function (res) {
-      if (res.readyState == 4 && res.status == 200 && res.response === "1") {
-        me.currentWatchButton.classList.remove("watch-active");
-      } else {
-        console.log("Error: removeWatchList");
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.response === "1") {
+          me.currentWatchButton.classList.remove("watch-active");
+        } else {
+          console.log("Error: removeWatchList");
+        }
       }
     });
   }
@@ -103,6 +126,24 @@ class Activity {
   }
 
   /**
+   * func add or remove watchlist item
+   * @param {String} activityId
+   * @author NCThanh
+   */
+  toggleLikeInView(el) {
+    const me = this,
+      activityId = el.getAttribute("activity-id");
+    me.currentLikeItem = el.parentElement;
+    me.currentLikeButton = el.querySelector(".icon-button-like");
+    const isCurrentActive = me.currentLikeButton.classList.contains("like-active");
+    if (!isCurrentActive) {
+      me.addToLike();
+    } else {
+      me.removeLike(activityId);
+    }
+  }
+
+  /**
    * func add a film to user watchlist
    * @author NCThanh
    */
@@ -114,10 +155,13 @@ class Activity {
         userId: me.currentLikeItem.getAttribute("user-id"),
       };
     httpClient.post(url, payload, function (res) {
-      if (res.readyState == 4 && res.status == 200 && res.response === "1") {
-        me.currentLikeButton.classList.add("like-active");
-      } else {
-        console.log("Error: addToLike");
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.response !== "-1") {
+          me.currentLikeButton.classList.add("like-active");
+          me.currentLikeButton.parentElement.setAttribute('activity-id', res.response);
+        } else {
+          console.log("Error: addToLike");
+        }
       }
     });
   }
@@ -134,10 +178,12 @@ class Activity {
         activityId,
       };
     httpClient.post(url, payload, function (res) {
-      if (res.readyState == 4 && res.status == 200 && res.response === "1") {
-        me.currentLikeButton.classList.remove("like-active");
-      } else {
-        console.log("Error: removeLike");
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.response === "1") {
+          me.currentLikeButton.classList.remove("like-active");
+        } else {
+          console.log("Error: removeLike");
+        }
       }
     });
   }
