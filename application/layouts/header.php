@@ -43,7 +43,7 @@
                             >
                         </div>';
                     echo '<div id="navLogout" class="nav-item">
-                    <a href="/filmsbook-v2/login" class="nav-link text-uppercase mr-3 fw-bold">Logout</a>
+                    <a href="/filmsbook-v2/logout" class="nav-link text-uppercase mr-3 fw-bold">Logout</a>
                         </div>';
                 }
                 ?>
