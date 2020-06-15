@@ -32,7 +32,7 @@ class Activity {
   toggleWatchList(activityId) {
     const me = this,
       selectedEl = document.querySelector(`div[activity-id='${activityId}']`),
-      iconButtonEl = selectedEl.querySelector(".icon-button"),
+      iconButtonEl = selectedEl.querySelector(".icon-button-watch"),
       isCurrentActive = iconButtonEl.classList.contains("watch-active");
     me.currentWatchItem = selectedEl;
     me.currentWatchButton = iconButtonEl;
@@ -91,7 +91,7 @@ class Activity {
   toggleLike(activityId) {
     const me = this,
       selectedEl = document.querySelector(`div[activity-id='${activityId}']`),
-      iconButtonEl = selectedEl.querySelector(".icon-button"),
+      iconButtonEl = selectedEl.querySelector(".icon-button-like"),
       isCurrentActive = iconButtonEl.classList.contains("like-active");
     me.currentLikeItem = selectedEl;
     me.currentLikeButton = iconButtonEl;

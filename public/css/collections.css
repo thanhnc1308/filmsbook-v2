@@ -25,6 +25,10 @@
   margin-right: 35px;
 }
 
+.text-light:last-child .collection-card {
+  margin-right: 0 !important;
+}
+
 .film-stack{
   height: 200px;
 }

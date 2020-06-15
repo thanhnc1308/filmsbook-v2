@@ -25,11 +25,11 @@ class Toast {
 
     hideWhenClickOutside("toast", cbOnClickIn);
 
-    // setTimeout(function () {
-    //   if (document.body.contains(toastDiv)) {
-    //     document.body.removeChild(toastDiv);
-    //   }
-    // }, time);
+    setTimeout(function () {
+      if (document.body.contains(toastDiv)) {
+        document.body.removeChild(toastDiv);
+      }
+    }, time);
   }
 }
 

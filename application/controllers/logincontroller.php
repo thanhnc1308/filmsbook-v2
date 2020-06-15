@@ -9,13 +9,6 @@ class LoginController extends BaseController
      */
     function beforeAction()
     {
-        $this->set('userid', '');
-        $this->set('username', '');
-        $this->set('role', '');
-
-        if (!(session_status() == PHP_SESSION_NONE)) {
-            session_destroy();
-        }
     }
 
     function view($userId = null)
@@ -24,6 +17,16 @@ class LoginController extends BaseController
 
     function index()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $role = $this->getUserRole();
+
+        if($role != 'user' && $role != 'admin'){
+            $this->set('session', 0);
+        }else {
+            $this->set('session', 1);
+        }
     }
 
     /**
