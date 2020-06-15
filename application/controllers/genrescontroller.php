@@ -23,7 +23,7 @@ class GenresController extends BaseController {
     
     function view($id) {
         // check if $id exists
-        $this->Genre->id = $id;
+        $this->Genre->id = $this->cleanInput($id);
         $this->Genre->showHasManyAndBelongsToMany();
         $genre = $this->Genre->search();
         if($genre) {
@@ -43,16 +43,18 @@ class GenresController extends BaseController {
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
 
         if(isset($_POST['name'])) {
-            $name = $_POST['name'];
-            // avoid adding duplicate genre
-            $genre = new Genre();
-            $genre->where('name', $name);
-            $genre = $genre->search();
-            
-            if(!$genre) {
+            $name = $this->cleanInput($_POST['name']);
+            if(!empty($name)) {
+                // avoid adding duplicate genre
                 $genre = new Genre();
-                $genre->name = $name;
-                $genre->save();
+                $genre->where('name', $name);
+                $genre = $genre->search();
+
+                if(!$genre) {
+                    $genre = new Genre();
+                    $genre->name = $name;
+                    $genre->save();
+                }
             }
         }
     }

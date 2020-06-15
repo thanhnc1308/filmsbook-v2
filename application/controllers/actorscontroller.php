@@ -23,7 +23,7 @@ class ActorsController extends BaseController {
     
     function view($id) {
         // check if $id exists
-        $this->Actor->id = $id;
+        $this->Actor->id = $this->cleanInput($id);
         $this->Actor->showHasManyAndBelongsToMany();
         $actor = $this->Actor->search();
         if($actor) {
@@ -86,7 +86,7 @@ class ActorsController extends BaseController {
                     $actor = $this->loadFields();
                     $actor->id = $actor_id;
                     $actor->save();
-                    var_dump($actor);
+                    
                     $this->set('actor_id', $actor_id);
                 } else {
                     
@@ -110,7 +110,7 @@ class ActorsController extends BaseController {
             $actor = new Actor();
             $actor->id = $id;
             $actor = $actor->search();
-            var_dump();
+            
             if($actor) {
                // delete all actors_films 
                 $actors_films = new Actors_film();

@@ -14,7 +14,7 @@
             {
                 $role = $_SESSION['role'];
                 if($role == 'admin'){
-                $create_btn = new CreateButton('films');
+                $create_btn = new CreateButton('countries');
                 $create_btn->render($html);
                 } 
             }

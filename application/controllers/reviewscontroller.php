@@ -25,7 +25,7 @@ class ReviewsController extends BaseController {
     
     function view($id) {
         // check if $id exists
-        $this->Review->id = $id;
+        $this->Review->id = $this->cleanInput($id);
         $this->Review->showHasOne();
         $review = $this->Review->search();
         if($review) {
@@ -44,19 +44,21 @@ class ReviewsController extends BaseController {
         if($film_id) {
             // validate film id
             $film = new Film();
-            $film->id = $film_id;
+            $film->id = $this->cleanInput($film_id);
             $film = $film->search();
             
             if($film) {
                 if(isset($_POST['content'])) {
                     $user_id = $this->getUserId();
-                    $content = $_POST['content'];
-
-                    $review = new Review();
-                    $review->user_id = $user_id;
-                    $review->film_id = $film_id;
-                    $review->content = $content;
-                    $review->save();
+                    $content = $this->cleanInput($_POST['content']);
+                    
+                    if(!empty($content)) {
+                        $review = new Review();
+                        $review->user_id = $user_id;
+                        $review->film_id = $film_id;
+                        $review->content = $content;
+                        $review->save();
+                    }
                 }
                 $this->set('film_id', $film_id);
             } else {
@@ -70,7 +72,7 @@ class ReviewsController extends BaseController {
     function edit($id) {
         // check if id exists
         if($id) {
-            $this->Review->id = $id;
+            $this->Review->id = $this->cleanInput($id);
             $this->Review->showHasOne();
             $review = $this->Review->search();
             if($review) {
@@ -87,7 +89,7 @@ class ReviewsController extends BaseController {
     
     function update($id) {
         if($id) {
-            $this->Review->id = $id;
+            $this->Review->id = $this->cleanInput($id);
             $review = $this->Review->search();
             if($review) {
                 $updated_content = $this->cleanInput($_POST['content']);

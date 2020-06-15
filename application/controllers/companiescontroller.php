@@ -23,7 +23,7 @@ class CompaniesController extends BaseController {
     
     public function view($id) {
         // check if $id exists
-        $this->Company->id = $id;
+        $this->Company->id = $this->cleanInput($id);
         $this->Company->showHasManyAndBelongsToMany();
         $company = $this->Company->search();
         if($company) {
@@ -42,19 +42,18 @@ class CompaniesController extends BaseController {
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
 
         if(isset($_POST['name'])) {
-            $name = $_POST['name'];
-            $company = new Company();
-            $company->where('name', $name);
-            $company = $company->search();
-            
-            if($company == null) {
-                $name = $_POST['name'];
-            
+            $name = $this->cleanInput($_POST['name']);
+            if(!empty($name)) {
                 $company = new Company();
-                $company->name = $name;
-                $company->save();
-            }
-            
+                $company->where('name', $name);
+                $company = $company->search();
+
+                if($company == null) {            
+                    $company = new Company();
+                    $company->name = $name;
+                    $company->save();
+                }
+            }            
         }
     }
     

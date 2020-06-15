@@ -6,7 +6,7 @@ class FilmsController extends BaseController {
     
     function view($id) {
         // search for this film
-        $this->Film->id = $id;
+        $this->Film->id = $this->cleanInput($id);
         $this->Film->showHasManyAndBelongsToMany();
         $this->Film->showHasMany();
         $film = $this->Film->search();
