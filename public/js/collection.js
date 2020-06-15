@@ -46,8 +46,6 @@ class Collection {
     if(document.getElementsByClassName("empty-collection-message")[0]){
       document.getElementsByClassName("empty-collection-message")[0].outerHTML = '';
     }
-
-    
   }
 
   create(){
@@ -62,11 +60,12 @@ class Collection {
       description : collectionDescription,
       films : JSON.stringify(films)
     }, (res) => {
-      if (res.readyState == 4) {
-        if (res.status == 200){
-          window.location.href = `${BASE_URL}/collections/index`;
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.responseText){
+          toast.show(res.responseText, 'toast-error');
         } else {
-          alert('Error to add collection');
+          toast.show('Collection created', 'toast-success');
+          window.location.href = `${BASE_URL}/collections/index`;
         }
       }
     });
@@ -87,7 +86,11 @@ class Collection {
     let collectionName = document.getElementById("collection-new-name").value;
     let collectionDescription = document.getElementById("collection-new-description").value;
     let films = collection.loadFilmsFromUpdatePage();
-    console.log(films);
+
+    if(!collectionName){
+      toast.show('Collection name can not be empty', 'toast-error');
+      return;
+    }
 
     httpClient.post(`${BASE_URL}/collections/edit`, {
       name : collectionName,
@@ -95,11 +98,12 @@ class Collection {
       films : JSON.stringify(films),
       collection_id: collectionId
     }, (res) => {
-      if (res.readyState == 4) {
-        if (res.status == 200){
-          window.location.href = `${BASE_URL}/collections/view/${collectionId}`;
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.responseText){
+          toast.show(res.responseText, 'toast-error');
         } else {
-          alert('Error to add collection');
+          toast.show('Collection updated', 'toast-success');
+          window.location.href = `${BASE_URL}/collections/view/${collectionId}`;
         }
       }
     });
@@ -133,11 +137,12 @@ class Collection {
     httpClient.post(`${BASE_URL}/collections/delete`, {
       id: id
     }, (res) => {
-      if (res.readyState == 4) {
-        if (res.status == 200){
-          window.location.href = `${BASE_URL}/collections/index`;
+      if (res.readyState == 4 && res.status == 200) {
+        if (res.responseText){
+          toast.show(res.responseText, 'toast-error');
         } else{
-          alert("Error");
+          toast.show('Collection deleted', 'toast-success');
+          window.location.href = `${BASE_URL}/collections/index`;
         }
       }
     });

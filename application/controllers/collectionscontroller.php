@@ -54,29 +54,34 @@ class CollectionsController extends BaseController
   {
     $user_id = $this->getUserId();
     $this->doNotRenderHeader = 1;
-    if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['films']) && !empty($user_id)) {
-      $name = $this->Collection->escapeSecureSQL($_POST['name']);
-      $description = $this->Collection->escapeSecureSQL($_POST['description']);
-      $film_ids = json_decode($_POST['films']);
-
-      try {
-        $collection = new Collection();
-        $collection->name = $name;
-        $collection->description = $description;
-        $collection->user_id = $user_id;
-
-        $collection_id = $collection->save();
-
-        foreach ($film_ids as $film_id) {
-          $collection_film = new Collections_film();
-          $collection_film->collection_id = $collection_id;
-          $collection_film->film_id = $film_id;
-          $collection_film->save();
+    if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['films'])) {
+      if(!empty($user_id)){
+        $name = $this->Collection->escapeSecureSQL($_POST['name']);
+        $description = $this->Collection->escapeSecureSQL($_POST['description']);
+        $film_ids = json_decode($_POST['films']);
+  
+        try {
+          $collection = new Collection();
+          $collection->name = $name;
+          $collection->description = $description;
+          $collection->user_id = $user_id;
+  
+          $collection_id = $collection->save();
+  
+          foreach ($film_ids as $film_id) {
+            $collection_film = new Collections_film();
+            $collection_film->collection_id = $collection_id;
+            $collection_film->film_id = $film_id;
+            $collection_film->save();
+          }
+        } catch (Exception $e) {
+          echo var_dump($e);
         }
-        echo $collection_id;
-      } catch (Exception $e) {
-        echo var_dump($e);
+      } else {
+        echo "Require login";
       }
+    } else{
+      echo "Information provided is not enough";
     }
   }
 
@@ -88,6 +93,8 @@ class CollectionsController extends BaseController
     $collection = $this->Collection->search();
     if ($collection['Collection']['user_id'] == $this->getUserId()) {
       $this->set('collection', $collection);
+    } else{
+      echo "You can not edit this collection";
     }
   }
 
@@ -137,10 +144,10 @@ class CollectionsController extends BaseController
           $collection_film_id = $collection_film->save();
         }
       } else {
-        echo "Only owner can edit";
+        echo "Only owner can edit this collection";
       }
     } else {
-      echo "Bad request";
+      echo "Information provided is not enough";
     }
   }
 
@@ -153,7 +160,7 @@ class CollectionsController extends BaseController
       $this->Collection->showHasOne();
       $this->Collection->showHasManyAndBelongsToMany();
       $result = $this->Collection->search();
-      echo var_dump($result);
+
       if ($result && $result['Collection']['user_id'] == $this->getUserId()) {
         $this->Collection->custom("
           DELETE FROM collections_films 
@@ -164,10 +171,10 @@ class CollectionsController extends BaseController
           WHERE id = $collection_id
           ");
       } else {
-        echo "Not owner";
+        echo "Only owner can edit this collection";
       }
     } else {
-      echo "Error";
+      echo "Information provided is not enough";
     }
   }
 
