@@ -1,3 +1,9 @@
+<?php
+if($session==1){
+    header("Location: http://localhost/filmsbook-v2/profiles");
+}
+?>
+
 <!-- content -->
 <div class="content content-login bg-body pt-4">
     <div class="login-box w-25 mx-auto pt-3 pb-3 pl-3 pr-3 rounded w-fit bg-login">
