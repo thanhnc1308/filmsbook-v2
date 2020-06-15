@@ -175,6 +175,12 @@ function __autoload($className)
         } else if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . 'templates' . DS . strtolower($className) . '.php')) {
             require_once(ROOT . DS . 'application' . DS . 'views' . DS . 'templates' . DS . strtolower($className) . '.php');
         } else {
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if(isset($_SESSION['username'])){
+                $username = $_SESSION['username'];
+            }
             $html = new HTML;
             require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'notfound.php');
         }

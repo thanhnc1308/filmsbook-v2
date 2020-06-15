@@ -3,8 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $role = $this->getUserRole();
-
+$username = $this->getUserName();
 if ($role != 'admin') {
     $html = new HTML;
-    require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
+    include(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
 }

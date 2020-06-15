@@ -36,12 +36,15 @@ class GenresController extends BaseController {
     
     function create() {
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
+        $this->render = 0;
     }
     
     function store() {  
         
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
 
+        $this->render = 0;
+        
         if(isset($_POST['name'])) {
             $name = $this->cleanInput($_POST['name']);
             if(!empty($name)) {

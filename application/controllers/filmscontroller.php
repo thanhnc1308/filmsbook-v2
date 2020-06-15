@@ -44,8 +44,9 @@ class FilmsController extends BaseController {
     
     function create() {
 
-        include(dirname(__DIR__).'/../library/checkadminauthor.php');
+        $this->render = 0;
 
+        include(dirname(__DIR__).'/../library/checkadminauthor.php');
         $genres = new Genre();
         $genres = $genres->search();
         $this->set('genres', $genres);
@@ -66,7 +67,7 @@ class FilmsController extends BaseController {
     function store() {
 
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
-        
+        $this->render = 0;
         if (isset($_POST['title']) && !empty($_POST['title'])) {
             $film = $this->loadFields();
             
@@ -133,7 +134,8 @@ class FilmsController extends BaseController {
     function edit($id) {
 
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
-
+        $this->render = 0;
+        
         $film = new Film();
         $film->id = $this->cleanInput($id);
         $film->showHasManyAndBelongsToMany();
@@ -161,6 +163,7 @@ class FilmsController extends BaseController {
     function update($id) {
 
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
+        $this->render = 0;
 
         // get the movie from db
         $film_id = $this->cleanInput($id);
@@ -314,6 +317,7 @@ class FilmsController extends BaseController {
     function delete() {
 
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
+        $this->render = 0;
 
         if(isset($_POST['id'])) {
             // check if movie exists
