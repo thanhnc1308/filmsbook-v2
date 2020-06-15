@@ -33,6 +33,13 @@
     border-radius: 5px;
 }
 
+.fav-bar .btn {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: none;
+    border-radius: 5px;
+}
+
 .create-bar {
     margin-top: 1.8em;
 }
