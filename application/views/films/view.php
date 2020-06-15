@@ -45,6 +45,10 @@ $fields = [
 
                 <div class="film-overview">
                     <h1><?php echo $title; ?></h1>
+                    <div class="fav-bar">
+                        <button id="watch-btn" class="btn">Watch</button>
+                        <button id="like-btn" class="btn">Like</button>
+                    </div>
                     <p><?php echo $description; ?></p>
                 </div>
             </div>
