@@ -44,8 +44,6 @@ class FilmsController extends BaseController {
     
     function create() {
 
-        $this->render = 0;
-
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
         $genres = new Genre();
         $genres = $genres->search();

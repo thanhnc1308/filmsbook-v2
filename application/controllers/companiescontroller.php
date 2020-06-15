@@ -36,12 +36,10 @@ class CompaniesController extends BaseController {
     
     public function create() {
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
-        $this->render = 0;
     }
     
     public function store() {
         include(dirname(__DIR__).'/../library/checkadminauthor.php');
-        $this->render = 0;
 
         if(isset($_POST['name'])) {
             $name = $this->cleanInput($_POST['name']);
