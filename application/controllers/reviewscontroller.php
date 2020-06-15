@@ -65,36 +65,35 @@ class ReviewsController extends BaseController
         }
         $role = $this->getUserRole();
 
-        if ($role != 'admin') {
-            $html = new HTML;
-            require_once(ROOT . DS . 'application' . DS . 'pages' . DS . 'permissiondenied.php');
-        }
+        if (!$role) {
+            include(dirname(__DIR__) . '/../library/checklogin.php');
+        } else {
+            if ($film_id) {
+                // validate film id
+                $film = new Film();
+                $film->id = $this->cleanInput($film_id);
+                $film = $film->search();
 
-        if ($film_id) {
-            // validate film id
-            $film = new Film();
-            $film->id = $this->cleanInput($film_id);
-            $film = $film->search();
+                if ($film) {
+                    if (isset($_POST['content'])) {
+                        $user_id = $this->getUserId();
+                        $content = $this->cleanInput($_POST['content']);
 
-            if ($film) {
-                if (isset($_POST['content'])) {
-                    $user_id = $this->getUserId();
-                    $content = $this->cleanInput($_POST['content']);
-                    
-                    if(!empty($content)) {
-                        $review = new Review();
-                        $review->user_id = $user_id;
-                        $review->film_id = $film_id;
-                        $review->content = $content;
-                        $review->save();
+                        if(!empty($content)) {
+                            $review = new Review();
+                            $review->user_id = $user_id;
+                            $review->film_id = $film_id;
+                            $review->content = $content;
+                            $review->save();
+                        }
                     }
+                    $this->set('film_id', $film_id);
+                } else {
+                    // redirect to error page
                 }
-                $this->set('film_id', $film_id);
             } else {
                 // redirect to error page
             }
-        } else {
-            // redirect to error page
         }
     }
 
