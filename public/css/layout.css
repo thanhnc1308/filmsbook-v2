@@ -53,24 +53,23 @@ body {
   height: 30px;
 }
 
-#livesearch {
+.livesearch {
   position: absolute;
   border-radius: 5px;
   overflow: overlay;
-  height: 400px;
 }
 
-#livesearch .link-film {
+.livesearch .link-film {
   padding: 0.15rem;
   background: #000;
   border-bottom: 1px solid #808080;
 }
 
-#livesearch .link-film:hover {
+.livesearch .link-film:hover {
   background-color: #5d5d5d;
 }
 
-#livesearch .link-film a {
+.livesearch .link-film a {
   color: #9ab;
 }
 /* end navbar */
