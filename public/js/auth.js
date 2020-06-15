@@ -10,6 +10,11 @@ function isValidEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+function isvalidUsername(username){
+    const regex = /^[a-zA-Z0-9]{3,12}$/;
+    return regex.test(String(username).toLowerCase());
+}
+
 function checkEmail() {
     const emailEl = document.getElementById('email'),
         emailVal = emailEl.value;
@@ -43,8 +48,15 @@ function checkUsername() {
     const usernameEl = document.getElementById('username'),
         usernameVal = usernameEl.value;
     if (!isEmptyString(usernameVal)) {
-        removeError('username');
-        return true;
+
+        if(isvalidUsername(usernameVal)){
+            removeError('username');
+            return true;
+        }else{
+            handleAuthError('username', 'Username lenght must be between 3 and 12 non-special characters!');
+            return false;
+        }
+
     } else {
         handleAuthError('username', 'Username can not be empty');
         return false;
