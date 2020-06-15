@@ -102,3 +102,4 @@ function inflect_count($count, $unit)
       <?php endforeach ?>
     </div>
   </div>
+</div>

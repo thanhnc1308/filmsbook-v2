@@ -59,7 +59,7 @@
                                     />
                             </a>
                             <div class="overlay">
-                                <a onclick="activity.toggleWatchList(<?php echo $watchItem['Activity']['activity_id'] ?>)"><i class="fa fa-eye pointer mr-2 icon-button watch-active"></i></a>
+                                <a onclick="activity.toggleWatchList(<?php echo $watchItem['Activity']['activity_id'] ?>)"><i class="fa fa-eye pointer mr-2 icon-button icon-button-watch watch-active"></i></a>
                             </div>
                         </div>
             <?php endforeach ?>
